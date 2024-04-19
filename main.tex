@@ -62,23 +62,109 @@ The following definition comes from \cite{ledrappier_dimension_2023}, in the spe
         F_s(g) = \min_{p \in \llbracket 2, d \rrbracket} \Psi_s^p(g)
     \]
 \end{remark}
+
+\begin{definition}
+Let $\rho: \Gamma \to \SL(d, \mathbb R)$ be a linear representation and $p \in \llbracket 1, d-1 \rrbracket$.
+We say that $\rho$ is $p$-Anosov if there exist constants $\mu, C>0$ such that for all $\gamma \in \Gamma$:
+\[
+    \frac{\sigma_{p+1}}{\sigma_p}(\rho(\gamma)) \leq C e^{-\mu |\gamma|}.
+\]
+One can show that in that case there exist equivariant continuous maps $\xi^p: \hat \Gamma \to \mathcal G_p(\mathbb R^d) , \xi^{d-p}: \hat \Gamma \to \mathcal G_{d-p}(\mathbb R^d)$ that are transverse and restrict to
+\[
+    \xi^p(\gamma) = U_p(\rho(\gamma)), \xi^{d-p}(\gamma) = U_{d-p}(\rho(\gamma))
+\]
+for $\gamma \in \Gamma$, where $U_p(\gamma), U_{d-p}(\gamma)$ denote the flags 
+\todo{Figure out what this exactly means}
+corresponding to  $\rho(\gamma)$.
+\end{definition}
 \chapter{Upper bound}
 \begin{lemma}[Upper bound for dimension]
 Let $\rho: \Gamma \to \SL(d, \mathbb R)$ be a projective Anosov representation. 
-
+Then:
 \[
     \dim_H(\xi^1 (\partial \Gamma) ) \leq
     \inf 
     \left\{ 
         s :  
-        \sum_{|\gamma| = T} e^{-\max\limits_{p \in \llbracket 2, d \rrbracket} \Psi_s^p(\rho(\gamma))}  < \infty
-    \right\}
+        \sum_{|\gamma| = T} e^{-F_s(\rho(\gamma))}  < \infty
+    \right\}.
 \]
 \end{lemma}
+\begin{definition}
+    Let $V$ be a finite-dimensional $\mathbb R$-vector space.
+    We consider a decomposition
+    \[
+        V = \mathbb R u_1 \bigoplus \cdot \bigoplus \mathbb R u_d
+    \] 
+    be a direct decomposition that is orthogonal with respect to a fixed inner-product over $V$.
+    Given $\beta_2 \geq \ldots \beta_d > 0$, we define an ellipsoid about $\mathbb R u_1$ with axis lengths $\beta_2, \ldots, \beta_d$ to be the image of
+    \[
+        \left\{
+            v = \sum_1^d v_i u_i\in V : \sum_2^d \left( \frac{v_j}{\beta_j} \right)^2 \leq 1
+        \right\}
+    \]
+    through the projection $ V \to \mathbb P (V)$.
+\end{definition}
+
+The following aims to be something along the lines of \cite*[Lemma 2.4]{pozzetti_anosov_2023}:
+\begin{lemma}\label{lem:angle}
+    Let $\rho: \Gamma \to \SL(d, \mathbb R)$ be a projective Anosov representation.
+    For $\alpha > 0$ small enough, there exists $L>0$ such that for any geodesic ray $(a_j)_j$ through $e$ we have:
+    \[
+        \angle(U_1(\rho(a_i)), U_1(\rho(a_0))) > \alpha
+    \]
+    when $|a_i|, |a_0| > T$.
+\end{lemma}
+\begin{proof}
+Assume the contrary for the shake of contradiction.
+Then (see Figure \ref{fig:angle} ) for each $n>0$ there exists a geodesic ray  $a^n$ through $e$ such that 
+\[
+    |a_n^n|, |a_0^n| > n \text{ and }
+    \angle(U_1(\rho(a_n^n)), U_1(\rho(a_0^n))) < \frac{1}{n}.
+\]
+Due to compactness of $\partial \Gamma$ we may assume (up to a subsequence) that
+$a^n \to x$ in $\partial \Gamma$ for some $x \in \partial \Gamma$.
+Then 
+\todo{Not sure if this is true.}
+$a^n_n, a_0^n \to x$ in $\hat \Gamma$ which implies
+\[
+    \angle (\xi^1(x), \xi^{d-1}(x)) = 0
+\]
+using the fact that the limit maps $\xi^1, \xi^{d-1}$ are continuous, which contradicts their tranversality.
+\end{proof}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.3\textwidth]{angle.jpg}
+    \caption{Situation in \cref{lem:angle}}
+    \label{fig:angle}
+\end{figure}    
+
+The following is \cite*[Proposition 3.5]{pozzetti_anosov_2023}.
+\begin{lemma}
+Let $\rho: \Gamma \to SL(d, \mathbb R)$ be projective Anosov.
+Then for $\alpha > 0$ small enough, there exists some $T_0 > 0$ such that for all $T \geq T_0$ the family
+\[
+    \mathcal U_T = \left\{ \rho(\gamma) B_{\alpha_1, \alpha}(\rho(\gamma)) : |\gamma| = T \right\}
+\]
+is an open covering of $\xi^1(\partial \Gamma)$.
+\end{lemma}
+\begin{proof}
+    Let $\alpha, T > 0$ be as in the statement of \cref*{lem:angle} and $x \in \partial \Gamma$ be represented by a geodesic ray $(\gamma_j)_{j\geq 0}$ starting from $e$.
+    Then $(\gamma_T^{-1} \gamma_j)_j$ is a geodesic ray starting from $(\gamma_T)^{-1}$ that passes through $e$, so
+    \[
+        \angle (U_1(\rho(\gamma_T^{-1}\gamma_j)), U_{d-1}(\rho(\gamma_T^{-1}))) > \alpha
+    \]
+    as implied by \cref*{lem:angle}.
+    Taking the limit $j \to \infty$ and using the equivariance of the limit map, we obtain
+    \[
+        \angle (\rho(\gamma_T^{-1})\xi^1(x), U_{d-1}(\rho(\gamma_T^{-1}))) > \alpha
+    \]
+    and thus $\xi^1(x) \in \rho(\gamma_T) \cdot B_{\alpha_1, \alpha}(\rho(\gamma_T))$.
+\end{proof}
 
 The following can be found in \cite[Proposition 3.3]{pozzetti_anosov_2023}:
 \begin{proposition}
-    Let $\rho: \Gamma \to SL(d, mathbb R)$ be projective Anosov and $\alpha > 0$
+    Let $\rho: \Gamma \to SL(d, \mathbb R)$ be projective Anosov and $\alpha > 0$
     Then there exist $c_0, c_1 > 0$ that depends only on $\alpha$ and $\rho$ such that for all $\gamma \in \Gamma$:
     \[
         (\xi^1)^{-1}(B_{\alpha_1, \alpha}(\rho(\gamma))) \subseteq C_{c_0,c_1}^\infty(\gamma)
