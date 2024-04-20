@@ -16,6 +16,40 @@
 \tableofcontents
 
 \chapter{Introduction}
+\section{Lie group preliminaries}
+We fix the Cartan subalgebra $\mathfrak a$ of $\SL(d,\mathbb R)$:
+\[
+    \mathfrak a = \left\{
+        \diag(\alpha_1, \ldots, \alpha_d) : \alpha_1 + \cdots \alpha_d = 0
+    \right\}
+\]
+and the Weyl chamber $\mathfrak a^+$ of $\SL(d,\mathbb R)$
+\[
+    \mathfrak a^+ = \left\{
+        \diag(\alpha_1, \ldots, \alpha_d) : \alpha_1 \geq \cdots \geq \alpha_d
+    \right\}.
+\]
+Denoting with $K = \SO(d, \mathbb R), A^+ = e^{\mathfrak a^+} $, we have the Cartan decomposition:
+\begin{align*}
+    \mathfrak{sl}(d, \mathbb R) &\rightarrow K \times A^+ \times K\\
+    g &\mapsto (k_g, a_g, l_g) 
+\end{align*}
+such that $g = k_g a_g l_g$.
+In particular $a_g = \diag(\sigma_1(g), \ldots, \sigma_d(g))$ with $\sigma_1 \geq \cdots \geq \sigma_d(g)$,
+where $\sigma_i(g)$ is the $i$-th singular value of $g$, i.e.\ eigenvalue of $g^t \cdot g$.
+
+We will use the spaces
+\[
+    U_p(g) = \mathbb R u_1(g) \oplus \cdots \oplus \mathbb R u_p(g)   
+\]
+where $u_i(g) = k_g \cdot e_i$.
+One can easily show that the decomposition
+\[
+    g^{-1} \cdot U_p(g) \oplus U_{d-p}(g^{-1})
+\]
+is orthogonal with respect to the standard inner product and that
+$u_p(g^{-1}) = l_g^{-1} e_{d-p+1}(g).$
+\section{Limit set preliminaries}
 \begin{definition}
 For $p \in \{2, \ldots, d\}, s\in \mathbb R $
 and $g \in SL(d, \mathbb R)$ 
@@ -94,10 +128,10 @@ Then:
     Let $V$ be a finite-dimensional $\mathbb R$-vector space.
     We consider a decomposition
     \[
-        V = \mathbb R u_1 \bigoplus \cdot \bigoplus \mathbb R u_d
+        V = \mathbb R u_1 \bigoplus \cdots \bigoplus \mathbb R u_d
     \] 
     be a direct decomposition that is orthogonal with respect to a fixed inner-product over $V$.
-    Given $\beta_2 \geq \ldots \beta_d > 0$, we define an ellipsoid about $\mathbb R u_1$ with axis lengths $\beta_2, \ldots, \beta_d$ to be the image of
+    Given $\beta_2 \geq \ldots \beta_d > 0$, we define an ellipsoid with axes $u_1 \oplus u_p(g)$ and lengths $\beta_p$ to be the image of
     \[
         \left\{
             v = \sum_1^d v_i u_i\in V : \sum_2^d \left( \frac{v_j}{\beta_j} \right)^2 \leq 1
@@ -162,6 +196,37 @@ is an open covering of $\xi^1(\partial \Gamma)$.
     and thus $\xi^1(x) \in \rho(\gamma_T) \cdot B_{\alpha_1, \alpha}(\rho(\gamma_T))$.
 \end{proof}
 
+The following is \cite[Proposition 3.8]{pozzetti_anosov_2023}.
+\begin{proposition}\label{prop:ellipsoid_covers_basin}
+For each $g\in \SL(d, \mathbb R), \alpha > 0$, 
+the basin of attraction $g \cdot B_{\alpha_1, \alpha}(g)$ lies in the ellipsoid with axes $u_1(g) \oplus u_p(g)$ with lengths
+\[
+    \frac{1}{\sin \alpha} \cdot \frac{\sigma_p(g)}{\sigma_1(g)}
+\]
+\end{proposition}
+\begin{proof}
+Using the definition of the basin of attraction (see \cref*{fig:projection} ), we have that $w = w_1 u_1(g^{-1}) + \cdots + w_d u_d(g^{-1}) \in B_{\alpha_1, \alpha}(g)$ if and only if
+\[
+    w_d^2 \geq (\sin \alpha)^2 \sum_1^d w_i^2.
+\]
+Considering now some $v = v_1 u_1(g) + \cdots + v_d u_d(g) \in g \cdot B_{\alpha_1, \alpha}(g)$
+we have that
+\begin{align*}
+    w = g^{-1} v &= v_1 \sigma_1(g)^{-1} l_g^{-1} e_1(g) + \cdots v_d \sigma_d(g)^{-1} l_g^{-1} e_d(g)\\
+    &= v_1 \sigma_1(g)^{-1} u_{d}(g^{-1}) + \cdots v_d \sigma_d(g)^{-1} u_1(g^{-1})
+\end{align*}
+where we used that $u_p(g^{-1}) = l_g^{-1} e_{d+1-p}$.
+Hence
+\[
+    \sigma_1(g)^{-2} \cdot v_1^2 \geq (\sin a)^2 \sum_1^d \sigma_i(g)^{-2} v_i^2.
+\]
+\end{proof}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{projection.jpg}
+    \caption{Aid for \cref{prop:ellipsoid_covers_basin}}
+    \label{fig:projection}
+\end{figure}
 The following can be found in \cite[Proposition 3.3]{pozzetti_anosov_2023}:
 \begin{proposition}
     Let $\rho: \Gamma \to SL(d, \mathbb R)$ be projective Anosov and $\alpha > 0$
