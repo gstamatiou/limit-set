@@ -124,6 +124,59 @@ Then:
     \right\}.
 \]
 \end{lemma}
+\begin{proof}
+Let $p \in \llbracket 2, d \rrbracket$.
+Then using \cref{prop:basin_covering}, \cref{lem:boundary_covering}, and \cref{lem:ellipsoid_covering} we have that for $T>0$ large enough, $\xi^1(\partial \Gamma)$ is covered by the family
+\[
+    \mathcal U_T = \left\{ \rho(\gamma) B_{\alpha_1, \alpha}(\rho(\gamma)) : |\gamma| = T \right\},
+\]
+and that each basin $\rho(\gamma) B_{\alpha_1, \alpha}(\rho(\gamma))$ is in turn covered by
+\[
+    2^{2p+1} \cdot \frac{\sigma_p(g)^{p-2}}{\sigma_2(g) \cdots \sigma_{p-1}(g)}
+\]
+many balls of radius
+\[
+    \sqrt{d} \frac{1}{\sin \alpha} \frac{\sigma_p(g)}{\sigma_1(g)}.
+\]
+By the definition of the Hausdorff measure, for $s \geq 0$:
+\begin{align*}
+    \mathcal H^s(\gamma) &\leq
+    \sum_{|\gamma| = T}
+        2^{2p+1} \cdot 
+        \frac{\sigma_2(\rho(\gamma))}{\sigma_1(\rho(\gamma))} \cdots 
+            \frac{\sigma_{p-1}(\rho(\gamma))}{\sigma_1(\rho(\gamma))}
+        \left(
+            \frac{\sigma_p(\rho(\gamma))}{\sigma_1(\rho(\gamma))}
+        \right)^{-(p-2)}
+        \left(
+            \sqrt{d} \frac{1}{\sin \alpha} \frac{\sigma_p(\rho(\gamma))}{\sigma_1(\rho(\gamma))}
+        \right)^s =\\
+        &=
+        2^{2p+1} \cdot \left( \frac{\sqrt{d}}{\sin \alpha}\right)^s  
+        \sum_{|\gamma| = T} 
+        \frac{\sigma_2(\rho(\gamma))}{\sigma_1(\rho(\gamma))} \cdots 
+            \frac{\sigma_{p-1}(\rho(\gamma))}{\sigma_1(\rho(\gamma))}
+        \left(
+            \frac{\sigma_p(\rho(\gamma))}{\sigma_1(\rho(\gamma))}
+        \right)^{s-(p-2)} =\\
+        &=
+        2^{2p+1} \cdot \left( \frac{\sqrt{d}}{\sin \alpha}\right)^s  
+        \sum_{|\gamma| = T}
+        e^{-\left( \alpha_2 + \ldots + \alpha_{p-1} + (s - (p-2))\alpha_p \right)\rho(\gamma)}\\
+        &=
+        2^{2p+1} \cdot \left( \frac{\sqrt{d}}{\sin \alpha}\right)^s  
+        \sum_{|\gamma| = T}
+        e^{-\Psi_s^p(\rho(\gamma))}
+\end{align*}
+and thus
+\begin{align*}
+    \mathcal H^s(\gamma) \leq
+    2^{2p+1} \cdot \left( \frac{\sqrt{d}}{\sin \alpha}\right)^s
+    \sum_{|\gamma| = T}
+    e^{-\max_p \Psi_s^p(\rho(\gamma)) }
+\end{align*}
+\todo{Will this not imply that $\dim_H(\xi^1(\partial \Gamma)) \leq h_\rho (max_p \Psi^p)$ which may be strictly smaller than $h_\rho (min_p \Psi^p) = h_\rho (F)$ ?}
+\end{proof}
 \begin{definition}
     Let $V$ be a finite-dimensional $\mathbb R$-vector space.
     We consider a decomposition
@@ -139,6 +192,12 @@ Then:
     \]
     through the projection $ V \to \mathbb P (V)$.
 \end{definition}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{ellipsoid.jpg}
+    \caption{Depiction in $\mathbb R^3$ of an ellipsoid of $\mathbb P(\mathbb R^2)$}
+    \label{fig:ellipsoid}
+\end{figure}    
 
 The following aims to be something along the lines of \cite*[Lemma 2.4]{pozzetti_anosov_2023}:
 \begin{lemma}\label{lem:angle}
@@ -174,7 +233,7 @@ using the fact that the limit maps $\xi^1, \xi^{d-1}$ are continuous, which cont
 \end{figure}    
 
 The following is \cite*[Proposition 3.5]{pozzetti_anosov_2023}.
-\begin{lemma}
+\begin{lemma}\label{lem:boundary_covering}
 Let $\rho: \Gamma \to SL(d, \mathbb R)$ be projective Anosov.
 Then for $\alpha > 0$ small enough, there exists some $T_0 > 0$ such that for all $T \geq T_0$ the family
 \[
@@ -197,7 +256,7 @@ is an open covering of $\xi^1(\partial \Gamma)$.
 \end{proof}
 
 The following is \cite[Proposition 3.8]{pozzetti_anosov_2023}.
-\begin{proposition}\label{prop:ellipsoid_covers_basin}
+\begin{proposition}\label{prop:basin_covering}
 For each $g\in \SL(d, \mathbb R), \alpha > 0$, 
 the basin of attraction $g \cdot B_{\alpha_1, \alpha}(g)$ lies in the ellipsoid with axes $u_1(g) \oplus u_p(g)$ with lengths
 \[
@@ -224,9 +283,19 @@ Hence
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.4\textwidth]{projection.jpg}
-    \caption{Aid for \cref{prop:ellipsoid_covers_basin}}
+    \caption{Aid for \cref{prop:basin_covering}}
     \label{fig:projection}
 \end{figure}
+
+The following is \cite[Lemma 3.7]{pozzetti_anosov_2023}:
+\begin{lemma}\label{lem:ellipsoid_covering}
+For any $p \in \llbracket 2, d \rrbracket$, an ellipsoid in $\mathbb P(\mathbb R^d)$ of axes lengths $\beta_2, \cdots, \beta_d$ is covered by
+\[
+    2^{2p + 1} \frac{\beta_2 \cdots \beta_{p-1}}{\beta_p^{p-2}}
+\]
+many balls of radius $\sqrt{d} \beta_p$.
+\end{lemma}
+
 The following can be found in \cite[Proposition 3.3]{pozzetti_anosov_2023}:
 \begin{proposition}
     Let $\rho: \Gamma \to SL(d, \mathbb R)$ be projective Anosov and $\alpha > 0$
