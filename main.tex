@@ -79,6 +79,31 @@ and that
 \end{align*}
 \end{remark}
 
+\begin{remark}
+For any $g \in \SL(d, \mathbb R)$ we have that:
+\[
+    \max_{p \in \llbracket 2, d \rrbracket} \Psi_s^p(g) = \Psi_s^{p_0}(g) \text{ for } s \in [p_0 - 2, p_0 -1].
+\]
+Indeed, a quick calculation shows that for $s \geq 0$ and $p \in \llbracket 2, d \rrbracket$:
+\[
+    \Psi_s^p(g) \leq \Psi_s^p(g) \text{ if and only if } s \geq p-1.
+\]
+and that equality holds in the case $s = p - 1$.
+Thus for $s \in [p - 2, p-1]$ we have that
+\begin{align*}
+    s \geq p-2, \ldots, 1 &\text{ implies that } \Psi_s^p(g) \geq \ldots \geq \Psi_s^{2}(g)\\
+    s \leq p, \ldots, d-1 &\text{ implies that } \Psi_s^p(g) \leq \ldots \leq \Psi_s^d(g)
+\end{align*}
+Another way to see this (refer to \cref*{fig:max}) is to note that $\Psi_s^2(g), \cdots, \Psi_s^d(g)$ is a sequence of functions that are affine in $s$, with slopes $\alpha_{12}(g) \leq \cdots \leq \alpha_{1d}(g)$ and that they satisfy $\Psi_1^2(g) = \Psi_2^2(g), \Psi_2^3(g) = \Psi_3^4(g) \ldots, \Psi_{d-2}^{d-1}(g) = \Psi_{d-2}^d(g)$.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{max.jpg}
+    \caption{Visual illustration that $\max_p\Psi_s^p(g) = \Psi_s^{p_0}(g) \text{ for } s \in [p_0 - 2, p_0 -1]$.}
+    \label{fig:max}
+\end{figure}    
+\end{remark}
+
+
 The following definition comes from \cite{ledrappier_dimension_2023}, in the special case of projective Anosov representations ($P = {1}$):
 \begin{definition}
     For $s \geq 0$ we consider the Falconer functional $F_s : \SL(d, \mathbb R) \to \mathbb R$ by:
@@ -112,7 +137,7 @@ for $\gamma \in \Gamma$, where $U_p(\gamma), U_{d-p}(\gamma)$ denote the flags
 corresponding to  $\rho(\gamma)$.
 \end{definition}
 \chapter{Upper bound}
-\begin{lemma}[Upper bound for dimension]
+\begin{lemma}[Upper bound for dimension]\label{lem:lower_bound}
 Let $\rho: \Gamma \to \SL(d, \mathbb R)$ be a projective Anosov representation. 
 Then:
 \[
@@ -124,7 +149,30 @@ Then:
     \right\}.
 \]
 \end{lemma}
-\begin{proof}
+\begin{remark}
+    The idea of the proof of \cref*{lem:lower_bound} is to find a covering whose Hausdorff content is dominated by the Dirichlet series of some functional $\Psi_s^p$, which will in turn imply that $\dim_H(\xi^1(\partial \Gamma)) \leq h_\rho(\Psi^p) $.
+    Choosing then the most "effective" cover (i.e.\ the one which yields the smallest Hausdorff content up to a constant) we obtain that
+    \[
+        \dim_H(\xi^1(\partial \Gamma)) \leq h_\rho(\max_p \Psi^p)
+    \]
+    To obtain this we first cover $\xi^1(\partial \Gamma)$ by the bassins of attraction $\rho(\gamma) \cdot B_{\alpha_1, \alpha} (\rho(\gamma))$ for $\gamma \in \Gamma$ satisfying $|\gamma| = T$.
+    Then we cover each bassin by an ellipsoid of axes lengths
+    \[
+        \frac{1}{\sin(\alpha)} \frac{\sigma_2}{\sigma_1}(\rho(\gamma)), \ldots, 
+        \frac{1}{\sin(\alpha)} \frac{\sigma_d}{\sigma_1}(\rho(\gamma)).
+    \]
+    Finally we cover each ellipsoid by balls of some fixed radius $r>0$.
+    It can be shown by comparing the series appearing in the Hausdorff content of each resulting cover that the most "effective" choice of $r$ depends only on the Hausdorff exponent $s > 0$ and in any case will be to have $r$ equal (up to a constant) to the the length of an axis of the ellipsoid, i.e.\
+    \[
+        r \in \left\{
+            \frac{1}{\sin(\alpha)} \frac{\sigma_2}{\sigma_1}(\rho(\gamma)), \ldots, 
+            \frac{1}{\sin(\alpha)} \frac{\sigma_d}{\sigma_1}(\rho(\gamma)).    
+        \right\}
+    \]
+    In particular, when $s \in [p-2, p-1]$, the most effective choice is $r = \sigma_p(\rho(\gamma))/\sigma_1(\rho(\gamma))$, whose Hausdorff content is dominated by the Dirichlet series of $\Psi_s^p$.
+\end{remark}
+
+\begin{proof}[Proof of \cref*{lem:lower_bound}]
 Let $p \in \llbracket 2, d \rrbracket$.
 Then using \cref{prop:basin_covering}, \cref{lem:boundary_covering}, and \cref{lem:ellipsoid_covering} we have that for $T>0$ large enough, $\xi^1(\partial \Gamma)$ is covered by the family
 \[
@@ -140,7 +188,7 @@ many balls of radius
 \]
 By the definition of the Hausdorff measure, for $s \geq 0$:
 \begin{align*}
-    \mathcal H^s(\gamma) &\leq
+    \mathcal H^s(\xi^1(\partial \Gamma)) &\leq
     \sum_{|\gamma| = T}
         2^{2p+1} \cdot 
         \frac{\sigma_2(\rho(\gamma))}{\sigma_1(\rho(\gamma))} \cdots 
@@ -162,7 +210,7 @@ By the definition of the Hausdorff measure, for $s \geq 0$:
         &=
         2^{2p+1} \cdot \left( \frac{\sqrt{d}}{\sin \alpha}\right)^s  
         \sum_{|\gamma| = T}
-        e^{-\left( \alpha_2 + \ldots + \alpha_{p-1} + (s - (p-2))\alpha_p \right)\rho(\gamma)}\\
+        e^{-\left( \alpha_{1 2} + \ldots + \alpha_{1 (p-1)} + (s - (p-2))\alpha_{1 p} \right)\rho(\gamma)}\\
         &=
         2^{2p+1} \cdot \left( \frac{\sqrt{d}}{\sin \alpha}\right)^s  
         \sum_{|\gamma| = T}
@@ -170,13 +218,15 @@ By the definition of the Hausdorff measure, for $s \geq 0$:
 \end{align*}
 and thus
 \begin{align*}
-    \mathcal H^s(\gamma) \leq
+    \mathcal H^s(\xi^1(\partial \Gamma)) \leq
     2^{2p+1} \cdot \left( \frac{\sqrt{d}}{\sin \alpha}\right)^s
     \sum_{|\gamma| = T}
     e^{-\max_p \Psi_s^p(\rho(\gamma)) }
-\end{align*}
+\end{align*} 
 \todo{Will this not imply that $\dim_H(\xi^1(\partial \Gamma)) \leq h_\rho (max_p \Psi^p)$ which may be strictly smaller than $h_\rho (min_p \Psi^p) = h_\rho (F)$ ?}
 \end{proof}
+
+\section{Lemmata}
 \begin{definition}
     Let $V$ be a finite-dimensional $\mathbb R$-vector space.
     We consider a decomposition
