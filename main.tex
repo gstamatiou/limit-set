@@ -53,7 +53,7 @@ $u_p(g^{-1}) = l_g^{-1} e_{d-p+1}(g).$
 \begin{definition}
 For $p \in \{2, \ldots, d\}, s\in \mathbb R $
 and $g \in SL(d, \mathbb R)$ 
-we denote with $\Psi_s^p(g): \mathfrak a ^+ \to \mathbb R$ the functional:
+we denote with $\tilde \Psi_s^p(g), \Psi_s^p(g): \SL(d, \mathbb R) \to \mathbb R$ the functional:
 \begin{align*}
 \Psi_s^p(g) &= 
     \alpha_{12}(a(g)) + \cdots + \alpha_{1(p-1)}(a(g)) + (s - (p-2))\alpha_{1p}(a(g))\\
@@ -111,14 +111,21 @@ The following definition comes from \cite{ledrappier_dimension_2023}, in the spe
         F_s(g) = \min 
         \left\{
             \sum_{j=2}^d s_j \alpha_{1j}(a(g)) : s_j \in (0,1], \sum_{j=2}^d s_j = s 
-        \right\}
+        \right\},
+    \]
+    and define the Falconer dimension $\dim_F(\rho)$ of $\rho$ to be its critical exponent:
+    \[
+        \dim_F(\rho) = \inf
+        \left\{
+            s > 0: \sum_{\gamma \in \Gamma} e^{-F_s(\rho(\gamma))} < \infty
+        \right\}.
     \]
 \end{definition}
 
 \begin{remark}
     Using elementary computations one may prove that for all $s \geq 0$:
     \[
-        F_s(g) = \min_{p \in \llbracket 2, d \rrbracket} \Psi_s^p(g)
+        F_s(g) = \max_{p \in \llbracket 2, d \rrbracket} \Psi_s^p(g)
     \]
 \end{remark}
 
@@ -222,9 +229,18 @@ and thus
     \mathcal H^s(\xi^1(\partial \Gamma)) \leq
     2^{2p+1} \cdot \left( \frac{\sqrt{d}}{\sin \alpha}\right)^s
     \sum_{|\gamma| = T}
-    e^{-\max_p \Psi_s^p(\rho(\gamma)) }
-\end{align*} 
-\todo{Will this not imply that $\dim_H(\xi^1(\partial \Gamma)) \leq h_\rho (max_p \Psi^p)$ which may be strictly smaller than $h_\rho (min_p \Psi^p) = h_\rho (F)$ ?}
+    e^{-\max_p \Psi_s^p(\rho(\gamma)) }\lesssim \sum_{|\gamma| = T} e^{-F_s(\rho(\gamma))}.
+\end{align*}
+To see that the above implies the upper bound, consider some $s > \dim_F(\rho)$.
+By the definition of the Falconer dimension, this implies that the Dirichlet series corresponding to the Falconer functional converges:
+\[
+    \sum_{\gamma \in \Gamma} e^{-F_s(\rho(\gamma))} < \infty
+\]
+and in particular
+\[
+    \mathcal H^s(\xi^1(\partial \Gamma)) \leq 
+    \lim_{T \to \infty} e^{-F_s(\rho(\gamma))} = 0.
+\]
 \end{proof}
 
 \section{Lemmata}
@@ -283,7 +299,7 @@ using the fact that the limit maps $\xi^1, \xi^{d-1}$ are continuous, which cont
     \label{fig:angle}
 \end{figure}    
 
-The following is \cite*[Proposition 3.5]{pozzetti_anosov_2023}.
+The following is \cite[Proposition 3.5]{pozzetti_anosov_2023}.
 \begin{lemma}\label{lem:boundary_covering}
 Let $\rho: \Gamma \to SL(d, \mathbb R)$ be projective Anosov.
 Then for $\alpha > 0$ small enough, there exists some $T_0 > 0$ such that for all $T \geq T_0$ the family
