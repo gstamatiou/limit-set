@@ -94,7 +94,7 @@ Thus for $s \in [p - 2, p-1]$ we have that
     s \geq p-2, \ldots, 1 &\text{ implies that } \Psi_s^p(g) \geq \ldots \geq \Psi_s^{2}(g)\\
     s \leq p, \ldots, d-1 &\text{ implies that } \Psi_s^p(g) \leq \ldots \leq \Psi_s^d(g)
 \end{align*}
-Another way to see this (refer to \cref*{fig:max}) is to note that $\Psi_s^2(g), \cdots, \Psi_s^d(g)$ is a sequence of functions that are affine in $s$, with slopes $\alpha_{12}(g) \leq \cdots \leq \alpha_{1d}(g)$ and that they satisfy $\Psi_1^2(g) = \Psi_2^2(g), \Psi_2^3(g) = \Psi_3^4(g) \ldots, \Psi_{d-2}^{d-1}(g) = \Psi_{d-2}^d(g)$.
+Another way to see this (refer to \cref{fig:max}) is to note that $\Psi_s^2(g), \cdots, \Psi_s^d(g)$ is a sequence of functions that are affine in $s$, with slopes $\alpha_{12}(g) \leq \cdots \leq \alpha_{1d}(g)$ and that they satisfy $\Psi_1^2(g) = \Psi_2^2(g), \Psi_2^3(g) = \Psi_3^4(g) \ldots, \Psi_{d-2}^{d-1}(g) = \Psi_{d-2}^d(g)$.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.4\textwidth]{max.jpg}
@@ -158,7 +158,7 @@ Then:
 \]
 \end{lemma}
 \begin{remark}
-    The idea of the proof of \cref*{lem:upper_bound} is to find a covering whose Hausdorff content is dominated by the Dirichlet series of some functional $\Psi_s^p$, which will in turn imply that $\dim_H(\xi^1(\partial \Gamma)) \leq h_\rho(\Psi^p) $.
+    The idea of the proof of \cref{lem:upper_bound} is to find a covering whose Hausdorff content is dominated by the Dirichlet series of some functional $\Psi_s^p$, which will in turn imply that $\dim_H(\xi^1(\partial \Gamma)) \leq h_\rho(\Psi^p) $.
     Choosing then the most "effective" cover (i.e.\ the one which yields the smallest Hausdorff content up to a constant) we obtain that
     \[
         \dim_H(\xi^1(\partial \Gamma)) \leq h_\rho(\max_p \Psi^p)
@@ -180,7 +180,7 @@ Then:
     In particular, when $s \in [p-2, p-1]$, the most effective choice is $r = \sigma_p(\rho(\gamma))/\sigma_1(\rho(\gamma))$, whose Hausdorff content is dominated by the Dirichlet series of $\Psi_s^p$.
 \end{remark}
 
-\begin{proof}[Proof of \cref*{lem:upper_bound}]
+\begin{proof}[Proof of \cref{lem:upper_bound}]
 Let $p \in \llbracket 2, d \rrbracket$.
 Then using \cref{prop:basin_covering}, \cref{lem:boundary_covering}, and \cref{lem:ellipsoid_covering} we have that for $T>0$ large enough, $\xi^1(\partial \Gamma)$ is covered by the family
 \[
@@ -188,11 +188,11 @@ Then using \cref{prop:basin_covering}, \cref{lem:boundary_covering}, and \cref{l
 \]
 and that each basin $\rho(\gamma) B_{\alpha_1, \alpha}(\rho(\gamma))$ is in turn covered by
 \[
-    2^{2p+1} \cdot \frac{\sigma_p(g)^{p-2}}{\sigma_2(g) \cdots \sigma_{p-1}(g)}
+    2^{p-2} \cdot \frac{\sigma_p(g)^{p-2}}{\sigma_2(g) \cdots \sigma_{p-1}(g)}
 \]
 many balls of radius
 \[
-    \sqrt{d} \frac{1}{\sin \alpha} \frac{\sigma_p(g)}{\sigma_1(g)}.
+    \sqrt{d-1} \frac{1}{\sin \alpha} \frac{\sigma_p(g)}{\sigma_1(g)}.
 \]
 By the definition of the Hausdorff measure, for $s \geq 0$:
 \begin{align*}
@@ -205,10 +205,10 @@ By the definition of the Hausdorff measure, for $s \geq 0$:
             \frac{\sigma_p(\rho(\gamma))}{\sigma_1(\rho(\gamma))}
         \right)^{-(p-2)}
         \left(
-            \sqrt{d} \frac{1}{\sin \alpha} \frac{\sigma_p(\rho(\gamma))}{\sigma_1(\rho(\gamma))}
+            \sqrt{d-1} \frac{1}{\sin \alpha} \frac{\sigma_p(\rho(\gamma))}{\sigma_1(\rho(\gamma))}
         \right)^s =\\
         &=
-        2^{2p+1} \cdot \left( \frac{\sqrt{d}}{\sin \alpha}\right)^s  
+        2^{2p+1} \cdot \left( \frac{\sqrt{d-1}}{\sin \alpha}\right)^s  
         \sum_{|\gamma| = T} 
         \frac{\sigma_2(\rho(\gamma))}{\sigma_1(\rho(\gamma))} \cdots 
             \frac{\sigma_{p-1}(\rho(\gamma))}{\sigma_1(\rho(\gamma))}
@@ -216,18 +216,18 @@ By the definition of the Hausdorff measure, for $s \geq 0$:
             \frac{\sigma_p(\rho(\gamma))}{\sigma_1(\rho(\gamma))}
         \right)^{s-(p-2)} =\\
         &=
-        2^{2p+1} \cdot \left( \frac{\sqrt{d}}{\sin \alpha}\right)^s  
+        2^{2p+1} \cdot \left( \frac{\sqrt{d-1}}{\sin \alpha}\right)^s  
         \sum_{|\gamma| = T}
         e^{-\left( \alpha_{1 2} + \ldots + \alpha_{1 (p-1)} + (s - (p-2))\alpha_{1 p} \right)\rho(\gamma)}\\
         &=
-        2^{2p+1} \cdot \left( \frac{\sqrt{d}}{\sin \alpha}\right)^s  
+        2^{2p+1} \cdot \left( \frac{\sqrt{d-1}}{\sin \alpha}\right)^s  
         \sum_{|\gamma| = T}
         e^{-\Psi_s^p(\rho(\gamma))}
 \end{align*}
 and thus
 \begin{align*}
     \mathcal H^s(\xi^1(\partial \Gamma)) \leq
-    2^{2p+1} \cdot \left( \frac{\sqrt{d}}{\sin \alpha}\right)^s
+    2^{2p+1} \cdot \left( \frac{\sqrt{d-1}}{\sin \alpha}\right)^s
     \sum_{|\gamma| = T}
     e^{-\max_p \Psi_s^p(\rho(\gamma)) }\lesssim \sum_{|\gamma| = T} e^{-F_s(\rho(\gamma))}.
 \end{align*}
@@ -271,7 +271,7 @@ The following aims to be something along the lines of \cite*[Lemma 2.4]{pozzetti
     Let $\rho: \Gamma \to \SL(d, \mathbb R)$ be a projective Anosov representation.
     For $\alpha > 0$ small enough, there exists $L>0$ such that for any geodesic ray $(a_j)_j$ through $e$ we have:
     \[
-        \angle(U_1(\rho(a_i)), U_1(\rho(a_0))) > \alpha
+        \angle(U_1(\rho(a_i)), U_{d-1}(\rho(a_0))) > \alpha
     \]
     when $|a_i|, |a_0| > T$.
 \end{lemma}
@@ -309,12 +309,12 @@ Then for $\alpha > 0$ small enough, there exists some $T_0 > 0$ such that for al
 is an open covering of $\xi^1(\partial \Gamma)$.
 \end{lemma}
 \begin{proof}
-    Let $\alpha, T > 0$ be as in the statement of \cref*{lem:angle} and $x \in \partial \Gamma$ be represented by a geodesic ray $(\gamma_j)_{j\geq 0}$ starting from $e$.
+    Let $\alpha, T > 0$ be as in the statement of \cref{lem:angle} and $x \in \partial \Gamma$ be represented by a geodesic ray $(\gamma_j)_{j\geq 0}$ starting from $e$.
     Then $(\gamma_T^{-1} \gamma_j)_j$ is a geodesic ray starting from $(\gamma_T)^{-1}$ that passes through $e$, so
     \[
         \angle (U_1(\rho(\gamma_T^{-1}\gamma_j)), U_{d-1}(\rho(\gamma_T^{-1}))) > \alpha
     \]
-    as implied by \cref*{lem:angle}.
+    as implied by \cref{lem:angle}.
     Taking the limit $j \to \infty$ and using the equivariance of the limit map, we obtain
     \[
         \angle (\rho(\gamma_T^{-1})\xi^1(x), U_{d-1}(\rho(\gamma_T^{-1}))) > \alpha
@@ -331,7 +331,7 @@ the basin of attraction $g \cdot B_{\alpha_1, \alpha}(g)$ lies in the ellipsoid 
 \]
 \end{proposition}
 \begin{proof}
-Using the definition of the basin of attraction (see \cref*{fig:projection} ), we have that $w = w_1 u_1(g^{-1}) + \cdots + w_d u_d(g^{-1}) \in B_{\alpha_1, \alpha}(g)$ if and only if
+Using the definition of the basin of attraction (see \cref{fig:projection} ), we have that $w = w_1 u_1(g^{-1}) + \cdots + w_d u_d(g^{-1}) \in B_{\alpha_1, \alpha}(g)$ if and only if
 \[
     w_d^2 \geq (\sin \alpha)^2 \sum_1^d w_i^2.
 \]
@@ -358,10 +358,26 @@ The following is \cite[Lemma 3.7]{pozzetti_anosov_2023}:
 \begin{lemma}\label{lem:ellipsoid_covering}
 For any $p \in \llbracket 2, d \rrbracket$, an ellipsoid in $\mathbb P(\mathbb R^d)$ of axes lengths $\beta_2, \cdots, \beta_d$ is covered by
 \[
-    2^{2p + 1} \frac{\beta_2 \cdots \beta_{p-1}}{\beta_p^{p-2}}
+    2^{p - 2} \frac{\beta_2 \cdots \beta_{p-1}}{\beta_p^{p-2}}
 \]
-many balls of radius $\sqrt{d} \beta_p$.
+many (projected) balls of radius $\sqrt{d-1} \beta_p$.
 \end{lemma}
+\begin{proof}
+We assume that $E$ is an ellipsoid about $\mathbb R e_1$, so it suffice to cover its intersection $E_1 = E \cap U_1 \subseteq \mathbb R^{d-1}$ with the affine chart $U_1 = \{ [x_1: \ldots, x_d ] \in \mathbb P(\mathbb R^d) : x_1 \neq 0 \}$.
+Clearly $E_1 \subseteq [-\beta_2, \beta_2] \times \ldots \times [-\beta_d, \beta_d]$, so we proceed by covering the rectangle with side-lengths $2\beta_2, \ldots, 2\beta_d$.
+Clearly each interval $(-\beta_j, \beta_j)$ is contained in the union of $\lceil \beta_j/\beta_p \rceil$ intervals of length $2\beta_p$, thus $E_1$ is contained in the union of
+\[
+    \left\lceil \frac{\beta_2}{\beta_p} \right\rceil \cdots \left\lceil \frac{\beta_{p-1}}{\beta_p} \right\rceil =
+    \left\lceil \frac{\beta_2}{\beta_p} \right\rceil \cdots \left\lceil \frac{\beta_d}{\beta_p} \right\rceil
+\]
+many squares of side-length $2\beta_p$.
+Since each such product is contained in a $(d-1)$-ball of radius $\sqrt{d-1} \beta_p$ we may use at most
+\[
+    \left\lceil \frac{\beta_2}{\beta_p} \right\rceil \cdots \left\lceil \frac{\beta_{p-1}}{\beta_p} \right\rceil \leq
+    \sum_{i \in \{ 0,1 \}^{p-2} } \prod_{j = 2}^{p-1} \left( \frac{\beta_j}{\beta_p} \right)^{i_j} \leq 2^{p-2} \frac{\beta_2}{\beta_p} \cdots \frac{\beta_{p-1}}{\beta_p}
+\]
+many $(d-1)$-balls of radius $\sqrt{d-1}\beta_p$ to cover $E_1$.
+\end{proof}
 
 The following can be found in \cite[Proposition 3.3]{pozzetti_anosov_2023}:
 \begin{proposition}
