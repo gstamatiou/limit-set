@@ -449,7 +449,115 @@ The following can be found in \cite[Proposition 3.3]{pozzetti_anosov_2023}:
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{cone.jpg}
-\end{figure}    
+\end{figure}
+\chapter{Lower bound}
+We denote with $\Pi$ the set of simple positive roots, and for $\Theta \subseteq \Pi$ we consider the Levi-Anosov subspace of $\mathfrak a$
+\[
+    \mathfrak a_\Theta = \bigcap_{\alpha \notin \Theta} \ker \alpha,
+\]
+which in particular admits $\{ \omega_{\alpha_i} : \alpha_i \in \Theta \}$ as a basis.
+Finally, we shall consider the Busemann cocycle
+\[
+    b_\Theta : \PSL(d, \mathbb R) \times \mathcal F_\Theta \to \mathfrak a_\Theta
+\]
+which might as well be defined as
+\[
+    \omega_{\alpha_i}(b_\Theta(g, x)) =
+    \log \frac{\| g v_1 \wedge \cdots g v_i \|}{ \| v_1 \wedge \cdots v_i \| }
+    \text{ for all } \alpha_i \in \Theta
+\]
+for any basis $v_1, \ldots, v_i$ of $x^i \in \mathcal G_i(\mathbb R^d)$, where $\| \cdot \|$ denotes the norm on $\bigwedge^i \mathbb R^d$ induced by the euclidean inner product on $\mathbb R^d$. \todo{How is this norm defined?}
+\begin{definition}
+    For a discrete subgroup $\Gamma < \PSL(d, \mathbb R), \phi \in (\alpha_\Theta)^*$,
+    a $(\Gamma, \phi)$-Patterson Sullivan measure on $\mathcal F_\Theta$ is a finite Radon measure $\mu$ such that for every $\gamma \in \Gamma$
+    \[
+        \frac{\d\gamma_* \mu}{\d\mu}(x) = e^{-\phi(b_\Theta(g^{-1},x))}, \text{ for all } x \in \mathcal F_\Theta(\mathbb R^d).
+    \]
+\end{definition}
+\section{Existence of Patterson-Sullivan measure}
+\begin{definition}
+    Let $V \in \mathcal G_{p+1}{\mathbb R^d}$ and $l \in \mathbb P(V)$.
+    Using the canonical identification $T_l \mathbb P(V) \simeq \hom (l, V/l)$, we define the density $|\Omega_{l, V}|$ on $\bigwedge^p T_l \mathbb P(V)$ by
+    \[
+        |\Omega_{l,V}|(\phi_1, \ldots, \phi_p) = 
+        \frac{\| v \wedge \tilde \phi_1(v) \wedge \cdots \wedge \tilde \phi_p (v) \|}{\|v\|^{p+1}}
+    \]
+    for any $v \in l - \{ 0\}$, where $\tilde \phi_1, \ldots \tilde \phi_p \in \hom(l, V)$ are such that $\phi_i = \tilde \phi_i + \hom(l, l)$ and $\| \cdot \|$ denotes the norm on $\bigwedge^{p+1} R^d$ induced by the euclidean inner product.
+\end{definition}
+
+The following is \cite[Proposition 6.4]{pozzetti_anosov_2023}:
+\begin{proposition}
+Assume that $\xi^1_\rho(\partial \Gamma)$ is a Lipschitz submanifold of dimension $d_\Gamma$.
+Then there exists a $(\rho(\Gamma), J_{d_\Gamma}^u)$-Patterson-Sullivan measure on $\mathcal F_{1,d_\Gamma + 1}$.
+\end{proposition}
+\begin{proof}
+    By Rademacher's theorem, $\xi^1_\rho(\partial \Gamma)$ has a well-defined Lebesgue measure class, and Lebesgue-almost every $\xi^1_\rho(x) \in \xi^1_\rho(\partial \Gamma)$ admits a well-defined tangent space $T_{\xi^1_\rho(x)} \xi^1_\rho(\partial \Gamma)$.
+    Considering such a $\xi^1_\rho(x)$ we let
+    \[
+        \pi : \hom(\xi^1_\rho(x), \mathbb R^d) \to \hom(\xi^1_\rho(x), \mathbb R^d/\xi^1_\rho(x)) \simeq T_{\xi^1_\rho(x)} \xi^1_\rho(\partial \Gamma),
+    \]
+    and
+    \[
+        x^{d_\Gamma + 1} = \pi^{-1} (T_{\xi^1_\rho(x)} \xi^1_\rho(\partial \Gamma)) \xi^1_\rho(x) \in 
+        \mathcal G_{d_\Gamma + 1} (\mathbb R^d),
+    \]
+    for which one can show that
+    \[
+        T_{\xi^1_\rho(x)} \xi^1_\rho(\partial \Gamma) \simeq 
+        \hom(\xi^1_\rho(x), \mathbb R^d / \xi^1_\rho(x)) \simeq
+        \hom(\xi^1_\rho(x), x^{d_\Gamma + 1} / \xi^1_\rho(x)).
+    \]
+    In this notation, we shall define (Lebesgue-almost eeverywhere) the map
+    \begin{align*}
+        \zeta_\rho: \xi_\rho^1(\partial \Gamma) \to \mathcal F_{1, d_\Gamma + 1} (R^d), \quad 
+        \zeta_\rho(\xi_\rho^1(x)) = (\xi_\rho^1(x), x^{d_\Gamma + 1}).
+    \end{align*}
+
+    We now define the non-negative density on $\xi_\rho^1(\partial \Gamma)$
+    \[
+        \mu_{\xi_\rho^1(x)} = |\Omega_{\zeta_\rho(\xi_\rho^1(x))}|
+    \]
+    which satisfies
+    \[
+        \frac{\d \gamma_*\mu}{\d\mu}(\xi) = \frac{\d (\rho(\gamma)^{-1})^*\mu}{\d\mu}(\xi) =
+        e^{-J^u_{d_\Gamma + 1}(b_\Theta(\rho(\gamma)^{-1}, \zeta(x))))},
+    \]
+    where the term on the left-hand side involves measures, the term between the two equalities involves densities, and $\Theta = \{1, d_\Gamma + 1\}$.
+    Indeed, for $\phi_1, \ldots, \phi_{d_\Gamma} \in T_{\xi_\rho^1(x)}\xi_\rho^1(\partial \Gamma)$:
+    \begin{align*}
+        &(\rho(\gamma)^*\mu)_{\xi_\rho^1(x)} (\phi_1, \ldots, \phi_{d_\Gamma})\\
+        &=
+        \mu_{\rho(\gamma)\xi_\rho^1(x)} (\rho(\gamma)\phi_1\rho(\gamma)^{-1}, \ldots, \rho(\gamma)\phi_{d_\Gamma} \rho(\gamma)^{-1}) =\\
+        &=
+        \frac{\|\rho(\gamma) \xi_\rho^1(x) \wedge \rho(\gamma) \phi_1(\xi_\rho^1(x)) \wedge \cdots \wedge \rho(\gamma) \phi_{d_\Gamma}(\xi_\rho^1(x))\|}{\| \rho(\gamma) \xi_\rho^1(x) \|^{d_\Gamma + 1}} =\\
+        &=
+        \frac{\|\rho(\gamma) \xi_\rho^1(x) \wedge \rho(\gamma) \phi_1(\xi_\rho^1(x)) \wedge \cdots \wedge \rho(\gamma) \phi_{d_\Gamma}(\xi_\rho^1(x))\|}
+        {\|\xi_\rho^1(x) \wedge \phi_1(\xi_\rho^1(x)) \wedge \cdots \wedge \phi_{d_\Gamma}(\xi_\rho^1(x))\|} \cdot
+        \frac{\|\xi_\rho^1(x) \wedge \phi_1(\xi_\rho^1(x)) \wedge \cdots \wedge \phi_{d_\Gamma}(\xi_\rho^1(x))\|}
+        {\|\rho(\gamma) \xi_\rho^1(x)\|^{d_\Gamma+1}}\cdot
+        \frac{\| \rho(\gamma)\xi_\rho^1(x)\|^{d_\Gamma+1}}{\|\xi_\rho^1(x)\|^{d_\Gamma+1}}
+         =\\
+         &=
+         e^{\omega_{d_\Gamma}(b_\Theta(\rho(\gamma), \zeta_\rho(\xi_\rho^1(x))))} \cdot
+         \mu_{\xi_\rho^1(x)}(\phi_1, \ldots, \phi_{d_\Gamma}) \cdot
+         e^{-(p+1)\omega_1(b_\Theta(\rho(\gamma), \zeta_\rho(\xi_\rho^1(x))))} =\\
+         &=
+         e^{-J_{d_\Gamma}^u(b_\Theta(\rho(\gamma)^{-1}, \zeta(\xi_\rho^1(x)))} \mu_{\xi_\rho^1(x)}(\phi_1, \ldots, \phi_{d_\Gamma}).
+    \end{align*}
+    
+    Finally, we let $\nu = {\zeta_\rho}_* \mu$, which is the wanted Patterson-Sullivan measure on $\mathcal F_{1, d_\Gamma + 1} (\mathbb R^d)$, since for $f \in C_c(\mathcal F_{1, d_\Gamma + 1} (\mathbb R^d))$:
+    \begin{align*}
+        \int_{\mathcal F_{1, d_\Gamma + 1} (\mathbb R^d)} f \d(\gamma_* {\zeta_\rho}_* \mu) &=
+        \int_{\xi_\rho^1(\partial \Gamma)} f \circ \gamma \circ \zeta_\rho \d \mu =
+        \int_{\xi_\rho^1(\partial \Gamma)} f \circ \zeta_\rho \circ \gamma \d \mu =\\
+        &=
+        \int_{\xi_\rho^1(\partial \Gamma)} f \circ \zeta_\rho(\xi) e^{-J_{d_\Gamma}^u(b_\Theta(\rho(\gamma)^{-1}, \zeta(\xi_\rho^1(x)))} \d \mu(\xi_\rho^1(x)) =\\
+        &=
+        \int_{\mathcal F_{1, d_\Gamma + 1} (\mathbb R^d)} 
+        f(y) e^{-J_{d_\Gamma}^u(b_\Theta(\rho(\gamma)^{-1}, y)} \d ({\zeta_\rho}_*\mu)(y)
+    \end{align*}
+\end{proof}
+
 \printbibliography
 
 \end{document}
