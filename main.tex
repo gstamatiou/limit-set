@@ -466,7 +466,8 @@ which might as well be defined as
     \log \frac{\| g v_1 \wedge \cdots g v_i \|}{ \| v_1 \wedge \cdots v_i \| }
     \text{ for all } \alpha_i \in \Theta
 \]
-for any basis $v_1, \ldots, v_i$ of $x^i \in \mathcal G_i(\mathbb R^d)$, where $\| \cdot \|$ denotes the norm on $\bigwedge^i \mathbb R^d$ induced by the euclidean inner product on $\mathbb R^d$. \todo{How is this norm defined?}
+for any basis $v_1, \ldots, v_i$ of $x^i \in \mathcal G_i(\mathbb R^d)$, where $\| \cdot \|$ denotes the norm on $\bigwedge^i \mathbb R^d$ induced by the euclidean inner product on $\mathbb R^d$, 
+i.e.\ $ \langle v_1 \wedge \cdots \wedge v_k, w_1 \wedge \cdots \wedge w_k \rangle := \det(\langle v_i, w_j \rangle)$.
 \begin{definition}
     For a discrete subgroup $\Gamma < \PSL(d, \mathbb R), \phi \in (\alpha_\Theta)^*$,
     a $(\Gamma, \phi)$-Patterson Sullivan measure on $\mathcal F_\Theta$ is a finite Radon measure $\mu$ such that for every $\gamma \in \Gamma$
@@ -474,7 +475,70 @@ for any basis $v_1, \ldots, v_i$ of $x^i \in \mathcal G_i(\mathbb R^d)$, where $
         \frac{\d\gamma_* \mu}{\d\mu}(x) = e^{-\phi(b_\Theta(g^{-1},x))}, \text{ for all } x \in \mathcal F_\Theta(\mathbb R^d).
     \]
 \end{definition}
-\section{Existence of Patterson-Sullivan measure}
+
+\begin{lemma}
+Let $\alpha > 0, \Theta \subseteq \Pi$.
+There exists $K = K(\alpha) > 0$ such that for each $g \in \SL(d, \mathbb R), \sf{a_i} \in \Theta, y \in B_{\Theta, \alpha}(g)$
+\[
+    |\omega_i (a(g) - b(g, y))| \leq K.
+\]
+\end{lemma}\todo{How to prove this?}
+Recalling that $\{ \omega_i \}_{\sf a_i \in Theta} $ is a basis for $\mathfrak a_\Theta$, the above implies in particular that for each $\phi \in \mathfrak a_\Theta^*$ there exists $K = K(\alpha, \phi)$ such that for all $g \in \SL(d, \mathbb R), \sf{a_i} \in \Theta, y \in B_{\Theta, \alpha}(g)$
+\[
+    |\phi (a(g) - b(g, y))| \leq K.
+\]
+\section{Proof strategy}
+Denoting with $d_\Gamma = \dim_H \xi_\rho^1(\partial \Gamma)$ the Hausdorff  dimension of the limit set, we shall outline how to obtain its lower bound by the Falconer dimension
+\[
+    d_\Gamma \geq h_\rho(F).
+\]
+
+First we recall that $F_s(a) = \max \{ \Psi_s^p(a) : p \in \llbracket 2, d \rrbracket\}$ and in particular $h_\rho(F) \leq h_\rho(\Psi^{d_\Gamma + 1})$.
+Thus the lower bound will follow once we have shown that
+$$d_\Gamma \geq h_\rho(\Psi^{d_\Gamma + 1}).$$
+
+Noting that $(s+1) J_{d_\Gamma^u} \geq \Psi_{s+d_\Gamma}^{d_\Gamma + 1}$, the above bound will follow as soon as we have shown that
+\begin{equation}\label{eq:JacobianBound}
+    h_\rho(J_{d_\Gamma}) \geq 1.\tag{LB}
+\end{equation}
+To obtain \cref{eq:JacobianBound}, one uses the method of Patterson-Sullivan-Quint, which may be summed up in
+\begin{align*}
+    \text{There exists a } (\phi, \rho)\text{-Patterson-Sullivan measure on } \mathcal F_\Theta(\mathbb R^d) 
+    \Rightarrow h_\rho(\phi) \geq 1,
+\end{align*}
+where $\phi \in \mathfrak a_\Theta$ and $ \Theta \subseteq \Pi$.
+The property that we will need of our measure is that there exists a collection of open sets ${U_\gamma}_\gamma \in \Gamma$ such that
+\begin{align*}\label{eq:GoodMeasure}
+    \mu(U_\gamma) \sim e^{-J_{d_\Gamma}^u(a(\rho(\gamma)))} \text{ and } 
+    M := \sup_{n \in \mathbb N}
+    \max
+    \left\{\sharp A : A \subseteq \Gamma_n,  \bigcap_{\gamma \in A}U_\gamma \neq \emptyset \right\} < \infty\tag{MP}
+\end{align*}
+where $\Gamma_n = \{ \gamma \in \Gamma : |\gamma| = n \} $.
+The existence of a $(J_{d_\Gamma}^u, \rho)$-Patterson-Sullivan measure that satisfies the property (\ref{eq:GoodMeasure}) will be proved in \cref{sec:MeasureExistence}.
+Assuming that for the time being, below we outline the Patterson-Sullivan-Quint method of obtaining \cref{eq:JacobianBound}.
+
+Indeed, we first obtain the uniform in $n$ bound:
+\begin{align*}
+    \sum_{\gamma \in \Gamma_n}
+    e^{-J_{d_\Gamma}^u(a(\rho(\gamma)))} \lesssim
+    \sum_{\gamma \in \Gamma_n}
+    \mu(\rho(U_\gamma)) \leq \frac{1}{M} \mu(\mathcal F_\Theta(\mathbb R^d)) < \infty
+\end{align*}
+along with the bound implied by the Anosov property of $\rho$:
+\begin{align*}
+J_{d_\Gamma}(a(\rho(\gamma))) \geq \mathsf a_{12} (a(\rho(\gamma))) \geq C|\gamma| - b
+\end{align*}
+to conclude that
+\begin{align*}
+\sum_{\gamma \in \Gamma} e^{-(s+1)J^u_{d_\Gamma}(a(\rho(\gamma)))} &=
+\sum_{n\geq 0} \sum_{\gamma \in \Gamma_n} e^{-s J^u_{d_\Gamma}(a(\rho(\gamma)))}
+    e^{J^u_{d_\Gamma}(a(\rho(\gamma)))} \lesssim
+\sum_{n\geq 0} e^{-s(Cn - b)} < \infty
+\end{align*}
+which holds for any $s>0$, and thus \cref{eq:JacobianBound} holds.
+
+\section{Existence of Patterson-Sullivan measure}\label{sec:MeasureExistence}
 \begin{definition}
     Let $V \in \mathcal G_{p+1}{\mathbb R^d}$ and $l \in \mathbb P(V)$.
     Using the canonical identification $T_l \mathbb P(V) \simeq \hom (l, V/l)$, we define the density $|\Omega_{l, V}|$ on $\bigwedge^p T_l \mathbb P(V)$ by
