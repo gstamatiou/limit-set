@@ -476,14 +476,14 @@ i.e.\ $ \langle v_1 \wedge \cdots \wedge v_k, w_1 \wedge \cdots \wedge w_k \rang
     \]
 \end{definition}
 
-\begin{lemma}
+\begin{lemma}\label{lem:busemann}
 Let $\alpha > 0, \Theta \subseteq \Pi$.
 There exists $K = K(\alpha) > 0$ such that for each $g \in \SL(d, \mathbb R), \sf{a_i} \in \Theta, y \in B_{\Theta, \alpha}(g)$
 \[
     |\omega_i (a(g) - b(g, y))| \leq K.
 \]
 \end{lemma}\todo{How to prove this?}
-Recalling that $\{ \omega_i \}_{\sf a_i \in Theta} $ is a basis for $\mathfrak a_\Theta$, the above implies in particular that for each $\phi \in \mathfrak a_\Theta^*$ there exists $K = K(\alpha, \phi)$ such that for all $g \in \SL(d, \mathbb R), \sf{a_i} \in \Theta, y \in B_{\Theta, \alpha}(g)$
+Recalling that $\{ \omega_i \}_{\sf a_i \in \Theta} $ is a basis for $\mathfrak a_\Theta$, the above implies in particular that for each $\phi \in \mathfrak a_\Theta^*$ there exists $K = K(\alpha, \phi) > 0$ such that for all $g \in \SL(d, \mathbb R), y \in B_{\Theta, \alpha}(g)$
 \[
     |\phi (a(g) - b(g, y))| \leq K.
 \]
@@ -622,6 +622,136 @@ Then there exists a $(\rho(\Gamma), J_{d_\Gamma}^u)$-Patterson-Sullivan measure 
     \end{align*}
 \end{proof}
 
-\printbibliography
+Before giving the next definition, we recall that the annihilator annihilator of an element $y \in \mathcal F_F{i \Theta}(\mathbb R^d)$ is the set of partial flags that are not transverse to $y$, that is:
+\[
+    \mathrm{Ann}(y) = \left\{ x \in \mathcal F_{\Theta}(\mathbb R^d) : x^\theta \cap y^{d- \theta} \neq 0 \text{ for some } \theta \in \Theta \right\}.
+\]
+\begin{definition}
+Let $\rho: \Gamma \to \SL(d,\mathbb R)$ be a linear representation, $\Theta \subseteq \Pi$ and $\mu$ a measure over $\mathcal F_\Theta(\mathbb R^d)$.
+We say that $\rho$ is $\mu$-irreducible there is no element in $\mathcal F_{i \Theta}(\mathbb R^d)$, whose annihilator is of full measure, i.e.\ for all $y \in \mathcal F_{i \Theta}(\mathbb R^d)$:
+\[
+    \mu(\mathrm{Ann}(y)) < \mu(\mathcal F_{\Theta}(\mathbb R^d)).
+\]
+\end{definition}
 
+\begin{example}
+    If $\rho(\Gamma)$ is Zariski-dense in $\SL (d, \mathbb R)$, then $\rho$ is $\mu$-irreducible for any $\rho$-quasi-equivariant measure $\mu$, and in particular for any $(\rho(\Gamma), \phi)$-Patterson-Sullivan measure.
+\end{example}
+
+\begin{remark}
+    The reason that we introduce the concept of $\mu$-irreducibility is that for any $\mu$-irreducible representation $\rho:\Gamma \to \SL{d,\mathbb R}$, there exist $\alpha, \kappa > 0$ such that $\mu(B_{\Theta, \alpha}(\rho(\gamma))) \geq k$ for all $\gamma \in \Gamma$.
+
+    Indeed, if this were not the case, then there would exists a sequence $\alpha_n \searrow 0$ and $\gamma_n \in \Gamma$ such that
+    \[
+        \mu(B_{\theta, \alpha}(\rho(\gamma))) \leq \frac{1}{n}.
+    \]
+    Due to the compactness of $\mathcal F_{\Theta} (\mathbb R^d)$, up to considering a subsequence, we may assume that the reppeling flags or $\rho(\gamma_n)$ converge to some $\xi \in \mathcal F_{\Theta} (\mathbb R^d)$:
+    \[
+        (U_{d-i}(\rho(\gamma_n)^{-1}))_{\mathsf a_i \in \Theta} \to \xi
+    \]
+    
+    In that case, the complements $B_{\Theta, \alpha_n}^c(\rho(\gamma_n))$ will converge to the annihilator of $\xi$, in the sense:
+    \[
+        \limsup_n B_{\Theta, \alpha_n}^c(\rho(\gamma_n)) \subseteq \mathrm{Ann}(\xi).
+    \]
+    Indeed, let $y\in \limsup_n  B_{\Theta, \alpha_n}^c(\rho(\gamma_n))$ and consider a subsequence $k_n$ such that $y\in B_{\Theta, \alpha_n}^c(\rho(\gamma_{k_n}))$.
+    By the very definition of $B_{\Theta, \alpha_n}(\rho(\gamma_n))$, there exists some $p$ such that up to considering a subsequence of $k_n$,
+    \[
+        \angle (y^p, U_{d-p}(\rho(\gamma_n)^{-1})) \leq \alpha_n
+    \]
+    holds.
+    Taking the limit as $n \to \infty$, we have that $y^p \cap \xi^{d-p} \neq 0$ and hence $y \in \mathrm{Ann(\xi)}$.
+
+    Using a measure-theoretic arguement we conclude that $\mathrm{Ann}(\xi)$ is of full measure, which contradicts the $\mu$-irreducibility of $\rho$:
+    \[
+        \mu(\mathrm{Ann}(\xi)) \geq
+        \mu (\limsup_n B_{\Theta, \alpha_n}^c(\rho(\gamma_{k_n})) ) \geq 
+        \limsup_n \mu (B_{\Theta, \alpha_n}^c(\rho(\gamma_{k_n}))) =
+        \mu(\mathcal F_\Theta (\mathbb R^d)).
+    \]
+\end{remark}
+
+\begin{lemma}
+    Let $\rho:\Gamma \to \SL(d, \mathbb R)$ be a representation and $\mu^\phi$ be a ($\rho(\Gamma), \phi$)-Patterson-Sullivan measure.
+    If $\rho(\Gamma)$ is $\mu$-irreducible, then there exists some $\alpha_0 > 0$, such that for any $\alpha \in (0, \alpha_0)$, there's some $k = k(\alpha) > 0$ for which
+    \[
+        \frac{1}{k} e^{-\phi(a(\rho(\gamma)))} 
+        \leq 
+        \mu^\phi(\rho(\gamma) B_{\Theta, \alpha}(\rho(\gamma))) 
+        \leq
+        k e^{-\phi(a(\rho(\gamma)))} 
+    \]
+    for all $\gamma \in \Gamma$. 
+\end{lemma}
+\begin{proof}
+    Let $\alpha_0, k > 0$ be as in the remark preceeding the statement of the lemma.
+    As noted in \cref{lem:busemann}, there exists some $K = K(\alpha_0, \phi) > 0$ such that for any $\alpha \in (0, \alpha_0)$ and $y \in B_{\Theta, \alpha}(\rho(\gamma))$:
+    \[
+        |\phi(a(\rho(\gamma)) - b(\rho(\gamma), y))| \leq K,
+    \]
+    from which we obtain the upper bound
+    \begin{align*}
+        \mu^\phi(\rho(\gamma) B_{\Theta, \alpha}(\rho(\gamma))) &=
+        (\rho(\gamma^{-1})_*\mu^\phi)(B_{\Theta, \alpha}(\rho(\gamma))) =
+        \int_{\mathcal F_\Theta(\mathbb R^d)} e^{-\phi(b(\rho(\gamma), y))} d\mu^\phi(y)\leq\\
+        &\leq
+        e^{-K} \mu^\phi(\mathcal F_\Theta (\mathbb R^d)) e^{-\phi(a(\rho(\gamma)))}.
+    \end{align*}
+    
+    Similarly we obtain the lower bound
+\end{proof}
+
+*Appendix
+\appendix
+\chapter{Tangent space to the Grassmanian}
+Let $V$ be a $d$-dimensional real vector space. 
+We denote with $\mathcal G_{k}(V)$ the Grassmanian of $k$-dimensional subspaces of $V$.
+Our first objective is to find a convenient way to express its tangent space.
+\begin{proposition}
+We have the following canonical identification:
+\begin{align*}
+    \hom(W, V/W) &\simeq T_W \mathcal G_{k}(V)\\
+    \phi &\mapsto \frac{\d}{\d t} \Big|_{t=0} \Gamma(t \phi)
+\end{align*}
+where $\Gamma(\phi) = (Id+\phi)(W)$ is the graph of $\phi$.
+\end{proposition}
+\begin{proof}
+    We will consider the map
+    \begin{align*}
+        F: \mathrm{Injhom}(W, V) \to \mathcal G_{k}(V), \quad \phi \mapsto \phi(W).
+    \end{align*}
+    whose derivative is given by:
+    \begin{align*}
+        d_I F (\phi) = F \left(\frac{\d}{\d t} \Big|_{t=0} (I + t\phi)\right)
+        = \frac{\d}{\d t} \Big|_{t=0}  \left( I + t\phi (W) \right)
+        = \frac{\d}{\d t} \Big|_{t=0}  \Gamma(t \phi).
+    \end{align*}
+    The result will follow as soon as we have shown that $d_I F$ is surjective and that $\ker d_I F = \hom(W, W)$.
+    
+    To show that it is surjective, we consider a $(d-k)$-dimensional subspace $W' \in \mathcal G_{d-k}(V) $ that is complementary to $W$, i.e.\ $V = W \oplus W'$.
+    Denoting with $U_{W'} = \{ Z \in \mathcal G_k (V): Z \cap W' = 0 \}$, we recall the corresponding chart:
+    \begin{align*}
+        \Psi: \hom(W, W') &\to U_{W'}\\
+        \phi &\mapsto \Gamma(\phi).
+    \end{align*}
+    Surjectivity of $d_I F$ now follows by the fact that
+    \[
+        d_I F(\phi) = \frac{\d}{\d t} \Big|_{t=0} \Gamma(t \phi) = d_0 \Psi(\phi).
+    \]
+
+    To show that $\ker d_I F = \hom(W, W)$, we first note that clearly $\ker \d_I F \supseteq \hom(W, W)$.
+    Equality then follows by the fact that $\dim \hom(W, W) = \dim \ker \d_I F$, which is a direct consequence of the surjectivity.
+\end{proof}
+
+Note that another way to prove the above identification throught the fact that the Grassmanian is a homogeneous space of $\GL(d, \mathbb R)$, giving us the diffeomorphism
+\begin{align*}
+    \GL(V) / \mathrm{St}_{GL(V)} W &\to \mathcal G_k(V)\\
+    [g] &\mapsto gW,
+\end{align*}
+where $\mathrm{St}_{GL(V)} W = \{ g \in \GL(V) : gW = W \}$ is the stabilizer of $W$.
+Thus an expression for the tangent space at $W$ may be obtained by differentiating the map above at the identity coset:
+\begin{align*}
+    \hom(W, V/W) \simeq \hom(V, V) / \hom(W, W) &\simeq T_W \mathcal G_k(V).
+\end{align*}
+In particular the above gives us a direct proof that the kernel of the map constructed in the previous proof is indeed $\hom(W, W)$.
 \end{document}
