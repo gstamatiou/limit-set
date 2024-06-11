@@ -4,6 +4,9 @@
 \input{packages}
 \input{commands}
 
+\usepackage{tikz-cd}
+
+
 % Title page information
 \title{Limit sets of Anosov representations}
 \author{Giorgos}
@@ -754,4 +757,64 @@ Thus an expression for the tangent space at $W$ may be obtained by differentiati
     \hom(W, V/W) \simeq \hom(V, V) / \hom(W, W) &\simeq T_W \mathcal G_k(V).
 \end{align*}
 In particular the above gives us a direct proof that the kernel of the map constructed in the previous proof is indeed $\hom(W, W)$.
+
+Our second objective is to identify subspaces of $T_l \mathbb P(V)$ with subspaces of $V$, by considering the first as projectivisation of the second.
+More concretely, we shall consider the space
+\[
+    \mathcal P = \{ (l, P) : l \in \mathbb P(V), P \in \mathcal G_k( T_l \mathbb P(V) )  \}
+\]
+as a homogenous space of $\SL(V)$, where the action is given by
+\begin{align*}
+g \cdot (l, P) = (g l, \d_l g (P) = g \pi^{-1}(P) g^{-1} + \hom(gl, gl)).
+\end{align*}
+where we use the identification of $T_l \mathbb P(V)$ with $\hom(l, V/l)$ as above and denote with $\pi : \hom(l, V) \to \hom(l, V/l)$ the canonical projection.
+For the sake of completeness, we outline the calculation of the differential:
+\begin{align*}
+    \hom(l, V/l) &\to T_l \mathbb P(V) &\to &T_{gl} \mathbb P(V) &\to \hom(gl, V/gl)\\
+    \phi &\mapsto \frac{\d}{\d t} \Big|_{t=0} g(I + t \tilde \phi)(l) &\mapsto &\frac{\d}{\d t} \Big|_{t=0} (I + t g\tilde \phi g^{-1})(g l) &\mapsto g \tilde \phi g^{-1} + \hom(gl, gl)
+\end{align*}
+where $\phi \in \hom(l, V/l), \tilde \phi \in \hom(l, V)$ such that $\tilde \phi + \hom(l, l) = \phi$.
+
+We are now ready to express the needed identification:
+\begin{proposition}
+We have the following $\SL(V)$ equivariant identification:
+\begin{align*}
+    \mathcal P &\to \mathcal F_{1, k+1}(V)\\
+    (l, P) &\mapsto (l, \pi^{-1}(P)l)\\
+    (l, \hom(l, Q/l)) &\mapsfrom (l, Q).
+\end{align*}
+where $\pi : \hom(l, V) \to \hom(l, V/l)$ is the canonical projection.
+\end{proposition}
+\begin{proof}
+    We begin by showing that the left-to-right direction of the map is well-defined.
+    For this, we first need to check that for $(l,P) \in \mathcal P$, we have that $\dim \pi^{-1}(P)l = k + 1$.
+    Indeed, we have that $\dim \pi^{-1}(P) = k+1$ as implied by the rank-nullity theorem for $\pi: \pi^{-1}(P) \to P$.
+    The result then follows by the fact that $\pi^{-1}(P)l = T_1(l) \oplus \cdots \oplus T_{k+1}(l)$ for any base $T_1, \ldots, T_{k+1}$ of $\pi^{-1}(P)$.
+    The second thing to check is that $ l \leq \pi^{-1}(P)l$, which holds since $\ker \pi = \hom(l,l) \leq \pi^{-1}(P)$.
+
+    To see that the two directions above are inverse to each other, we begin by examining the right-to-left-to-right composition:
+    \[
+    (l, Q) \mapsto (l, \pi(\hom(l, Q))) \mapsto (l, \pi^{-1}\pi(\hom(l, Q))) = (l, \hom(l, Q)l) = (l, Q).
+    \]
+    and for the left-to-right-to-left composition
+    \[
+        (l, P) \mapsto (l, \pi^{-1}(P)l) \mapsto (l, \hom(l, \pi^{-1}(P)l)),
+    \]
+    so it suffices to show that $\hom(l, \pi^{-1}(P)l/l) = P$.
+    Indeed, for $\pi^{-1}(P) = \mathbb R T_1 \oplus \cdots \oplus \mathbb R T_k$, we have that
+    \begin{align*}
+        \hom(l, \pi^{-1}(P)l/l) &=
+        \hom(l, \pi^{-1}(P)l)/\hom(l,l) =
+        \left( \oplus_i \hom(l, T_i(l))/\hom(l,l)\right) =\\
+        &= \left(\oplus_i \mathbb R T_i\right)/\hom(l,l) 
+        = \pi^{-1}(P)/\hom(l,l) = P.
+    \end{align*}
+
+    For the equivariance, the calculations has as follows:
+
+    \begin{tikzcd}
+        (l, P) \arrow[r, mapsto] \arrow[d, mapsto, "g"] & (l, \pi^{-1}(P)l) \arrow[d, mapsto, "g"] \\
+        (gl, g \pi^{-1}(P)g^{-1} + \hom(gl,gl)) \arrow[r, mapsto] & (gl, (g \pi^{-1}(P)g^{-1})(gl))= (gl, g\pi^{-1}(P)l)
+    \end{tikzcd}
+\end{proof}
 \end{document}
