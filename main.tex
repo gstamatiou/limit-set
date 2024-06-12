@@ -704,7 +704,6 @@ We say that $\rho$ is $\mu$-irreducible there is no element in $\mathcal F_{i \T
     Similarly we obtain the lower bound
 \end{proof}
 
-*Appendix
 \appendix
 \chapter{Tangent space to the Grassmanian}
 Let $V$ be a $d$-dimensional real vector space. 
@@ -817,4 +816,58 @@ where $\pi : \hom(l, V) \to \hom(l, V/l)$ is the canonical projection.
         (gl, g \pi^{-1}(P)g^{-1} + \hom(gl,gl)) \arrow[r, mapsto] & (gl, (g \pi^{-1}(P)g^{-1})(gl))= (gl, g\pi^{-1}(P)l)
     \end{tikzcd}
 \end{proof}
+
+\chapter{Irreducible actions problem}
+The matter of this chapter has to do with an obstruction, found in the proof of this lemma: 
+\begin{lemma}[Lemma 6.8 in \cite{pozzetti_anosov_2023}]
+Let $\Gamma$ be a hyperbolic group and $\eta:\Gamma \to \PGL(d, \mathbb R)$ be a strongly irreducible projective Anosov representation such that $\xi_\eta(\partial \Gamma)$ is homeomorphic to $S^{d_\Gamma}$, and which admits a measurable $\eta$-equivariant section
+$\zeta: \partial \Gamma \to \mathcal F_{\{ \sf a_1, \sf a_{d_\Gamma + 1}\}} (\mathbb R^d)$.
+Then $\eta$ is $\mu$-irreducible for any $(\eta(\Gamma), \phi)$-Patterson-Sullivan measure $\mu$ on $\mathcal F_{\{ \sf a_1, \sf a_{d_\Gamma + 1}\}} (\mathbb R^d)$.
+\end{lemma}
+
+For convenience, we recall that a linear representation $\rho: \Gamma \to \GL(d, \mathbb R)$ is strongly irreducible if there is no proper $\rho(\Gamma)$-invariant subspace of $\mathbb R^d$,
+and it is $\mu$-irreducible if there is no element in $\mathcal F_{i \Theta}(\mathbb R^d)$, whose annihilator is of full measure.
+
+In what follows, we will show that the above lemma is false, by providing a counterexample.
+Let $\Gamma$ be a uniform lattice of $\SU(2,1)$, and $\eta: \Gamma \to \SL(\mathfrak{su}(2,1))$ be the restriction of the adjoint representation, i.e. $\eta(\gamma) = \Ad_{\gamma}$ for all $\gamma \in \Gamma$.
+
+We begin by showing proving the Anosov property of $\eta$.
+\begin{proposition}
+    $\eta$ is projective Anosov.
+\end{proposition}
+\begin{proof}
+Let $\gamma \in \Gamma$.
+Since $\gamma \in \SU(2,1)$, we have that
+\[
+\gamma = k_1 \exp\left( r(\gamma) x_0 \right) k_2
+\]
+for $x_0$ a fixed non-zero in the Weyl-chamber $\mathbb R x_0$ of $\su(2,1), r(\gamma) \in \mathbb R$ and $k_1, k_2 \in \U(2)$.
+Then by the definition of a uniform lattice, we have that $\Gamma$ acts properly discontinuously and cocompactly, which means that the inclusion $\Gamma \hookrightarrow \SU(2,1)$ is projective Anosov (since $\SU(2,1)$ is of rank 1).
+Thus there exist constants $L \geq 1, b \geq 0$ such that for all $\gamma \in \Gamma$:
+\[
+r(\gamma) \geq {\sf a}_1(x_0)^{-1}(L|\gamma| - b) = L'|gamma| - b'.
+\]
+Note that ${\sf a}_1(x_0) > 0 $ since $x_0$ is in the interior of the Weyl-chamber $\mathbb R x_0$.
+
+Letting $k_1' = Ad_{k_1}, k_2' = Ad_{k_2}$ we have that:
+\[
+\eta(\gamma) = \Ad_{\gamma} = k_1' \Ad_{\exp(r(\gamma) x_0)} k_2' = k_1' \exp(r(\gamma) \ad_{x_0}) k_2'.
+\]
+
+Thus
+\begin{align*}
+    {\sf a}_1(\mu(\eta(\gamma))) = r(\gamma) {\sf a}_1(\ad_{x_0}) \geq (L'|\gamma| - b'){\sf a}_1(x_0)
+\end{align*}
+which is Anosov because ${\sf a}_1(\ad_{x_0}) > 0$, as can be seen by concrete calculations.
+\end{proof}
+
+
+
+We consider the section given by
+\begin{align*}
+    \zeta: \partial \Gamma &\to \mathcal F_{\{1, d_\Gamma + 1 \}}(\mathfrak{su}(2,1)) \simeq \mathcal P\\
+    x &\mapsto (\xi^1(x), T_{\xi^1(x)} \xi^1(\partial \Gamma)) \simeq (\xi^1(x), (\d_{\xi^1(x)})^{-1}(T_{\xi^1(x)}\xi^1(\partial \Gamma))\xi^1(x)).
+\end{align*}
+
+\printbibliography
 \end{document}
