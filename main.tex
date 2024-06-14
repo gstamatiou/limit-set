@@ -841,7 +841,7 @@ For convenience, we recall the definition of a uniform lattice:
 \end{remark}
 
 We begin by showing proving the Anosov property of $\eta$.
-\begin{proposition}
+\begin{proposition}\label{prop:counterexample_anosov}
     $\eta$ is projective Anosov.
 \end{proposition}
 \begin{proof}
@@ -882,7 +882,7 @@ The combination of the above, along with the fact that the geometric and the Gro
 
 
 We now proceed to calculate the projective part of the limit map of $\eta$.
-\begin{proposition}
+\begin{proposition}\label{prop:counterexample_limit_map}
     The projective part of the limit map of $\eta$ is given by
     \[
         \xi_\eta: \partial \Gamma = \SU(2,1)/P_0 \to \mathbb P(\mathfrak{su}(2,1)), \quad \xi_\eta(g P_0) = \mathbb R \Ad_{\gamma} x_0.
@@ -891,6 +891,11 @@ We now proceed to calculate the projective part of the limit map of $\eta$.
     \[
     x_0 = i \begin{pmatrix} 0 & 0 & 1 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix} \in \su(2,1).
     \]
+    Its derivative satisfies: 
+    \[
+    d_x \xi(T_x \SU(2,1)/P_0) = \pi(\ad_{\xi^1(x)} \su(2,1))
+    \]
+    where $\pi : \hom (\xi^1(x), \su(2,1)) \to \hom(\xi^1(x), \su(2,1)/ \xi^1(x))$ is the canonical projection.
 \end{proposition}
 \begin{proof}
 Since the limit map of an Anosov representation is equivariant, it suffices to show that there exists a unique $\eta$-equivariant map $\xi^1:\SU(2,1)/P_0 \to \mathbb P(\mathfrak{su}(2,1))$.
@@ -902,6 +907,28 @@ Then its Lie algebra is given by:
 \]
 Since for $\mathbb R x \in \mathbb P(\su(2,1))$ we have that $P_0$ fixes $\mathbb R x$ if and only if $\mathfrak p_0$ fixes $\mathbb R x$.
 But a quick calculation shows that the only element of $\su(2,1)$ fixed by $\mathfrak p_0$ is $x_0$.
+
+For the calculation of the image of the differential at the identity coset $P$, we differentiate the commutative diagram:
+
+\begin{tikzcd}
+    \SU(2,1) \arrow[r, "\Ad_\cdot x_0"] \arrow[d] & \su(2,1) \arrow[d] \\
+    \SU(2,1)/P_0 \arrow[r, "\xi^1"] & \mathbb P(\su(2,1))
+\end{tikzcd}
+to get
+\begin{tikzcd}
+    \su(2,1) \arrow[r, "\ad_\cdot x_0"] \arrow[d] & \su(2,1) \arrow[d, "\pi"] \\
+    \su(2,1)/\mathfrak p_0 \arrow[r, "\d_P \xi^1"] & T_{\xi^1(P)} \mathbb P(\su(2,1))
+\end{tikzcd}
+
+In the general case we use the equivariance of the limit map
+\begin{align*}
+    \d_{gP} \xi^1 (T_{gP} \SU(2,1)/P_0) &=
+    d_{gP} \xi^1 d_P g (T_P \SU(2,1)/P_0) =
+    d_{\xi^1(P)} g d_P \xi^1 (T_P \SU(2,1)/P_0) =\\
+    &= d_{\xi^1(P)} g \pi(\ad_{\xi^1(P)} \su(2,1)) =\\
+    &= \pi(Ad_g(\ad_{\xi^1(P)} \su(2,1))) = \pi(\ad_{Ad_g \xi^1(P)} \su(2,1))=\\
+    &= \pi(\ad_{\xi^1(gP)} \su(2,1)).
+\end{align*}
 \end{proof}
 
 Recall that all parabolic subgroups of $\SU(2,1)$ are conjugate to each other, so we have the following identification:
@@ -910,7 +937,7 @@ Recall that all parabolic subgroups of $\SU(2,1)$ are conjugate to each other, s
     g P_0 &\leftrightarrow g P_0 g^{-1} &\leftrightarrow \Ad_g(\mathfrak p_0)    
 \end{align*}
 
-\begin{lemma}
+\begin{lemma}\label{lem:adjoint_parabolic}
     Let $\mathfrak p, \mathfrak p' \leq \su(2,1)$ be two distinct parabolic subalgebras.
     Then there exists some $g \in \SU(2,1)$ such that $\Ad_g(\mathfrak p) = \mathfrak p_0$ and $\Ad_g \mathfrak p' = \mathfrak p_0^t$.
 \end{lemma}
@@ -924,12 +951,57 @@ The following proposition implies that the falsehood of the lemma in the beginni
         \item $\eta$ is projective Anosov
         \item $\eta$ admits a measurable $\eta$-equivariant section: 
         \begin{align*}
-            \zeta: \partial \Gamma &\to \mathcal F_{\{1, d_\Gamma + 1 \}}(\mathfrak{su}(2,1)) \simeq \mathcal P\\
+            \zeta: \partial \Gamma &\to \mathcal F_{\{1, 4 \}}(\mathfrak{su}(2,1)) \simeq \mathcal P\\
             x &\mapsto (\xi^1(x), T_{\xi^1(x)} \xi^1(\partial \Gamma)) \simeq (\xi^1(x), (\d_{\xi^1(x)}p)^{-1}(T_{\xi^1(x)}\xi^1(\partial \Gamma))\xi^1(x)).
         \end{align*}
-        \item For all $x, y \in \partial \Gamma: \zeta(x), \zeta(y)$ are not transverse.
+        where $d_{\xi^1(x)}p: \hom( \xi^1(x), \su(2,1)) \to \hom(\xi^1(x), \su(2,1)/ \xi^1(x))$ is the canonical projection.
+        \item For all $x, y \in \partial \Gamma: \zeta(x)^4 \cap \zeta(y)^4 \neq 0$.
+        \item For any $y_0 \in \SU(2,1)/P_0$ and 
+        $W_0 \in \mathcal G_7(\mathbb R^4)$ that contains $\zeta(y_0)^4$, we have that 
+        $\Ann(\zeta(y_0)^4, W_0) \supseteq \zeta(\SU(2,1)/P_0)$ and is in particular of full $\mu$-measure, for any $(\eta(\Gamma), \phi)$-Patterson-Sullivan measure $\mu$ supported over
+        $\zeta(\partial \Gamma)$.
     \end{enumerate}
 \end{proposition}
+\begin{proof}
+\begin{enumerate}[label=(\roman*)]
+\item Follows from the fact that $\SU(2,1)$ is a simple Lie group.
+\item Shown in \cref{prop:counterexample_anosov}.
+\item Follows from the fact that $\xi^1$ is $\SU(2,1)$-equivariant and the equivariant identification of $\mathcal F_{\{1, 4 \}}(\mathfrak{su}(2,1)) \simeq \mathcal P$.
+\item Letting $g\in \SU(2,1)$ be as in \cref{lem:adjoint_parabolic}, we have that $\Ad_g(\mathfrak p_0) = \mathfrak p$ and $\Ad_g(\mathfrak p_0^t) = \mathfrak p'$.
+Thus $\zeta(x)^4 \cap \zeta(y)^4 \neq \emptyset$ if and only if
+\begin{align*}
+    \emptyset \neq Ad_g (\zeta(x)^4 \cap \zeta(y)^4) &=
+    \Ad_g \zeta(x)^4 \cap \Ad_g \zeta(y)^4 = 
+    \zeta(g x)^4 \cap \zeta(g y)^4 =
+    \zeta(\mathfrak p_0)^4 \cap \zeta(\mathfrak p_0^t)^4=\\
+    &= \pi \left( \mathbb R \begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & -1 \end{pmatrix}\right).
+\end{align*}
+For the last equality, we use \cref{prop:counterexample_limit_map} and the fact that $\mathfrak p_0^t = \Ad_g \mathfrak p_0$ for 
+$$g = \begin{pmatrix} 0 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & 0 \end{pmatrix},$$
+to conclude that
+\[
+\zeta(\mathfrak p_0) = 
+\zeta(P_0) = 
+\pi\left(
+\left\{
+\begin{pmatrix} u & a & it \\ 0 & 0 & - \bar a \\ 0 & 0 & -u \end{pmatrix} :
+a \in \mathbb C, u, t \in \mathbb R
+\right\}
+\right),
+\]
+and
+\[
+\zeta(\mathfrak p_0^t) = 
+\zeta(g P_0) = \Ad_g \zeta(P_0) =
+\pi\left(
+\left\{
+\begin{pmatrix} u & 0 & 0 \\ a & 0 & 0 \\ i t & - \bar a & 0 \end{pmatrix} :
+a \in \mathbb C, u, t \in \mathbb R
+\right\}
+\right).
+\]
+\end{enumerate}
+\end{proof}
 
 \printbibliography
 \end{document}
