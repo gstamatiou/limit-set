@@ -500,14 +500,14 @@ First we recall that $F_s(a) = \max \{ \Psi_s^p(a) : p \in \llbracket 2, d \rrbr
 Thus the lower bound will follow once we have shown that
 $$d_\Gamma \geq h_\rho(\Psi^{d_\Gamma + 1}).$$
 
-Noting that $(s+1) J_{d_\Gamma^u} \geq \Psi_{s+d_\Gamma}^{d_\Gamma + 1}$, the above bound will follow as soon as we have shown that
+Noting that $(s+1) J_{d_\Gamma^u} \leq \Psi_{s+d_\Gamma}^{d_\Gamma + 1}$, the above bound will follow as soon as we have shown that
 \begin{equation}\label{eq:JacobianBound}
     h_\rho(J_{d_\Gamma}) \geq 1.\tag{LB}
 \end{equation}
 To obtain \cref{eq:JacobianBound}, one uses the method of Patterson-Sullivan-Quint, which may be summed up in
 \begin{align*}
     \text{There exists a } (\phi, \rho)\text{-Patterson-Sullivan measure on } \mathcal F_\Theta(\mathbb R^d) 
-    \Rightarrow h_\rho(\phi) \geq 1,
+    \Rightarrow h_\rho(\phi) \leq 1,
 \end{align*}
 where $\phi \in \mathfrak a_\Theta$ and $ \Theta \subseteq \Pi$.
 The property that we will need of our measure is that there exists a collection of open sets ${U_\gamma}_\gamma \in \Gamma$ such that
@@ -526,7 +526,7 @@ Indeed, we first obtain the uniform in $n$ bound:
     \sum_{\gamma \in \Gamma_n}
     e^{-J_{d_\Gamma}^u(a(\rho(\gamma)))} \lesssim
     \sum_{\gamma \in \Gamma_n}
-    \mu(\rho(U_\gamma)) \leq \frac{1}{M} \mu(\mathcal F_\Theta(\mathbb R^d)) < \infty
+    \mu(U_\gamma) \leq \frac{1}{M} \mu(\mathcal F_\Theta(\mathbb R^d)) < \infty
 \end{align*}
 along with the bound implied by the Anosov property of $\rho$:
 \begin{align*}
@@ -543,13 +543,21 @@ which holds for any $s>0$, and thus \cref{eq:JacobianBound} holds.
 
 \section{Existence of Patterson-Sullivan measure}\label{sec:MeasureExistence}
 \begin{definition}
+    For $p \in \llbracket 2, d \rrbracket$, we denote the $p$-th unstable Jacobian $J_p^u \in \mathfrak a^*$ by
+    \[
+    J_p^u = (p+1) \omega_{{\sf a}_1} - \omega_{{\sf a}_{p+1}} = 
+    {\sf a}_{12} + \cdots + {\sf a}_{1(p+1)}.
+    \]
+
+\end{definition}
+\begin{definition}
     Let $V \in \mathcal G_{p+1}{\mathbb R^d}$ and $l \in \mathbb P(V)$.
     Using the canonical identification $T_l \mathbb P(V) \simeq \hom (l, V/l)$, we define the density $|\Omega_{l, V}|$ on $\bigwedge^p T_l \mathbb P(V)$ by
     \[
         |\Omega_{l,V}|(\phi_1, \ldots, \phi_p) = 
         \frac{\| v \wedge \tilde \phi_1(v) \wedge \cdots \wedge \tilde \phi_p (v) \|}{\|v\|^{p+1}}
     \]
-    for any $v \in l - \{ 0\}$, where $\tilde \phi_1, \ldots \tilde \phi_p \in \hom(l, V)$ are such that $\phi_i = \tilde \phi_i + \hom(l, l)$ and $\| \cdot \|$ denotes the norm on $\bigwedge^{p+1} R^d$ induced by the euclidean inner product.
+    for any $v \in l - \{ 0\}$, where $\tilde \phi_1, \ldots \tilde \phi_p \in \hom(l, V)$ are such that $\phi_i = \tilde \phi_i + \hom(l, l)$ and $\| \cdot \|$ denotes the norm on $\bigwedge^{p+1} \mathbb R^d$ induced by the euclidean inner product.
 \end{definition}
 
 The following is \cite[Proposition 6.4]{pozzetti_anosov_2023}:
@@ -642,7 +650,7 @@ We say that $\rho$ is $\mu$-irreducible there is no element in $\mathcal F_{i \T
 \end{example}
 
 \begin{remark}
-    The reason that we introduce the concept of $\mu$-irreducibility is that for any $\mu$-irreducible representation $\rho:\Gamma \to \SL{d,\mathbb R}$, there exist $\alpha, \kappa > 0$ such that $\mu(B_{\Theta, \alpha}(\rho(\gamma))) \geq k$ for all $\gamma \in \Gamma$.
+    The reason that we introduce the concept of $\mu$-irreducibility is that for any $\mu$-irreducible representation $\rho:\Gamma \to \SL(d,\mathbb R)$, there exist $\alpha, \kappa > 0$ such that $\mu(B_{\Theta, \alpha}(\rho(\gamma))) \geq k$ for all $\gamma \in \Gamma$.
 
     Indeed, if this were not the case, then there would exists a sequence $\alpha_n \searrow 0$ and $\gamma_n \in \Gamma$ such that
     \[
