@@ -887,9 +887,31 @@ On the other hand, the action of $\SU(2,1)$ on $\partial_\infty \mathbb H^2_\mat
 In fact, we have that $P$ is a parabolic subgroup of $SU(2,1)$.
 The combination of the above, along with the fact that the geometric and the Gromov boundaries agree in the case of $\mathbb H^2_\mathbb C$, we deduce that $\partial \Gamma \simeq \SU(2,1)/P$.\todo{Add proofs of these.}
 
+To calculate the projective part of the limit map, we shall show that there exists a unique $\SU(2,1)$-equivariant map from $\partial \Gamma$ to $\mathbb P (\mathbb R^d)$.
+The uniqueness follows from the following characterisation of limit maps: 
+\begin{lemma}\label{lem:equivariance_uniqueness}
+    Let $\rho: \Gamma \to \SL(d, \mathbb R) $ be a strongly irreducible projective Anosov representation, and denote with $\xi_\rho: \partial \Gamma \to \mathbb P(\mathbb R^d)$ its limit map.
+    Then $\xi^1_\rho$ is the unique continuous, $\rho(\Gamma)$-equivariant map from $\partial \Gamma$ to $\mathbb P(\mathbb R^d)$.
+\end{lemma}
+\begin{proof}
+    Let $\eta^1: \partial \Gamma \to \mathbb P(\mathbb R^d)$ be a continuous, $\rho(\Gamma)$-equivariant map.
+    Since the action of $\Gamma$ on its boundary $\partial \Gamma$ has dense orbits, it suffices to show that it agrees with $\xi^1_\rho$ on at least one boundary point.
 
+    Suppose for the shake of contradiction that $\eta^1$ does not coincide with $ \xi^1$ and let $z \in \partial \Gamma, y \in \partial \Gamma \backslash \{z\}$.
+    Then for any $x \in \partial \Gamma \backslash \{y \}$ we may find some quasi-geodesic $\{\gamma_n\}_n$ such that $\gamma_n \to x, \gamma_{-n} \to y$ as $n \to \infty$.
+    Then since $z \neq y$ we know that $\gamma_n z \to z$ as $n \to \infty$ and continuity of $\eta^1$ implies that $\eta^1(\gamma_n z) \to \eta^1(z)$.
+    But equivariance of $\eta^1$ and the fact that $\xi^1$ is dynamics-preserving implies that $\eta(\gamma_n z) = \rho(\gamma_n) \eta(z) \to \xi^1(x)$,
+    unless $\eta^1(z) \in \xi^{d-1}(y)$.
+    But if in fact $\eta^1(z) \not \in \xi^{d-1}(y)$, then the limits would agree, i.e.\ $\eta^1(x) = \xi^1(x)$ which is a contradiction.
+    Thus we have that $\eta^1(z) \in \xi^{d-1}(y)$ and since $y$ was an arbitrary points of $\partial \Gamma \backslash \{y\}$, we have that
+    \[
+    \eta^1(z) \in \bigcap_{y \in \partial \Gamma \backslash \{z\}} \xi^{d-1}(y) \subseteq 
+    \bigcap_{y \in \partial \Gamma \backslash \Gamma \cdot z} \xi^{d-1}(y).
+    \] 
+    In particular, the set appearing on the right hand side is $\rho$-equivariant, non-empty proper subset of $\mathbb R^d$, which contradicts the strong irreducibility assumption of $\rho$.
+\end{proof}
 
-We now proceed to calculate the projective part of the limit map of $\eta$.
+Given the lemma above, it suffices to find an $\SU(2,1)$-equivariant map from $\partial \Gamma$ to $\mathbb P(\mathbb R^d)$.
 \begin{proposition}\label{prop:counterexample_limit_map}
     The projective part of the limit map of $\eta$ is given by
     \[
@@ -906,9 +928,9 @@ We now proceed to calculate the projective part of the limit map of $\eta$.
     where $\pi : \hom (\xi^1(x), \su(2,1)) \to \hom(\xi^1(x), \su(2,1)/ \xi^1(x))$ is the canonical projection.
 \end{proposition}
 \begin{proof}
-Since the limit map of an Anosov representation is equivariant, it suffices to show that there exists a unique $\eta$-equivariant map $\xi^1:\SU(2,1)/P_0 \to \mathbb P(\mathfrak{su}(2,1))$.
+Since by \cref{lem:equivariance_uniqueness} the limit map is the unique continuous $\rho$-equivariant from the boundary of $\Gamma$ to the projective space, it suffices to show that there exists an $\eta$-equivariant map $\xi^1:\SU(2,1)/P_0 \to \mathbb P(\mathfrak{su}(2,1))$, since it will then restrict to the limit map on $\partial \Gamma$.
 
-We consider the parabolic subgroup $P_0 = \mathrm{St}_{\SU(2,1)} [1:0:0]$ of $\SU(2,1)$.\todo{This means that it is equivariant with respect to the Adjoint action of $\Gamma$. However we are only proving uniqueness of an $\SU(2,1)$-equivariant map.}
+We consider the parabolic subgroup $P_0 = \mathrm{St}_{\SU(2,1)} [1:0:0]$ of $\SU(2,1)$.
 Then its Lie algebra is given by:
 \[
 \mathfrak p_0 = \mathrm{St}_{\su(2,1)}[1:0:0] = \left\{ \begin{pmatrix} u - is & a & i t \\ 0 & 2is & - \bar a \\ 0 & 0 & -u - is \end{pmatrix} : a \in \mathbb C, u,s,t \in \mathbb R \right\}.
