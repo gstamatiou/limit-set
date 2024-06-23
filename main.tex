@@ -280,15 +280,12 @@ Then (see Figure \ref{fig:angle} ) for each $n>0$ there exists a geodesic ray  $
     |a_n^n|, |a_0^n| > n \text{ and }
     \angle(U_1(\rho(a_n^n)), U_1(\rho(a_0^n))) < \frac{1}{n}.
 \]
-Due to compactness of $\partial \Gamma$ we may assume (up to a subsequence) that
-$a^n \to x$ in $\partial \Gamma$ for some $x \in \partial \Gamma$.
-Then 
-\todo{Not sure if this is true.}
-$a^n_n, a_0^n \to x$ in $\hat \Gamma$ which implies
+Due to compactness of $\Gamma \cup \partial \Gamma$ we can find some subsequence  ${k_n}$ and $x,y \in \partial \Gamma$ such that $a^{k_n}_{k_n} \to x$, $a^{-k_n}_0 \to y$  and $x\neq y$.
+Since the limit map is dynamics preserving, we have that
 \[
-    \angle (\xi^1(x), \xi^{d-1}(x)) = 0
+    \angle (\xi^1(x), \xi^{d-1}(y)) = 0,
 \]
-using the fact that the limit maps $\xi^1, \xi^{d-1}$ are continuous, which contradicts their tranversality.
+which contradicts its transversality property.
 \end{proof}
 \begin{figure}[h]
     \centering
@@ -386,42 +383,56 @@ The following can be found in \cite[Proposition 3.3]{pozzetti_anosov_2023}:
     \]
 \end{proposition}
 \begin{proof}
-    We begin by noting that it suffices to show this for all but finitely many $\gamma \in \Gamma$, since then we may alter the constants to satisfy the wanted inclusion also for the finitely many remaining $\gamma \in \Gamma$. Given this, we shall assume that $|\gamma| \geq l_0$ where $l_0 > 0$ is such that $Ce^{-\mu l_0} < 1$ and $C, \mu > 0$ are the constants appearing in the definition of the Anosov property of $\rho$..
+    We begin by noting that it suffices to show this for all but finitely many $\gamma \in \Gamma$, since then we may alter the constants to satisfy the wanted inclusion for the finitely many remaining $\gamma \in \Gamma$ as well. 
+    Hence, we may assume that $|\gamma| \geq l_0$ where $l_0 > 0$ is such that 
+    \[
+        Ce^{-\mu l_0} < 1 \text{ and } {\sf a}_1(\gamma) \geq C|\gamma| - L.
+    \]
 
     Suppose $x \in \partial \Gamma$ such that $\xi^1(x) \in B_{\alpha_1, \alpha}(\rho(\gamma))$, and consider a geodesic ray $a_j \to x$ starting from $a_0 = e$.
-    To prove the result, it suffices to find constants $c_0, c_1$ independent of $\gamma$ and a ($c_0$, $c_1$)-quasi-geodesic from $\gamma^{-1}$ to $x$ that passes through $e$ and stays at a bounded distance from $(a_j)_{j=0}^\infty$
+    To prove the result, it suffices to find constants $c_0, c_1$ independent of $\gamma$ and for which there exists a ($c_0$, $c_1$)-quasi-geodesic from $\gamma^{-1}$ to $x$ that passes through $e$ and stays at a bounded distance from $(a_j)_{j=0}^\infty$.
 
-    Using \cite[Proposition 2.5]{pozzetti_anosov_2023} we have that
-    $d(\xi^1(a_j), U_{d-1}(\rho(\gamma^{-1}))) \leq C e^{-\mu j}$, 
-    so there exists some $L>0$ that depends only on $\alpha$ 
-    such that for all $j\geq L: U_1(\rho(a_j))\in B_{\alpha_1, \alpha}(\rho(\gamma))$ and in particular
-    \[
-        d(\xi^1(a_j), \gamma^{-1}) = d(U_1(\rho(a_j)), U_1(\rho(\gamma^{-1}))) \geq 
-        d(U_1(\rho(a_j)), U_{d-1}(\rho(\gamma^{-1}))) > \sin\alpha.
-    \]
-    Along with the uniform continuity of $\xi^1: \Gamma \cup \partial \Gamma \to \mathbb P(\mathbb R^d)$ this implies there exists some $\alpha' > 0$ and $L>0$ such that for all $j\geq L$:
+    Using the exponential convergence rate of $\xi^1(a_j) \to \xi^1(x)$ and the definition of $B_{\alpha_1, \alpha}(\rho(\gamma))$ we have that:
+    \begin{align*}
+        d(\xi^1(a_j), \xi^1(\gamma)) &\geq
+        d(\xi^1(x), U_1(\rho(\gamma^{-1}))-d(\xi^1(a_j), \xi^1(x)))
+        \geq \\
+        &\geq
+        d(\xi^1(x), U_{d-1}(\rho(\gamma^{-1}))-d(\xi^1(a_j), \xi^1(x)))
+        \geq
+        \sin \alpha - Ce^{-\mu j}
+    \end{align*}
+    which along with the uniform continuity of $\xi^1: \Gamma \cup \partial \Gamma \to \mathbb P(\mathbb R^d)$ this implies there exists some $\alpha' > 0$ and $L>0$ such that for all $j\geq L$:
     \[
         d(a_j, \gamma^{-1}) \geq \alpha'.
     \]
     Upon considering a large $L$, we may also assume that $|a_L| = L > l_0$. Note that both $\alpha'$ and $L$ do not depend on each $\gamma$ but only on $\rho$ and $\alpha$.
 
-    Using some geometric group theory, we can show that for all $j \geq L$
+    Using a coarse geometric arguement, we can show that for all $j \geq L$
     \[
         d(\gamma^{-1}, a_j) > \alpha' \Rightarrow
         d([\gamma^{-1}, a_j], e) < \alpha''
     \]
-    for some $\alpha''$ that depends only on $\Gamma$ and $\alpha'$, where $[a_j, \gamma^{-1}]$ denotes the geodesic segment connecting $\gamma^{-1}$ and $a_j$.
+    for some $\alpha''$ that depends only on $\Gamma$ and $\alpha'$, where $[a_j, \gamma^{-1}]$ denotes any geodesic segment connecting $\gamma^{-1}$ and $a_j$.
+    Indeed, \cite[Lemme 2.17]{ghys2013groupes} states that 
+    $d([\gamma^{-1}, a_j]) \leq (\gamma_j^{-1}, a_j)_e + \delta$
+    where $\delta$ is the hyperbolicity constant of $\Gamma$.
+    Thus
+    \[
+        d([\gamma^{-1}, a_j]) \leq \delta + \frac{d(a_j, e) + d(\gamma^{-1},e) + d(a_j, \gamma^{-1})}{2} \leq
+        \delta + \frac{L + d(\gamma^{-1}, e) + \alpha'}{2}.
+    \]
 
     Consider the concatenation $(a_j')_{j=L-K}^\infty$ of $[\gamma^{-1},a_L]$ and $[a_L, x]$.
     To find quasi-geodesic-constants that are uniform in $\gamma$, we note that for any $c_0 \geq 1, c_1 \geq 0$:
     \[
-        c_0^{-1} |i - j| - c_1 \leq d(a_i', a_j') = d(a_i, a_j) \leq d(a_i) c_0^ |i - j| + c_1 
+        c_0^{-1} |i - j| - c_1 \leq d(a_i', a_j') = d(a_i, a_j) \leq c_0 |i - j| + c_1 
         \text{ when } i,j \geq L \text{ or } i,j \leq L
     \]
     and that the upper bound follows trivially by the triangle inequality. 
     
     For the lower bound we proceed in two steps. 
-    First we bound the distance of $\gamma^-1 = a_{L-K}'$ to $a_{L+j}$ for $j\geq 0$:
+    First we bound the distance of $\gamma^{-1} = a_{L-K}'$ to $a_{L+j}$ for $j\geq 0$:
     \begin{align*}
         d(a_{L-K}', a_{L+j}') 
         &\geq \nu (|a_{L+j}| - |\gamma^{-1}|) - c_0' -c_1'|\log(d(U_1(\rho(a_{L+j})), U_1(\rho(\gamma^{-1}))))| \geq\\
@@ -502,9 +513,9 @@ $$d_\Gamma \geq h_\rho(\Psi^{d_\Gamma + 1}).$$
 
 Noting that $(s+1) J_{d_\Gamma^u} \leq \Psi_{s+d_\Gamma}^{d_\Gamma + 1}$, the above bound will follow as soon as we have shown that
 \begin{equation}\label{eq:JacobianBound}
-    h_\rho(J_{d_\Gamma}) \geq 1.\tag{LB}
+    h_\rho(J_{d_\Gamma}) \leq 1.\tag{LB}
 \end{equation}
-To obtain \cref{eq:JacobianBound}, one uses the method of Patterson-Sullivan-Quint, which may be summed up in
+To obtain inequality (\ref{eq:JacobianBound}), one uses the method of Patterson-Sullivan-Quint, which may be summed up in
 \begin{align*}
     \text{There exists a } (\phi, \rho)\text{-Patterson-Sullivan measure on } \mathcal F_\Theta(\mathbb R^d) 
     \Rightarrow h_\rho(\phi) \leq 1,
@@ -518,7 +529,7 @@ The property that we will need of our measure is that there exists a collection 
     \left\{\sharp A : A \subseteq \Gamma_n,  \bigcap_{\gamma \in A}U_\gamma \neq \emptyset \right\} < \infty\tag{MP}
 \end{align*}
 where $\Gamma_n = \{ \gamma \in \Gamma : |\gamma| = n \} $.
-The existence of a $(J_{d_\Gamma}^u, \rho)$-Patterson-Sullivan measure that satisfies the property (\ref{eq:GoodMeasure}) will be proved in \cref{sec:MeasureExistence}.
+For the proof of the existence of a $(J_{d_\Gamma}^u, \rho)$-Patterson-Sullivan measure that satisfies the property (\ref{eq:GoodMeasure}) we refer to \cref{sec:MeasureExistence}, noting that the Zariski-density assumption is necessary only for the equivalence appearing on the left hand side of \cref{eq:GoodMeasure}.
 Assuming that for the time being, below we outline the Patterson-Sullivan-Quint method of obtaining \cref{eq:JacobianBound}.
 
 Indeed, we first obtain the uniform in $n$ bound:
