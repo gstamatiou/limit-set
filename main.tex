@@ -19,6 +19,16 @@
 \tableofcontents
 
 \chapter{Introduction}
+\begin{definition}
+    Let $\Gamma$ be a discrete group of isometries of a metric space $(X,d)$.
+    We define the critical exponent of $\Gamma$ to be the asymptotic exponential growth of its orbits, i.e.\ the following limit:
+    \[
+    \delta_\Gamma = \limsup_{n\to \infty} \frac{\log \sharp \{ \gamma \in \Gamma : d(x, \gamma x) \leq n \}}{n}
+    \]
+    for some fixed $x \in X$.
+\end{definition}
+\remark
+It is not hard to show that the critical exponent is independent of the choice of $x$.
 \section{Lie group preliminaries}
 We fix the Cartan subalgebra $\mathfrak a$ of $\SL(d,\mathbb R)$:
 \[
@@ -465,16 +475,25 @@ The following can be found in \cite[Proposition 3.3]{pozzetti_anosov_2023}:
     \includegraphics[width=0.8\textwidth]{cone.jpg}
 \end{figure}
 \chapter{Lower bound}
+\section{Busemann cocyle and Patterson-Sullivan measures}
 We denote with $\Pi$ the set of simple positive roots, and for $\Theta \subseteq \Pi$ we consider the Levi-Anosov subspace of $\mathfrak a$
 \[
     \mathfrak a_\Theta = \bigcap_{\alpha \notin \Theta} \ker \alpha,
 \]
 which in particular admits $\{ \omega_{\alpha_i} : \alpha_i \in \Theta \}$ as a basis.
-Finally, we shall consider the Busemann cocycle
-\[
-    b_\Theta : \PSL(d, \mathbb R) \times \mathcal F_\Theta \to \mathfrak a_\Theta
-\]
-which might as well be defined as
+\begin{definition}
+    Let $\Theta \subseteq \Pi$. We define the Busemann cocycle
+    \[
+    b : \PSL(d, \mathbb R) \times \mathcal F_\Theta \to \mathfrak a_\Theta
+    \]
+    as the unique element $b(g, k P_\Theta) \in \mathfrak a_\Theta$ such that
+    \[
+    g k \in K e^{b(g, k P_\Theta)} N.
+    \]
+    where $N = \{ n \in \SL(d, \mathbb R) : n_{ij} = 0 \text{ for } i > j, n_{ii} = 1 \text{ for all } i \}$ is the unipotent group of upper subgroup of upper triangular matrices with $1$s on the diagonal, and $P_\Theta$ is the parabolic subgroup of $\PSL(d, \mathbb R)$ corresponding to $\Theta$, i.e.\ $\mathcal F_\Theta = \PSL(d, \mathbb R)/P_\Theta$.
+\end{definition}
+\begin{lemma}
+For $y \in \mathcal F_\Theta(\mathbb R^d)$ we have    
 \[
     \omega_{\alpha_i}(b_\Theta(g, x)) =
     \log \frac{\| g v_1 \wedge \cdots g v_i \|}{ \| v_1 \wedge \cdots v_i \| }
@@ -482,6 +501,20 @@ which might as well be defined as
 \]
 for any basis $v_1, \ldots, v_i$ of $x^i \in \mathcal G_i(\mathbb R^d)$, where $\| \cdot \|$ denotes the norm on $\bigwedge^i \mathbb R^d$ induced by the euclidean inner product on $\mathbb R^d$, 
 i.e.\ $ \langle v_1 \wedge \cdots \wedge v_k, w_1 \wedge \cdots \wedge w_k \rangle := \det(\langle v_i, w_j \rangle)$.
+\end{lemma}
+
+\begin{definition}
+    We define
+    \[
+    \Lambda^k : \SL{d, \mathbb R} \to \SL{\Lambda^k \mathbb R^d}, \quad
+    \Lambda^k : \mathcal G_k(\mathbb R^d) \to \mathbb P(\Lambda^k \mathbb R^d)
+    \]
+    as
+    \[
+    \Lambda^k(g)(v_1 \wedge \cdots \wedge v_k) = g v_1 \wedge \cdots \wedge g v_k
+    \Lambda^k(\mathbb R v_1 \oplus \cdots \mathbb R v_k) =  v_1 \wedge \cdots \wedge v_k
+    \]
+\end{definition}
 \begin{definition}
     For a discrete subgroup $\Gamma < \PSL(d, \mathbb R), \phi \in (\alpha_\Theta)^*$,
     a $(\Gamma, \phi)$-Patterson Sullivan measure on $\mathcal F_\Theta$ is a finite Radon measure $\mu$ such that for every $\gamma \in \Gamma$
@@ -492,15 +525,43 @@ i.e.\ $ \langle v_1 \wedge \cdots \wedge v_k, w_1 \wedge \cdots \wedge w_k \rang
 
 \begin{lemma}\label{lem:busemann}
 Let $\alpha > 0, \Theta \subseteq \Pi$.
-There exists $K = K(\alpha) > 0$ such that for each $g \in \SL(d, \mathbb R), \sf{a_i} \in \Theta, y \in B_{\Theta, \alpha}(g)$
-\[
-    |\omega_i (a(g) - b(g, y))| \leq K.
-\]
-\end{lemma}\todo{How to prove this?}
-Recalling that $\{ \omega_i \}_{\sf a_i \in \Theta} $ is a basis for $\mathfrak a_\Theta$, the above implies in particular that for each $\phi \in \mathfrak a_\Theta^*$ there exists $K = K(\alpha, \phi) > 0$ such that for all $g \in \SL(d, \mathbb R), y \in B_{\Theta, \alpha}(g)$
+There exists $K = K(\alpha) > 0$ such that for each $g \in \SL(d, \mathbb R), \sf{a_i} \in \Theta, y \in B_{\Theta, \alpha}(g), \phi \in \mathfrak a_\Theta$
 \[
     |\phi (a(g) - b(g, y))| \leq K.
 \]
+\end{lemma}\begin{proof}
+We begin by noting that it suffices to consider the case where $\phi = {\sf a}_k$
+for $\sf a_k \in \Theta$, since $\{ \omega_i \}_{\sf a_i \in \Theta} $ 
+is a basis for $\mathfrak a_\Theta^*$.
+
+We first consider the case where $k=1$.
+We recall that the first component of the Cartan projection coincides with the spectral norm of $g$, i.e.
+\[
+a_1(g) = \log \sup_{v \neq 0} \frac{\| g v\|}{\|v\|} = \log \|g k_2^{-1} e_1 \|
+\] 
+where $g = k_1 e^{a(g)} k_2$ is the Cartan decomposition of $g$.
+Let $v = v_1 k_2^{-1} e_1 + \cdots + v_d k_2^{-1} e_d \in \mathbb R^d$ be such that $\|v\| = 1$ and $y = \mathbb R v$, we have
+
+\begin{align*}
+    |\omega_1(a(g) - b(g, y))| &=
+    |\log \|g k_2^{-1} e_1 \| - \log \|g v \| | =\\
+    &= |\log |e^{a_1(g)}| - \log \| e^{a_1(g)} v_1 k_1 e_1 + \cdots + e^{a_d(g)} v_d k_1 e_d \| | =\\
+    &= \left| \log \left\| v_1 k_1 e_1 + e^{-{\sf a}_{12}(g)} v_2 k_1 e_2 + \cdots
+    +  e^{-{\sf a}_{1d}(g)} v_d k_1 e_d \right\| \right| \leq\\
+    &\leq |\log |v_1| | = \left| \log \sin( \angle(v, U_{d-1}(g^{-1}))) \right| \leq \left| \log \sin \alpha \right|.
+\end{align*}
+
+For the case where $\Theta = \{ {\sf a}_k \}$, we consider $\alpha' > 0$ such that
+\[
+\Lambda^k (B_{{\sf a}_k, \alpha}(g)) \subseteq B_{{\sf a}_k, \alpha'}(\Lambda^k g)
+\]
+Then using the case $k=1$ we have that
+\begin{align*}
+    |\omega_k(a(g) - b(g, y))| &=
+    |\omega_1(a(\Lambda^k g) - b(\Lambda^k g, \Lambda^k y))| \leq \left| \log \sin \alpha' \right| .
+\end{align*}
+\end{proof}
+
 \section{Proof strategy}
 Denoting with $d_\Gamma = \dim_H \xi_\rho^1(\partial \Gamma)$ the Hausdorff  dimension of the limit set, we shall outline how to obtain its lower bound by the Falconer dimension
 \[
