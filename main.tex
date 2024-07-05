@@ -27,8 +27,10 @@
     \]
     for some fixed $x \in X$.
 \end{definition}
-\remark
-It is not hard to show that the critical exponent is independent of the choice of $x$.
+\begin{remark}
+    It is not hard to show that the critical exponent is independent of the choice of $x$.    
+\end{remark}
+
 \section{Lie group preliminaries}
 We fix the Cartan subalgebra $\mathfrak a$ of $\SL(d,\mathbb R)$:
 \[
@@ -515,6 +517,44 @@ i.e.\ $ \langle v_1 \wedge \cdots \wedge v_k, w_1 \wedge \cdots \wedge w_k \rang
     \Lambda^k(\mathbb R v_1 \oplus \cdots \mathbb R v_k) =  v_1 \wedge \cdots \wedge v_k
     \]
 \end{definition}
+\begin{lemma}
+    Let $g \in \SL(d, \mathbb R), \alpha > 0$ and $k \in \llbracket 2, d \rrbracket$.
+    \begin{enumerate}[label=(\roman*)]
+        \item $\omega_1(a(\Lambda^k g)) = \omega_k(a(g))$ and $\omega_1(b(\Lambda^k g, \Lambda^k y)) = \omega_k(b(g, y))$.
+        \item There exists some $\alpha' > 0$ independent of $g$ such that $\Lambda^k B_{{\sf a}_k, \alpha}(\Lambda^k g) \subseteq B_{{\sf a}_1, \alpha'}(\Lambda^k g)$.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    \begin{enumerate}[label=(\roman*)]
+        \item Follows from the definitions of the fundamental weights and the Cartan projection.
+        \item Let $g = k_g e^{a(g)} l_g$ be the Cartan decomposition of $g$.
+        Then using the definitions of the respective subspaces:
+        \begin{align*}
+        U_{d-k}(g^{-1}l_g^{-1}) &= \mathbb R e_{k+1} \oplus \cdots \oplus \mathbb R e_d\\
+        x_0 := U_{d-1}(\Lambda^k g ^{-1} l_g^{-1}) &= \bigoplus_{\substack{i_1 < \cdots < i_k\\(i_1, \cdots, i_k) \neq (1, \cdots, k)}}\mathbb R e_{i_1} \oplus \cdots \oplus \mathbb R e_{i_k}
+        \end{align*}
+        The first equality implies that
+        \[
+        y \in B_{{\sf a}_k, \alpha}(g) \Leftrightarrow l_g y \in B_{{\sf a}_k, \alpha}(g l_g^{-1}) = B_{{\sf a}_k, \alpha}(\mathrm{Id}),
+        \]
+        so for every $y \in B_{{\sf a}_k, \alpha}(g)$ we have that 
+        \[
+        l_g y = l U_k(\mathrm{Id}) \text{ for some } l \in L
+        \]
+        where
+        \[
+        L = \left\{ l \in \SO(d, \mathbb R) : l U_k(\mathrm{Id}) \in B_{{\sf a}_k, \alpha}(\mathrm{Id}) \right\}.
+        \]
+        Note that $L$ is compact, being a closed subset of a compact group.
+        Moreover, the fact that $\Lambda^k(y) \not \in \U_{d-1}(\Lambda^k g^{-1})$ implies that
+        \begin{align*}
+            0 < \angle(\Lambda^k(y), \U_{d-1}(\Lambda^k g^{-1})) =
+            \angle(\Lambda^k(l_g y), \U_{d-1}(\Lambda^k g^{-1} l_g^{-1})) = \angle(\Lambda^k(l) \U_{k}(\mathrm{Id}), x_0)
+        \end{align*}
+        The right-hand side is in the image of the compact set $L$ under a continuous map, so it is bounded below by a positive number $\alpha' >0$.
+        \item Follows from the definition of the Cartan projection and the Busemann cocycle.
+    \end{enumerate}
+\end{proof}
 \begin{definition}
     For a discrete subgroup $\Gamma < \PSL(d, \mathbb R), \phi \in (\alpha_\Theta)^*$,
     a $(\Gamma, \phi)$-Patterson Sullivan measure on $\mathcal F_\Theta$ is a finite Radon measure $\mu$ such that for every $\gamma \in \Gamma$
