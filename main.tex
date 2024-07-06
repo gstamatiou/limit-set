@@ -387,7 +387,7 @@ many $(d-1)$-balls of radius $\sqrt{d-1}\beta_p$ to cover $E_1$.
 \end{proof}
 
 The following can be found in \cite[Proposition 3.3]{pozzetti_anosov_2023}:
-\begin{proposition}
+\begin{proposition}\label{prop:shadows}
     Let $\rho: \Gamma \to SL(d, \mathbb R)$ be projective Anosov and $\alpha > 0$
     Then there exist $c_0, c_1 > 0$ that depends only on $\alpha$ and $\rho$ such that for all $\gamma \in \Gamma$:
     \[
@@ -508,7 +508,7 @@ i.e.\ $ \langle v_1 \wedge \cdots \wedge v_k, w_1 \wedge \cdots \wedge w_k \rang
 \begin{definition}
     We define
     \[
-    \Lambda^k : \SL{d, \mathbb R} \to \SL{\Lambda^k \mathbb R^d}, \quad
+    \Lambda^k : \SL(d, \mathbb R) \to \SL(\Lambda^k \mathbb R^d), \quad
     \Lambda^k : \mathcal G_k(\mathbb R^d) \to \mathbb P(\Lambda^k \mathbb R^d)
     \]
     as
@@ -602,7 +602,7 @@ Then using the case $k=1$ we have that
 \end{align*}
 \end{proof}
 
-\section{Proof strategy}
+\section{Proof strategy}\label{sec:ProofStrategy}
 Denoting with $d_\Gamma = \dim_H \xi_\rho^1(\partial \Gamma)$ the Hausdorff  dimension of the limit set, we shall outline how to obtain its lower bound by the Falconer dimension
 \[
     d_\Gamma \geq h_\rho(F).
@@ -612,7 +612,7 @@ First we recall that $F_s(a) = \max \{ \Psi_s^p(a) : p \in \llbracket 2, d \rrbr
 Thus the lower bound will follow once we have shown that
 $$d_\Gamma \geq h_\rho(\Psi^{d_\Gamma + 1}).$$
 
-Noting that $(s+1) J_{d_\Gamma^u} \leq \Psi_{s+d_\Gamma}^{d_\Gamma + 1}$, the above bound will follow as soon as we have shown that
+Noting that $\frac{s}{d_\Gamma} J_{d_\Gamma}^u \leq \Psi_{s+d_\Gamma}^{d_\Gamma + 1}$, the above bound will follow as soon as we have shown that
 \begin{equation}\label{eq:JacobianBound}
     h_\rho(J_{d_\Gamma}) \leq 1.\tag{LB}
 \end{equation}
@@ -648,7 +648,7 @@ to conclude that
 \begin{align*}
 \sum_{\gamma \in \Gamma} e^{-(s+1)J^u_{d_\Gamma}(a(\rho(\gamma)))} &=
 \sum_{n\geq 0} \sum_{\gamma \in \Gamma_n} e^{-s J^u_{d_\Gamma}(a(\rho(\gamma)))}
-    e^{J^u_{d_\Gamma}(a(\rho(\gamma)))} \lesssim
+    e^{-J^u_{d_\Gamma}(a(\rho(\gamma)))} \lesssim
 \sum_{n\geq 0} e^{-s(Cn - b)} < \infty
 \end{align*}
 which holds for any $s>0$, and thus \cref{eq:JacobianBound} holds.
@@ -673,7 +673,7 @@ which holds for any $s>0$, and thus \cref{eq:JacobianBound} holds.
 \end{definition}
 
 The following is \cite[Proposition 6.4]{pozzetti_anosov_2023}:
-\begin{proposition}
+\begin{proposition}\label{prop:PSMeasureExists}
 Assume that $\xi^1_\rho(\partial \Gamma)$ is a Lipschitz submanifold of dimension $d_\Gamma$.
 Then there exists a $(\rho(\Gamma), J_{d_\Gamma}^u)$-Patterson-Sullivan measure on $\mathcal F_{1,d_\Gamma + 1}$.
 \end{proposition}
@@ -714,20 +714,22 @@ Then there exists a $(\rho(\Gamma), J_{d_\Gamma}^u)$-Patterson-Sullivan measure 
     \begin{align*}
         &(\rho(\gamma)^*\mu)_{\xi_\rho^1(x)} (\phi_1, \ldots, \phi_{d_\Gamma})\\
         &=
-        \mu_{\rho(\gamma)\xi_\rho^1(x)} (\rho(\gamma)\phi_1\rho(\gamma)^{-1}, \ldots, \rho(\gamma)\phi_{d_\Gamma} \rho(\gamma)^{-1}) =\\
-        &=
-        \frac{\|\rho(\gamma) \xi_\rho^1(x) \wedge \rho(\gamma) \phi_1(\xi_\rho^1(x)) \wedge \cdots \wedge \rho(\gamma) \phi_{d_\Gamma}(\xi_\rho^1(x))\|}{\| \rho(\gamma) \xi_\rho^1(x) \|^{d_\Gamma + 1}} =\\
+        \mu_{\rho(\gamma)\xi_\rho^1(x)} (\rho(\gamma)\phi_1\rho(\gamma)^{-1}, \ldots, \rho(\gamma)\phi_{d_\Gamma} \rho(\gamma)^{-1}) \\
         &=
         \frac{\|\rho(\gamma) \xi_\rho^1(x) \wedge \rho(\gamma) \phi_1(\xi_\rho^1(x)) \wedge \cdots \wedge \rho(\gamma) \phi_{d_\Gamma}(\xi_\rho^1(x))\|}
-        {\|\xi_\rho^1(x) \wedge \phi_1(\xi_\rho^1(x)) \wedge \cdots \wedge \phi_{d_\Gamma}(\xi_\rho^1(x))\|} \cdot
+        {\| \rho(\gamma) \xi_\rho^1(x) \|^{d_\Gamma + 1}} \\
+        &=
+        \frac{\|\rho(\gamma) \xi_\rho^1(x) \wedge \rho(\gamma) \phi_1(\xi_\rho^1(x)) \wedge \cdots \wedge \rho(\gamma) \phi_{d_\Gamma}(\xi_\rho^1(x))\|}
+        {\|\xi_\rho^1(x) \wedge \phi_1(\xi_\rho^1(x)) \wedge \cdots \wedge \phi_{d_\Gamma}(\xi_\rho^1(x))\|} \\
+        &\quad \cdot
         \frac{\|\xi_\rho^1(x) \wedge \phi_1(\xi_\rho^1(x)) \wedge \cdots \wedge \phi_{d_\Gamma}(\xi_\rho^1(x))\|}
         {\|\rho(\gamma) \xi_\rho^1(x)\|^{d_\Gamma+1}}\cdot
-        \frac{\| \rho(\gamma)\xi_\rho^1(x)\|^{d_\Gamma+1}}{\|\xi_\rho^1(x)\|^{d_\Gamma+1}}
-         =\\
+        \frac{\| \rho(\gamma)\xi_\rho^1(x)\|^{d_\Gamma+1}}{\|\xi_\rho^1(x)\|^{d_\Gamma+1}} \\
          &=
          e^{\omega_{d_\Gamma}(b_\Theta(\rho(\gamma), \zeta_\rho(\xi_\rho^1(x))))} \cdot
-         \mu_{\xi_\rho^1(x)}(\phi_1, \ldots, \phi_{d_\Gamma}) \cdot
-         e^{-(p+1)\omega_1(b_\Theta(\rho(\gamma), \zeta_\rho(\xi_\rho^1(x))))} =\\
+         \mu_{\xi_\rho^1(x)}(\phi_1, \ldots, \phi_{d_\Gamma}) \\
+         &\quad \cdot
+         e^{-(p+1)\omega_1(b_\Theta(\rho(\gamma), \zeta_\rho(\xi_\rho^1(x))))} \\
          &=
          e^{-J_{d_\Gamma}^u(b_\Theta(\rho(\gamma)^{-1}, \zeta(\xi_\rho^1(x)))} \mu_{\xi_\rho^1(x)}(\phi_1, \ldots, \phi_{d_\Gamma}).
     \end{align*}
@@ -745,6 +747,39 @@ Then there exists a $(\rho(\Gamma), J_{d_\Gamma}^u)$-Patterson-Sullivan measure 
     \end{align*}
 \end{proof}
 
+
+The next lemma is should regarded as an analog of \cref{lem:boundary_covering} and \cref{prop:shadows} to arbitrary flag varieties, and relies only on the Anosov property of $\rho$, and the fact that $\zeta_\rho$ is a section of $\pi_{\sf a_1}: \mathcal F_{1, d_{\rho,\Gamma}+1}(\mathbb R^d) \to \mathbb P(\mathbb R^d)$.
+\begin{lemma}\label{lem:boundary_covering_higher}
+Let $\rho: \Gamma \to SL(d, \mathbb R)$ be projective Anosov and $\Theta = \{ {\sf a}_1, {\sf a}_{d_{\rho, \Gamma}}\} \subseteq \Pi$.
+Then for $\alpha > 0$ small enough, there exists some $C, T_0 > 0$ such that for all $T \geq T_0$ the family
+\[
+    \mathcal U_T = \left\{ \rho(\gamma) B_{\Theta, \alpha}(\rho(\gamma)) : |\gamma| = T \right\}
+\]
+is an collection of open subsets of $\mathcal F_\Theta(\mathbb R^d)$ such that every $\zeta_\rho(\xi^1_\rho(x))$ is contained in at most $C$ many sets in $\mathcal U_T$.
+\end{lemma}
+\begin{proof}
+Suppose $\zeta_\rho(\xi^1_\rho(x)) \in \rho(\gamma) B_{\Theta, \alpha}(\rho(\gamma)) \cap \rho(\eta) B_{\Theta, \alpha}(\rho(\eta))$ for some $\gamma, \eta \in \Gamma_T$.
+Then $\xi_\rho^1(x) \in \rho(\gamma) B_{{\sf a}_1, \alpha}(\rho(\gamma)) \cap \rho(\eta) B_{{\sf a}_1, \alpha}(\rho(\eta))$.
+But using \cref{prop:shadows} we have that
+\begin{align*}
+    x &\in (\xi_\rho^1)^{-1}(\rho(\gamma) B_{{\sf a}_1, \alpha}(\rho(\gamma)) \cap \rho(\eta) B_{{\sf a}_1, \alpha}(\rho(\eta))) =\\
+    &= \gamma(\xi_\rho^1)^{-1}(B_{{\sf a}_1, \alpha}(\rho(\gamma))) \cap \eta (\xi_\rho^{-1})(B_{{\sf a}_1, \alpha}(\rho(\eta))) \subseteq\\
+    &\subseteq \gamma C_{c_0, c_1}(\gamma) \cap \gamma C_{c_0, c_1}(\eta).
+\end{align*}
+Thus $x$ is represented by $(c_0, c_1)$-quasi-geodesic rays $(a_j)_0^\infty, (b_j)_0^\infty $, that start from $e$ and pass from $\gamma$ and $\eta$ respectively.
+By Morse's lemma, we know that there exists some geodesic ray starting from $e$ and some $A > 0$ depending only on $c_0, c_1$ and the hyperbolicity constant of $\Gamma$ such that the Hausdorff distance of the geodesic ray to each of the quasi-geodesics is bounded by $A$. 
+Let $\epsilon_0, \epsilon_1$ be two points on the geodesic ray such that $|\d(\gamma, \epsilon_0), \d(\eta, \epsilon_1) \leq A$.
+Then we have that
+\begin{align*}
+    \d(\gamma, \eta) &\leq \d(\gamma, \epsilon_0) + \d(\epsilon_0, \epsilon_1) + \d(\epsilon_1, \eta) \leq 
+    2A + | |\epsilon_0| - |\epsilon_1|| \leq\\
+    &\leq
+    2A + | |\epsilon_0| - |\gamma|| + | |\gamma| - |\eta| | + | |\epsilon_1| - |\eta|| \leq 4A.
+\end{align*}
+In particular, any $\gamma'$ such that $\zeta_\rho(\xi^1_\rho(\gamma'))  \in \xi_\rho^1(\rho(\gamma') B_{\Theta, \alpha}(\rho(\gamma')))$, will lie in a ball of radius $4A$ around $\gamma$.
+Since $\Gamma$ is finitely generated, there exists some $C > 0$ such that the ball of radius $4A$ around $\gamma$ contains at most $C$ elements of $\Gamma$.
+\end{proof}
+
 Before giving the next definition, we recall that the annihilator annihilator of an element $y \in \mathcal F_F{i \Theta}(\mathbb R^d)$ is the set of partial flags that are not transverse to $y$, that is:
 \[
     \mathrm{Ann}(y) = \left\{ x \in \mathcal F_{\Theta}(\mathbb R^d) : x^\theta \cap y^{d- \theta} \neq 0 \text{ for some } \theta \in \Theta \right\}.
@@ -757,7 +792,7 @@ We say that $\rho$ is $\mu$-irreducible there is no element in $\mathcal F_{i \T
 \]
 \end{definition}
 
-\begin{example}
+\begin{example}\label{ex:ZariskiDense}
     If $\rho(\Gamma)$ is Zariski-dense in $\SL (d, \mathbb R)$, then $\rho$ is $\mu$-irreducible for any $\rho$-quasi-equivariant measure $\mu$, and in particular for any $(\rho(\Gamma), \phi)$-Patterson-Sullivan measure.
 \end{example}
 
@@ -794,7 +829,7 @@ We say that $\rho$ is $\mu$-irreducible there is no element in $\mathcal F_{i \T
     \]
 \end{remark}
 
-\begin{lemma}
+\begin{lemma}\label{lem:PSMeasureBounds}
     Let $\rho:\Gamma \to \SL(d, \mathbb R)$ be a representation and $\mu^\phi$ be a ($\rho(\Gamma), \phi$)-Patterson-Sullivan measure.
     If $\rho(\Gamma)$ is $\mu$-irreducible, then there exists some $\alpha_0 > 0$, such that for any $\alpha \in (0, \alpha_0)$, there's some $k = k(\alpha) > 0$ for which
     \[
@@ -821,7 +856,77 @@ We say that $\rho$ is $\mu$-irreducible there is no element in $\mathcal F_{i \T
         e^{-K} \mu^\phi(\mathcal F_\Theta (\mathbb R^d)) e^{-\phi(a(\rho(\gamma)))}.
     \end{align*}
     
-    Similarly we obtain the lower bound
+    Similarly we obtain the lower bound.
+\end{proof}
+\section{Proof of the main theorem}
+In this section we shall prove the main theorem, which we restate for the reader's convenience:
+\begin{theorem}
+    Let $\Gamma < \PSL(d, \mathbb R)$ be a discrete subgroup, $\rho: \Gamma \to \SL(d, \mathbb R)$ be a Zariski-dense, projective Anosov representation such that $\xi^1_\rho(\partial \Gamma)$ is a Lipschitz submanifold of $\mathbb P(\mathbb R^d)$.
+    Denoting with $d_{\rho, \Gamma}$ the dimension of $\xi^1_\rho(\partial \Gamma)$, we have that
+    \[
+        d_{\rho, \Gamma} = \dim_F(\rho)
+    \]
+    where $\dim_F(\rho) = h_\rho(F)$ is the Falconer dimension, and $F_s(a) = \max \{ \Psi_s^p(a) : p \in \llbracket 2, d \rrbracket\}$ is the Falconer functional.
+\end{theorem}
+\begin{proof}
+    We have already seen in \cref{lem:upper_bound} that $d_{\rho, \Gamma} \leq \dim_F(\rho)$.
+    For the opposite inequality, we merely need to piece together the results of the previous sections as outlined in \cref{sec:ProofStrategy}.
+    There we have seen that $h_\rho(F) \leq h_\rho(\Psi^{d_{\rho, \Gamma} + 2})$ since $F_s \geq \Psi_s^{d_{\rho, \Gamma} + 2}$, so may as well show that $h_\rho(\Psi^{d_{\rho, \Gamma} + 2}) \leq d_{\rho, \Gamma}$, i.e.\ that
+    \[
+        \sum_{\gamma \in \Gamma} e^{-\Psi^{d_{\rho, \Gamma} + 2}_s(\rho(\gamma))} < \infty
+    \]
+    for all $s \geq d_{\rho, \Gamma}$.
+    This will follow as soon as we have shown that $h_\rho(J_{d_{\rho, \Gamma}}) \leq 1$, since
+    \begin{align*}
+        \Psi_s^{d_{\rho, \Gamma} + 1} \circ a &=
+        {\sf a}_{12} + \cdots + {\sf a}_{1(d_{\rho, \Gamma} + 1)} + (s-d_{\rho, \Gamma}) {\sf a_{1(d_{\rho, \Gamma}+2)}} =\\
+        &= 
+        {\sf a}_{12} + \cdots + {\sf a}_{1(d_{\rho, \Gamma} + 1)} + d_{\rho, \Gamma}\left(\frac{s}{d_{\rho, \Gamma}}-1\right) {\sf a_{1(d_{\rho, \Gamma}+2)}} \geq\\
+        &\geq
+        {\sf a}_{12} + \cdots + {\sf a}_{1(d_{\rho, \Gamma} + 1)} + \left(\frac{s}{d_{\rho, \Gamma}}-1\right) ({\sf a}_{12} + \cdots + {\sf a}_{1(d_{\rho, \Gamma} + 1)}) =\\
+        &=
+        \frac{s}{d_{\rho, \Gamma}} J_{d_{\rho, \Gamma}}^u.
+    \end{align*}
+    
+    Using the Anosov property of $\rho$ we have that
+    \[
+    J_{d_\Gamma}(a(\rho(\gamma))) \geq \mathsf a_{12} (a(\rho(\gamma))) \geq C|\gamma| - b    
+    \]
+    for certain $C, b > 0$ which when we break up the sum defining the critical exponent into the sum over the sets $\Gamma_T = \{ \gamma \in \Gamma: |\gamma| = T\}$ gives us:
+    \begin{align*}
+        \sum_{\gamma \in \Gamma} e^{-(s+1)J_{d_{\rho, \Gamma}}^u(a(\rho(\gamma)))} &=
+        \sum_{T \geq 0} \sum_{\gamma \in \Gamma_T} e^{-s J_{d_{\rho, \Gamma}}^u(a(\rho(\gamma)))}
+        e^{-J_{d_{\rho, \Gamma}}^u(a(\rho(\gamma)))} =\\
+        &=
+        \sum_{T \geq 0} e^{-s J_{d_{\rho, \Gamma}}^u(a(\rho(\gamma)))} 
+            \sum_{\gamma \in \Gamma_T} e^{-J_{d_{\rho, \Gamma}}^u(a(\rho(\gamma)))} \leq\\
+        &\leq
+        \sum_{T \geq 0} e^{-s (C T - b)} 
+            \sum_{\gamma \in \Gamma_T} e^{-J_{d_{\rho, \Gamma}}^u(a(\rho(\gamma)))}\\
+    \end{align*}
+    
+    To obtain a bound on the inner sums that is uniform in $T$, we recall \cref{prop:PSMeasureExists}. 
+    There we saw that $\xi^1_\rho(\partial \Gamma)$ being a Lipschitz submanifold of $\mathbb P(\mathbb R^d)$ implies the existence of a $(\rho(\Gamma), J_{d_{\rho, \Gamma}}^u)$-Patterson-Sullivan measure $\mu$ on $\zeta^1_\rho(\xi^1(\partial \Gamma)) \subseteq \mathcal F_{1, d_{\rho, \Gamma} + 1}(\mathbb R^d)$.
+    By \cref{lem:boundary_covering_higher} we have that for $\alpha > 0$ small enough, there exists some $M, T_0 > 0$ such that for all $T \geq T_0$ the family
+    \[
+        \mathcal U_T = \left\{ \rho(\gamma) B_{\alpha, \Theta}(\rho(\gamma)) : |\gamma| = T \right\}
+    \]
+    is an open covering of $\zeta_\rho(\xi^1_\rho(\partial \Gamma))$ for which
+    \[
+        \max
+        \left\{\sharp A : A \subseteq \Gamma_T,  \bigcap_{\gamma \in A}\rho(\gamma)B_{\alpha, \Theta}(\rho(\gamma)) \neq \emptyset \right\} \leq M.
+    \]
+
+    But $\mu$ is in particualar $\rho$-quasi-equivariant which along with the Zariski-density of $\rho(\Gamma)$ implies that $\rho$ is $\mu$-irreducible, as we have seen in \cref{ex:ZariskiDense}.
+    Hence the bound in \cref{lem:PSMeasureBounds} applies and we have that
+    \begin{align*}
+        \sum_{\gamma \in \Gamma_T} e^{-J_{d_{\rho, \Gamma}}^u(a(\rho(\gamma)))} &\leq
+        \sum_{\gamma \in \Gamma_T} \mu\left(\rho(\gamma) B_{\alpha, \Theta}(\rho(\gamma))\right) \leq\\
+        &\leq
+        \frac{1}{M} \mu\left(\mathcal F_{1, d_{\rho, \Gamma} + 1}(\mathbb R^d)\right) < \infty.
+    \end{align*}
+
+    
 \end{proof}
 
 \appendix
