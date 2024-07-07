@@ -12,6 +12,9 @@
 \author{Giorgos}
 \date{\today}
 
+\makeindex
+
+
 \begin{document}
 
 \maketitle
@@ -19,7 +22,19 @@
 \tableofcontents
 
 \chapter{Introduction}
-\begin{definition}
+\section{Limit sets and critical exponents}
+\begin{definition}\index{limit set}
+    Let $\Gamma$ be a discrete group of isometries of a metric space $(X,d)$.
+    We define the limit set of $\Gamma$ to be the set of accumulation points of the orbit of some fixed $x \in X$:
+    \[
+    \Lambda_\Gamma = \overline{\Gamma \cdot x} - \Gamma \cdot x.
+    \]
+\end{definition}
+\begin{remark}
+    One can show that the definition of the limit set is independent of the choice of $x$.
+    When moreover $\Gamma$ is nonelementary (i.e.\ it does not admit any finite invariant subset of $X \cup \partial X$), it is easy to see that $\Lambda \Gamma \subseteq \partial X$ and one can show that it is the minimal closed $\Gamma$-invariant subset of $\partial X$ (see for example \cite[Proposition 4.7]{quint2006overview}).
+\end{remark}
+\begin{definition}\index{critical exponent!subgroup}
     Let $\Gamma$ be a discrete group of isometries of a metric space $(X,d)$.
     We define the critical exponent of $\Gamma$ to be the asymptotic exponential growth of its orbits, i.e.\ the following limit:
     \[
@@ -31,14 +46,42 @@
     It is not hard to show that the critical exponent is independent of the choice of $x$.    
 \end{remark}
 
-\section{Lie group preliminaries}
-We fix the Cartan subalgebra $\mathfrak a$ of $\SL(d,\mathbb R)$:
+\begin{theorem}[\cite{sullivan1979density}]
+    Let $\Gamma \leq \PSO(1,n)$ be convex co-compact.
+    Then the critical exponent of $\Gamma$ is equal to the Hausdorff dimension of its limit set:
+    \[
+    \dim_{\mathcal H}(\Lambda_\Gamma) = \delta_\Gamma.
+    \]
+\end{theorem}
+
+There have been numerous generalizations of the above result (see for example \cite{ledrappier_dimension_2023, glorieux_hausdorff_2023, pozzetti_anosov_2023,link2004measures,quint2002mesures,coornaert1993mesures}).
+In this thesis, we will focus on the case of Anosov representations of discrete groups into $\SL(d, \mathbb R)$, mainly based on \cite{pozzetti_anosov_2023}.
+A reason to consider Anosov subgroups for this purpose is that they are considered to be a generalization of convex co-compact subgroups in rank one symmetric spaces to ones of higher rank.
+In particular, their Gromov boundary is realised as a subset of the real projective space, which will replace the role of the limit set $\Lambda_\Gamma$ in the higher rank case.
+More concretely, the main goal of this thesis is to present a proof of the following result, found in \cite{pozzetti_anosov_2023}:
+\begin{theorem}
+    Let $\Gamma < \PSL(d, \mathbb R)$ be a discrete subgroup, $\rho: \Gamma \to \SL(d, \mathbb R)$ be a Zariski-dense in $\SL(d, \mathbb R)$, projective Anosov representation such that $\xi^1_\rho(\partial \Gamma)$ is a Lipschitz submanifold of $\mathbb P(\mathbb R^d)$.
+    Denoting with $d_{\rho, \Gamma}$ the dimension of $\xi^1_\rho(\partial \Gamma)$, we have that
+    \[
+        \dim(\xi^1_\rho(\partial \Gamma)) = h_\rho(F)
+    \]
+    where $h_\rho(F)$ is the critical expoennt of the Falconer functional $F$.
+\end{theorem}
+As can be seen from the statement of the theorem, the main challenge is to find an apropriate functional whose critical exponent carries the geometric information of the limit set.
+
+The upper bound of the Hausdorff dimension (see \cref{ch:upper_bound}) follows a classical recipy of finding an apropriate covering of the limmit set $\xi_\rho^1(\partial \Gamma)$, for which the Hausdorff content is dominated by the Dirichlet series of the functional $F$.
+In particular, the only part of the hypothesis that is used is that the representation is projective Anosov, meaning that it still holds without requiring that $\Lambda_\Gamma$ is a Lipschitz submanifold of $\mathbb P(\mathbb R^d)$ or that $\rho(\Gamma)$ is Zariski-dense.
+
+On the other hand, for the upper bound of the critical exponent one uses (in \cref{ch:lower_bound}) the more elaborate machinery of Patterson-Sullivan measures as generalised into higher rank by \cite{quint2002mesures} and further elaborated in \cite{pozzetti_anosov_2023}.
+For this part of the proof, the hypothesis that $\xi_\rho^1(\partial \Gamma)$ is a Lipschitz submanifold will be used (in \cref{prop:PSMeasureExists}) to construct a Patterson-Sullivan measure $\mu$ over $\mathcal F_{1, \d_\Gamma + 1}$, while the Zariski-density of $\rho(\Gamma)$ is necesary (see \cref{ex:ZariskiDense}) to show that it is $\mu$-irreducible and obtain (in \cref{lem:PSMeasureBounds}) that will be used to prove that the sum defining the critical exponent is finite. 
+\section{Lie groups and Anosov representations}
+Throughout the thesis, we consider the usual the Cartan subalgebra $\mathfrak a$ of $\SL(d,\mathbb R)$:
 \[
     \mathfrak a = \left\{
         \diag(\alpha_1, \ldots, \alpha_d) : \alpha_1 + \cdots \alpha_d = 0
     \right\}
 \]
-and the Weyl chamber $\mathfrak a^+$ of $\SL(d,\mathbb R)$
+and its Weyl chamber
 \[
     \mathfrak a^+ = \left\{
         \diag(\alpha_1, \ldots, \alpha_d) : \alpha_1 \geq \cdots \geq \alpha_d
@@ -52,6 +95,12 @@ Denoting with $K = \SO(d, \mathbb R), A^+ = e^{\mathfrak a^+} $, we have the Car
 such that $g = k_g a_g l_g$.
 In particular $a_g = \diag(\sigma_1(g), \ldots, \sigma_d(g))$ with $\sigma_1 \geq \cdots \geq \sigma_d(g)$,
 where $\sigma_i(g)$ is the $i$-th singular value of $g$, i.e.\ eigenvalue of $g^t \cdot g$.
+We denote with 
+\begin{align*}
+    a: \SL(d, \mathbb R) &\to \mathfrak a\\
+    g &\mapsto \diag(a_1(g), \cdots, a_d(g))
+\end{align*}
+the Cartan projection and with ${\sf a}_{ij} = a_i - a_j \in \mathfrak a^*$ the roots of $\mathfrak a$.
 
 We will use the spaces
 \[
@@ -64,40 +113,45 @@ One can easily show that the decomposition
 \]
 is orthogonal with respect to the standard inner product and that
 $u_p(g^{-1}) = l_g^{-1} e_{d-p+1}(g).$
-\section{Limit set preliminaries}
 \begin{definition}
-For $p \in \{2, \ldots, d\}, s\in \mathbb R $
-and $g \in SL(d, \mathbb R)$ 
-we denote with $\tilde \Psi_s^p(g), \Psi_s^p(g): \SL(d, \mathbb R) \to \mathbb R$ the functional:
+    Let $\rho: \Gamma \to \SL(d, \mathbb R)$ be a linear representation and $p \in \llbracket 1, d-1 \rrbracket$.
+    We say that $\rho$ is $p$-Anosov if there exist constants $\mu, C>0$ such that for all $\gamma \in \Gamma$:
+    \[
+        \frac{\sigma_{p+1}}{\sigma_p}(\rho(\gamma)) \leq C e^{-\mu |\gamma|}.
+    \]
+    One can show that in that case there exists an equivariant continuous map $\xi: \hat \Gamma \to \mathcal F_{p, d-p}(\mathbb R^d) $ that restricts to
+    \begin{align*}
+        \xi^p(\gamma) &= U_p(\rho(\gamma)) = k \cdot \mathbb R e_1 \oplus \cdots \oplus \mathbb R e_p\\
+        \xi^{d-p}(\gamma) &= U_{d-p}(\rho(\gamma)) = k \cdot \mathbb R e_1 \oplus \cdots \oplus \mathbb R e_{d-p},
+    \end{align*}
+    for $\gamma \in \Gamma, \rho(\gamma) = k e^a l$.
+    Moreover, it has the following transversality property on the boudnary: for every $x, y \in \partial \Gamma$, the flags $xi_\rho(x), \xi_\rho(y)$ are transverse unless $x=y$.
+    \end{definition}    
+
+\section{Important functionals and definitions}
+\begin{definition}\index{Falconer!functional}\index{unstable Jacobian}
+For $p \in \llbracket 2, \ldots, d \rrbracket, s\in \mathbb R $
+we define the functionals $\Psi_s^p: \mathfrak a \to \mathbb R$, the Falconer functional $F_s: \mathfrak a \to \mathbb R$, and the unstable Jacobian $J_p^u: \mathfrak a \to \mathbb R$ as follows:
 \begin{align*}
-\Psi_s^p(g) &= 
-    \alpha_{12}(a(g)) + \cdots + \alpha_{1(p-1)}(a(g)) + (s - (p-2))\alpha_{1p}(a(g))\\
-\tilde \Psi_s^p(g) &= 
-    \left( \frac{\sigma_2}{\sigma_1}\cdots\frac{\sigma_{p-1}}{\sigma_1}(g)\right) 
-    \left( \frac{\sigma_{p-1}}{\sigma_1}(g) \right)^{s - (p-2)}
+\Psi_s^p &= 
+    {\sf a}_{12} + \cdots + {\sf a}_{1(p-1)} + (s - (p-2)){\sf a}_{1p}\\
+F_s(g) &= \min 
+    \left\{
+        \sum_{j=2}^d s_j \alpha_{1j}(a(g)) : s_j \in (0,1], \sum_{j=2}^d s_j = s 
+    \right\}\\
+J_p^u(g) &= (p+1)\omega_1 - \omega_{p+1} =
+{\sf a}_{12} + \cdots + {\sf a}_{1(p+1)}.
 \end{align*}
 \end{definition}
-\begin{remark}
-    We have $\alpha_{ij}(a) = a_i - a_j, a_i(g) = \log (\sigma_i(g))$ and 
-    \[
-        \Psi_s^p(g) = \log \tilde \Psi_s^p(g)
-    \]
-and that
-\begin{align*}
-    \min_{p \in \llbracket 2, d \rrbracket} 
-    \left\{ 
-        \sum_{|\gamma| = T} 
-            \frac{\sigma_2}{\sigma_1}\cdots\frac{\sigma_{p-1}}{\sigma_1}(g) 
-            \left( \frac{\sigma_{p-1}}{\sigma_1}(g) \right)^{s - (p-2)}
-    \right\} = 
-    \sum_{|\gamma| = T} e^{-\max\limits_{p \in \llbracket 2, d \rrbracket} \Psi_s^p(g)}
-\end{align*}
-\end{remark}
 
 \begin{remark}
-For any $g \in \SL(d, \mathbb R)$ we have that:
+The functionals defined above are related by the following relation:
 \[
-    \max_{p \in \llbracket 2, d \rrbracket} \Psi_s^p(g) = \Psi_s^{p_0}(g) \text{ for } s \in [p_0 - 2, p_0 -1].
+    F_s(g) = \max_{p \in \llbracket 2, d \rrbracket} \Psi_s^p(g)
+\]
+Moreover for any $a \in \mathfrak a$,
+\[
+    F_s(a) = \Psi_s^{p_0}(a) \text{ for } s \in [p_0 - 2, p_0 -1].
 \]
 Indeed, a quick calculation shows that for $s \geq 0$ and $p \in \llbracket 2, d \rrbracket$:
 \[
@@ -118,17 +172,37 @@ Another way to see this (refer to \cref{fig:max}) is to note that $\Psi_s^2(g), 
 \end{figure}    
 \end{remark}
 
+\begin{remark}
+    The reason to consider the functional $\Psi_s^p, F_s$ will be apparent in \cref{ch:upper_bound}, where we prove that the Hasudorff dimension of the limit set is bounded above by the critical exponent of the Falconer functional.
+    There, we will see that the sums in the left-hand-side of the equality
+\begin{align*}
+    \min_{p \in \llbracket 2, d \rrbracket} 
+    \left\{ 
+        \sum_{|\gamma| = T} 
+            \frac{\sigma_2}{\sigma_1}\cdots\frac{\sigma_{p-1}}{\sigma_1}(g) 
+            \left( \frac{\sigma_{p-1}}{\sigma_1}(g) \right)^{s - (p-2)}
+    \right\} = 
+    \sum_{|\gamma| = T} e^{-\max\limits_{p \in \llbracket 2, d \rrbracket} \Psi_s^p(g)}
+\end{align*}
+correspond to the Hausdorff content of respective coverings of $\xi_\rho^1(\partial \Gamma)$ by projective ellipses of different lengths.
+For the use of the unstable Jacobian $J_p^u$ we refer to \cref{sec:ProofStrategy}.
+\end{remark}
 
-The following definition comes from \cite{ledrappier_dimension_2023}, in the special case of projective Anosov representations ($P = {1}$):
-\begin{definition}
-    For $s \geq 0$ we consider the Falconer functional $F_s : \SL(d, \mathbb R) \to \mathbb R$ by:
-    \[
-        F_s(g) = \min 
-        \left\{
-            \sum_{j=2}^d s_j \alpha_{1j}(a(g)) : s_j \in (0,1], \sum_{j=2}^d s_j = s 
-        \right\},
-    \]
-    and define the Falconer dimension $\dim_F(\rho)$ of $\rho$ to be its critical exponent:
+As described in the begining of this section, some of the core objects that we will be working with are critical exponents and Hausdorff dimensions, which we recall below:
+\begin{definition}\index{critical exponent!of functional}
+Let $\phi \in \mathfrak a^*$ be a functional over the Cartan subalgebra.
+We define its critical exponent to be
+\[
+    h_\rho(\phi) = \inf
+    \left\{
+        s > 0: \sum_{\gamma \in \Gamma} e^{-\phi(\rho(\gamma))} < \infty
+    \right\}.
+\]    
+\end{definition}
+
+When $\phi = F$ is the Falconer functional, we obtain the following special case (of projective Anosov representations, i.e.\ $P = {1}$) of a definition from \cite{ledrappier_dimension_2023}:
+\begin{definition}\index{Falconer!dimension}
+    We define the Falconer dimension $\dim_F(\rho)$ of $\rho$ to be the critical exponent of the Falconer functional:
     \[
         \dim_F(\rho) = \inf
         \left\{
@@ -137,28 +211,27 @@ The following definition comes from \cite{ledrappier_dimension_2023}, in the spe
     \]
 \end{definition}
 
-\begin{remark}
-    Using elementary computations one may prove that for all $s \geq 0$:
+Lastly, we recall the definition of the Hausdorff dimension:
+\begin{definition}\index{Hausdorff!dimension}
+    Let $(X,\d)$ be a metric space and $A \subseteq X$ be a subset.
+    We define the Hausdorff dimension of $A$ to be
     \[
-        F_s(g) = \max_{p \in \llbracket 2, d \rrbracket} \Psi_s^p(g)
+        \dim_{\mathcal H}(A) = \inf
+        \left\{
+            s > 0: \mathcal H^s_\infty(A) = 0
+        \right\},
     \]
-\end{remark}
-
-\begin{definition}
-Let $\rho: \Gamma \to \SL(d, \mathbb R)$ be a linear representation and $p \in \llbracket 1, d-1 \rrbracket$.
-We say that $\rho$ is $p$-Anosov if there exist constants $\mu, C>0$ such that for all $\gamma \in \Gamma$:
-\[
-    \frac{\sigma_{p+1}}{\sigma_p}(\rho(\gamma)) \leq C e^{-\mu |\gamma|}.
-\]
-One can show that in that case there exist equivariant continuous maps $\xi^p: \hat \Gamma \to \mathcal G_p(\mathbb R^d) , \xi^{d-p}: \hat \Gamma \to \mathcal G_{d-p}(\mathbb R^d)$ that are transverse and restrict to
-\[
-    \xi^p(\gamma) = U_p(\rho(\gamma)), \xi^{d-p}(\gamma) = U_{d-p}(\rho(\gamma))
-\]
-for $\gamma \in \Gamma$, where $U_p(\gamma), U_{d-p}(\gamma)$ denote the flags 
-\todo{Figure out what this exactly means}
-corresponding to  $\rho(\gamma)$.
+    where $\mathcal H^s_\infty$ is the $s$-dimensional Hausdorff content of $A$, defined as
+    \[
+        \mathcal H^s_\infty(A) = \lim_{\delta \to 0} \inf
+        \left\{
+            \sum_{i=1}^\infty \diam(U_i)^s: A \subseteq \bigcup_{i=1}^\infty U_i
+        \right\}.
+    \]
 \end{definition}
-\chapter{Upper bound}
+
+
+\chapter{Upper bound}\label{ch:upper_bound}
 \section{Proof of bound}
 \begin{lemma}[Upper bound for dimension]\label{lem:upper_bound}
 Let $\rho: \Gamma \to \SL(d, \mathbb R)$ be a projective Anosov representation. 
@@ -285,7 +358,7 @@ The following aims to be something along the lines of \cite*[Lemma 2.4]{pozzetti
     \]
     when $|a_i|, |a_0| > T$.
 \end{lemma}
-\begin{proof}
+\begin{proof}\todo{check this proof}
 Assume the contrary for the shake of contradiction.
 Then (see Figure \ref{fig:angle} ) for each $n>0$ there exists a geodesic ray  $a^n$ through $e$ such that 
 \[
@@ -476,7 +549,7 @@ The following can be found in \cite[Proposition 3.3]{pozzetti_anosov_2023}:
     \centering
     \includegraphics[width=0.8\textwidth]{cone.jpg}
 \end{figure}
-\chapter{Lower bound}
+\chapter{Lower bound}\label{ch:lower_bound}
 \section{Busemann cocyle and Patterson-Sullivan measures}
 We denote with $\Pi$ the set of simple positive roots, and for $\Theta \subseteq \Pi$ we consider the Levi-Anosov subspace of $\mathfrak a$
 \[
@@ -655,14 +728,6 @@ which holds for any $s>0$, and thus \cref{eq:JacobianBound} holds.
 
 \section{Existence of Patterson-Sullivan measure}\label{sec:MeasureExistence}
 \begin{definition}
-    For $p \in \llbracket 2, d \rrbracket$, we denote the $p$-th unstable Jacobian $J_p^u \in \mathfrak a^*$ by
-    \[
-    J_p^u = (p+1) \omega_{{\sf a}_1} - \omega_{{\sf a}_{p+1}} = 
-    {\sf a}_{12} + \cdots + {\sf a}_{1(p+1)}.
-    \]
-
-\end{definition}
-\begin{definition}
     Let $V \in \mathcal G_{p+1}{\mathbb R^d}$ and $l \in \mathbb P(V)$.
     Using the canonical identification $T_l \mathbb P(V) \simeq \hom (l, V/l)$, we define the density $|\Omega_{l, V}|$ on $\bigwedge^p T_l \mathbb P(V)$ by
     \[
@@ -796,7 +861,7 @@ We say that $\rho$ is $\mu$-irreducible there is no element in $\mathcal F_{i \T
     If $\rho(\Gamma)$ is Zariski-dense in $\SL (d, \mathbb R)$, then $\rho$ is $\mu$-irreducible for any $\rho$-quasi-equivariant measure $\mu$, and in particular for any $(\rho(\Gamma), \phi)$-Patterson-Sullivan measure.
 \end{example}
 
-\begin{remark}
+\begin{remark}\label{rem:irredubility}
     The reason that we introduce the concept of $\mu$-irreducibility is that for any $\mu$-irreducible representation $\rho:\Gamma \to \SL(d,\mathbb R)$, there exist $\alpha, \kappa > 0$ such that $\mu(B_{\Theta, \alpha}(\rho(\gamma))) \geq k$ for all $\gamma \in \Gamma$.
 
     Indeed, if this were not the case, then there would exists a sequence $\alpha_n \searrow 0$ and $\gamma_n \in \Gamma$ such that
@@ -1250,5 +1315,8 @@ a \in \mathbb C, u, t \in \mathbb R
 \end{enumerate}
 \end{proof}
 
+\printindex
 \printbibliography
+
+
 \end{document}
