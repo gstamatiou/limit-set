@@ -104,3 +104,22 @@
 
 \newcommand{\restr}{\mathbin{\vrule height 1.6ex depth 0pt width
 0.13ex\vrule height 0.13ex depth 0pt width 1.3ex}}
+
+% Environment to repeat a theorem
+% Can be used in document as follows:
+% \begin{theorem}\label{thm:myAmazingTheorem}
+%     A theorem
+% \end{theorem}
+% \begin{reptheorem}{myAmazingTheorem}
+%     That theorem again
+% \end{reptheorem}
+    
+    
+\newtheorem*{rep@theorem}{\rep@title}
+\newcommand{\newreptheorem}[2]{%
+\newenvironment{rep#1}[1]{%
+ \def\rep@title{#2 \ref{##1}}%
+ \begin{rep@theorem}}%
+ {\end{rep@theorem}}}
+
+ \newreptheorem{theorem}{Theorem}

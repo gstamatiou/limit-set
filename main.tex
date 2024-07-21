@@ -17,11 +17,29 @@
 
 \begin{document}
 
+\listoftodos
+
 \maketitle
+
+
+\begin{abstract}
+    For a projective Anosov subgroup $\rho(\Gamma)$ of $\SL(d, \mathbb R)$ whose limit set is a Lipschitz submanifold of $\mathbb P(\mathbb R^d)$, based on \cite{pozzetti_anosov_2023}, we show that the Hausdorff dimension of the limit set is equal to the critical exponent of the Falconer functional when the Zariski-closure of $\rho(\Gamma)$ is $\SL(d, \mathbb R)$ or $\SO(2, d-2)$ for $d \neq 4$. 
+\end{abstract}
 
 \tableofcontents
 
 \chapter{Introduction}
+Let $X = \mathbb H_{\mathbb R}^n$ be the real hyperbolic space and $\Gamma \leq \SO(1, n)$ be a discrete convex-cocompact subgroup of isometries.
+Sullivan \cite{sullivan1979density} proved that the exponential growth of the orbits of the action $\Gamma \curvearrowright X$ is equal to the Hausdorff dimension of the limit set $\Lambda_\Gamma$ of $\Gamma$, providing a stunning connection between the geometry of the limit set and the dynamics of the group action.
+Since then, there have been numerous generalizations of this result to other settings, such as the action of other kinds of discrete groups acting on hyperbolic spaces (see for instance \cite{roblin2003ergodicite,dal2000series,coornaert1993mesures}), or to other kinds of spaces (for instance \cite{coornaert1993mesures} for the case of $X$ being a gromov hyperbolic space).
+For our part, we will be interested in the generalization of Sullivan's result to higher-rank by considering Anosov subgroups of $\SL(d, \mathbb R)$ that are not necessarily convex-cocompact and whose limit set is a Lipschitz submanifold of the real projective space $\mathbb P(\mathbb R^d)$, as was done in \cite{glorieux_hausdorff_2023,pozzetti_anosov_2023}.
+This direction is motivated by the fact that Anosov subgroups are considered to be a generalization of convex co-compact subgroups in rank one symmetric spaces to ones of higher rank.
+
+The method that was used in \cite{sullivan1979density} to prove the above result was to construct a Patterson-Sullivan measure over the limit set of $\Gamma$.
+However, in the higher-rank case, more work was needed for Patterson-Sullivan theory to be developed by Quint \cite{quint2002mesures} and further elaborated in \cite{pozzetti_anosov_2023} to be able to construct such a measure over limit sets living in flag varieties.
+Moreover, a substantial contribution of \cite{pozzetti_anosov_2023} was to consider the unstable Jacobian, whose critical exponent carries the geometric information of the limit-set.
+However, we noticed a gap in the proof of the main result of \cite{pozzetti_anosov_2023} which we filled in this thesis by adding certain assumptions on the Zariski-closure of the subgroup considered, and which we hope can be further generalised providing further directions to investigate.
+
 \section{Limit sets and critical exponents}
 \begin{definition}\index{limit set}
     Let $\Gamma$ be a discrete group of isometries of a metric space $(X,d)$.
@@ -59,23 +77,23 @@ In this thesis, we will focus on the case of Anosov representations of discrete 
 A reason to consider Anosov subgroups for this purpose is that they are considered to be a generalization of convex co-compact subgroups in rank one symmetric spaces to ones of higher rank.
 In particular, their Gromov boundary is realised as a subset of the real projective space, which will replace the role of the limit set $\Lambda_\Gamma$ in the higher rank case.
 More concretely, the main goal of this thesis is to present a proof of the following result, found in \cite{pozzetti_anosov_2023}:
-\begin{theorem}
-    Let $\Gamma < \PSL(d, \mathbb R)$ be a discrete subgroup, $\rho: \Gamma \to \SL(d, \mathbb R)$ be a Zariski-dense in $\SL(d, \mathbb R)$, projective Anosov representation such that $\xi^1_\rho(\partial \Gamma)$ is a Lipschitz submanifold of $\mathbb P(\mathbb R^d)$.
-    Denoting with $d_{\rho, \Gamma}$ the dimension of $\xi^1_\rho(\partial \Gamma)$, we have that
+\begin{reptheorem}{thm:main}
+    Let $\rho: \Gamma \to \SL(d, \mathbb R)$ be a Zariski-dense, projective Anosov representation in $\SL(d, \mathbb R)$ such that $\xi^1_\rho(\partial \Gamma)$ is a Lipschitz submanifold of $\mathbb P(\mathbb R^d)$.
+    Then
     \[
-        \dim(\xi^1_\rho(\partial \Gamma)) = h_\rho(F)
+        \dim(\xi^1_\rho(\partial \Gamma)) = h_\rho(F),
     \]
-    where $h_\rho(F)$ is the critical expoennt of the Falconer functional $F$.
-\end{theorem}
-As can be seen from the statement of the theorem, the main challenge is to find an apropriate functional whose critical exponent carries the geometric information of the limit set.
+    where $h_\rho(F)$ is the critical exponent of the Falconer functional $F$.
+\end{reptheorem}
+As can be seen from the statement of the theorem, the main challenge is to find an appropriate functional whose critical exponent carries the geometric information of the limit set.
 
-The upper bound of the Hausdorff dimension (see \cref{ch:upper_bound}) follows a classical recipy of finding an apropriate covering of the limmit set $\xi_\rho^1(\partial \Gamma)$, for which the Hausdorff content is dominated by the Dirichlet series of the functional $F$.
-In particular, the only part of the hypothesis that is used is that the representation is projective Anosov, meaning that it still holds without requiring that $\Lambda_\Gamma$ is a Lipschitz submanifold of $\mathbb P(\mathbb R^d)$ or that $\rho(\Gamma)$ is Zariski-dense.
+The upper bound of the Hausdorff dimension (see \cref{ch:upper_bound}) follows a classical recipe of finding an appropriate covering of the limit set $\xi_\rho^1(\partial \Gamma)$, for which the Hausdorff content is dominated by the Dirichlet series of the functional $F$.
+In particular, the only part of the hypothesis that is utilized is that the representation is projective Anosov, meaning that it still holds without requiring that $\Lambda_\Gamma$ is a Lipschitz submanifold of $\mathbb P(\mathbb R^d)$ or that $\rho(\Gamma)$ is Zariski-dense.
 
-On the other hand, for the upper bound of the critical exponent one uses (in \cref{ch:lower_bound}) the more elaborate machinery of Patterson-Sullivan measures as generalised into higher rank by \cite{quint2002mesures} and further elaborated in \cite{pozzetti_anosov_2023}.
-For this part of the proof, the hypothesis that $\xi_\rho^1(\partial \Gamma)$ is a Lipschitz submanifold will be used (in \cref{prop:PSMeasureExists}) to construct a Patterson-Sullivan measure $\mu$ over $\mathcal F_{1, \d_\Gamma + 1}$, while the Zariski-density of $\rho(\Gamma)$ is necesary (see \cref{ex:ZariskiDense}) to show that it is $\mu$-irreducible and obtain (in \cref{lem:PSMeasureBounds}) that will be used to prove that the sum defining the critical exponent is finite. 
+On the other hand, to establish the upper bound of the critical exponent one uses (in \cref{ch:lower_bound}) the more elaborate machinery of Patterson-Sullivan measures as generalised into higher rank by \cite{quint2002mesures} and further elaborated in \cite{pozzetti_anosov_2023}.
+For this part of the proof, the hypothesis that $\xi_\rho^1(\partial \Gamma)$ is a Lipschitz submanifold will be used (in \cref{prop:PSMeasureExists}) to construct a Patterson-Sullivan measure $\mu$ over $\mathcal F_{\{1, \d_\Gamma + 1\}}(\mathbb R^d)$, while the Zariski-density of $\rho(\Gamma)$ is necessary (see \cref{ex:ZariskiDense}) to show that it is $\mu$-irreducible and obtain estimates (in \cref{lem:PSMeasureBounds}) that will be used to prove that the sum defining the critical exponent is finite. 
 \section{Lie groups and Anosov representations}
-Throughout the thesis, we consider the usual the Cartan subalgebra $\mathfrak a$ of $\SL(d,\mathbb R)$:
+Throughout the thesis, we consider the usual Cartan subalgebra $\mathfrak a$ of $\SL(d,\mathbb R)$:
 \[
     \mathfrak a = \left\{
         \diag(\alpha_1, \ldots, \alpha_d) : \alpha_1 + \cdots \alpha_d = 0
@@ -182,7 +200,7 @@ Another way to see this (refer to \cref{fig:max}) is to note that $\Psi_s^2(g), 
             \frac{\sigma_2}{\sigma_1}\cdots\frac{\sigma_{p-1}}{\sigma_1}(g) 
             \left( \frac{\sigma_{p-1}}{\sigma_1}(g) \right)^{s - (p-2)}
     \right\} = 
-    \sum_{|\gamma| = T} e^{-\max\limits_{p \in \llbracket 2, d \rrbracket} \Psi_s^p(g)}
+    \sum_{|\gamma| = T} e^{-F_s(a(g))}
 \end{align*}
 correspond to the Hausdorff content of respective coverings of $\xi_\rho^1(\partial \Gamma)$ by projective ellipses of different lengths.
 For the use of the unstable Jacobian $J_p^u$ we refer to \cref{sec:ProofStrategy}.
@@ -232,99 +250,32 @@ Lastly, we recall the definition of the Hausdorff dimension:
 
 
 \chapter{Upper bound}\label{ch:upper_bound}
-\section{Proof of bound}
-\begin{lemma}[Upper bound for dimension]\label{lem:upper_bound}
-Let $\rho: \Gamma \to \SL(d, \mathbb R)$ be a projective Anosov representation. 
-Then:
+In this section we prove the upper bound of the Hausdorff dimension, namely that for a projective Anosov representation in $\SL(d, \mathbb R)$, the Hausdorff dimension of the limit set is bounded above by the Falconer dimension:
 \[
-    \dim_H(\xi^1 (\partial \Gamma) ) \leq \dim_F(\rho).
+\dim_{\mathcal H} (\xi_\rho^1(\partial \Gamma)) \leq h_\rho(F).
 \]
-\end{lemma}
-\begin{remark}
-    The idea of the proof of \cref{lem:upper_bound} is to find a covering whose Hausdorff content is dominated by the Dirichlet series of some functional $\Psi_s^p$, which will in turn imply that $\dim_H(\xi^1(\partial \Gamma)) \leq h_\rho(\Psi^p) $.
-    Choosing then the most "effective" cover (i.e.\ the one which yields the smallest Hausdorff content up to a constant) we obtain that
-    \[
-        \dim_H(\xi^1(\partial \Gamma)) \leq h_\rho(\max_p \Psi^p)
-    \]
-    To obtain this we first cover $\xi^1(\partial \Gamma)$ by the bassins of attraction $\rho(\gamma) \cdot B_{\alpha_1, \alpha} (\rho(\gamma))$ for $\gamma \in \Gamma$ satisfying $|\gamma| = T$.
-    Then we cover each bassin by an ellipsoid of axes lengths
-    \[
-        \frac{1}{\sin(\alpha)} \frac{\sigma_2}{\sigma_1}(\rho(\gamma)), \ldots, 
-        \frac{1}{\sin(\alpha)} \frac{\sigma_d}{\sigma_1}(\rho(\gamma)).
-    \]
-    Finally we cover each ellipsoid by balls of some fixed radius $r>0$.
-    It can be shown by comparing the series appearing in the Hausdorff content of each resulting cover that the most "effective" choice of $r$ depends only on the Hausdorff exponent $s > 0$ and in any case will be to have $r$ equal (up to a constant) to the the length of an axis of the ellipsoid, i.e.\
-    \[
-        r \in \left\{
-            \frac{1}{\sin(\alpha)} \frac{\sigma_2}{\sigma_1}(\rho(\gamma)), \ldots, 
-            \frac{1}{\sin(\alpha)} \frac{\sigma_d}{\sigma_1}(\rho(\gamma)).    
-        \right\}
-    \]
-    In particular, when $s \in [p-2, p-1]$, the most effective choice is $r = \sigma_p(\rho(\gamma))/\sigma_1(\rho(\gamma))$, whose Hausdorff content is dominated by the Dirichlet series of $\Psi_s^p$.
-\end{remark}
 
-\begin{proof}[Proof of \cref{lem:upper_bound}]
-Let $p \in \llbracket 2, d \rrbracket$.
-Then using \cref{prop:basin_covering}, \cref{lem:boundary_covering}, and \cref{lem:ellipsoid_covering} we have that for $T>0$ large enough, $\xi^1(\partial \Gamma)$ is covered by the family
+The idea of the proof of \cref{lem:upper_bound} is to find a covering whose Hausdorff content is dominated by the Dirichlet series of some functional $\Psi_s^p$, which will in turn imply that $\dim_H(\xi^1(\partial \Gamma)) \leq h_\rho(\Psi^p) $.
+Choosing then the most "effective" cover (i.e.\ the one which yields the smallest Hausdorff content up to a constant) we obtain that
 \[
-    \mathcal U_T = \left\{ \rho(\gamma) B_{\alpha_1, \alpha}(\rho(\gamma)) : |\gamma| = T \right\},
+    \dim_H(\xi^1(\partial \Gamma)) \leq h_\rho(F) = h_\rho \left(\max_p \Psi^p \right)
 \]
-and that each basin $\rho(\gamma) B_{\alpha_1, \alpha}(\rho(\gamma))$ is in turn covered by
+To obtain this we first cover $\xi^1(\partial \Gamma)$ by the bassins of attraction $\rho(\gamma) \cdot B_{\alpha_1, \alpha} (\rho(\gamma))$ for $\gamma \in \Gamma$ satisfying $|\gamma| = T$.
+Then we cover each bassin by an ellipsoid of axes lengths
 \[
-    2^{p-2} \cdot \frac{\sigma_p(g)^{p-2}}{\sigma_2(g) \cdots \sigma_{p-1}(g)}
+    \frac{1}{\sin(\alpha)} \frac{\sigma_2}{\sigma_1}(\rho(\gamma)), \ldots, 
+    \frac{1}{\sin(\alpha)} \frac{\sigma_d}{\sigma_1}(\rho(\gamma)).
 \]
-many balls of radius
+Finally we cover each ellipsoid by balls of some fixed radius $r>0$.
+It can be shown by comparing the series appearing in the Hausdorff content of each resulting cover that the most "effective" choice of $r$ depends only on the Hausdorff exponent $s > 0$ and in any case will be to have $r$ equal (up to a constant) to the the length of an axis of the ellipsoid, i.e.\
 \[
-    \sqrt{d-1} \frac{1}{\sin \alpha} \frac{\sigma_p(g)}{\sigma_1(g)}.
+    r \in \left\{
+        \frac{1}{\sin(\alpha)} \frac{\sigma_2}{\sigma_1}(\rho(\gamma)), \ldots, 
+        \frac{1}{\sin(\alpha)} \frac{\sigma_d}{\sigma_1}(\rho(\gamma)).    
+    \right\}
 \]
-By the definition of the Hausdorff measure, for $s \geq 0$:
-\begin{align*}
-    \mathcal H^s(\xi^1(\partial \Gamma)) &\leq
-    \sum_{|\gamma| = T}
-        2^{2p+1} \cdot 
-        \frac{\sigma_2(\rho(\gamma))}{\sigma_1(\rho(\gamma))} \cdots 
-            \frac{\sigma_{p-1}(\rho(\gamma))}{\sigma_1(\rho(\gamma))}
-        \left(
-            \frac{\sigma_p(\rho(\gamma))}{\sigma_1(\rho(\gamma))}
-        \right)^{-(p-2)}
-        \left(
-            \sqrt{d-1} \frac{1}{\sin \alpha} \frac{\sigma_p(\rho(\gamma))}{\sigma_1(\rho(\gamma))}
-        \right)^s =\\
-        &=
-        2^{2p+1} \cdot \left( \frac{\sqrt{d-1}}{\sin \alpha}\right)^s  
-        \sum_{|\gamma| = T} 
-        \frac{\sigma_2(\rho(\gamma))}{\sigma_1(\rho(\gamma))} \cdots 
-            \frac{\sigma_{p-1}(\rho(\gamma))}{\sigma_1(\rho(\gamma))}
-        \left(
-            \frac{\sigma_p(\rho(\gamma))}{\sigma_1(\rho(\gamma))}
-        \right)^{s-(p-2)} =\\
-        &=
-        2^{2p+1} \cdot \left( \frac{\sqrt{d-1}}{\sin \alpha}\right)^s  
-        \sum_{|\gamma| = T}
-        e^{-\left( \alpha_{1 2} + \ldots + \alpha_{1 (p-1)} + (s - (p-2))\alpha_{1 p} \right)\rho(\gamma)}\\
-        &=
-        2^{2p+1} \cdot \left( \frac{\sqrt{d-1}}{\sin \alpha}\right)^s  
-        \sum_{|\gamma| = T}
-        e^{-\Psi_s^p(\rho(\gamma))}
-\end{align*}
-and thus
-\begin{align*}
-    \mathcal H^s(\xi^1(\partial \Gamma)) \leq
-    2^{2p+1} \cdot \left( \frac{\sqrt{d-1}}{\sin \alpha}\right)^s
-    \sum_{|\gamma| = T}
-    e^{-\max_p \Psi_s^p(\rho(\gamma)) }\lesssim \sum_{|\gamma| = T} e^{-F_s(\rho(\gamma))}.
-\end{align*}
-To see that the above implies the upper bound, consider some $s > \dim_F(\rho)$.
-By the definition of the Falconer dimension, this implies that the Dirichlet series corresponding to the Falconer functional converges:
-\[
-    \sum_{\gamma \in \Gamma} e^{-F_s(\rho(\gamma))} < \infty
-\]
-and in particular
-\[
-    \mathcal H^s(\xi^1(\partial \Gamma)) \leq 
-    \lim_{T \to \infty} e^{-F_s(\rho(\gamma))} = 0.
-\]
-\end{proof}
+In particular, when $s \in [p-2, p-1]$, the most effective choice is $r = \sigma_p(\rho(\gamma))/\sigma_1(\rho(\gamma))$, whose Hausdorff content is dominated by the Dirichlet series of $\Psi_s^p$.
+
 
 \section{Lemmata}
 \begin{definition}
@@ -358,15 +309,16 @@ The following aims to be something along the lines of \cite*[Lemma 2.4]{pozzetti
     \]
     when $|a_i|, |a_0| > T$.
 \end{lemma}
-\begin{proof}\todo{check this proof}
+\begin{proof}
 Assume the contrary for the shake of contradiction.
 Then (see Figure \ref{fig:angle} ) for each $n>0$ there exists a geodesic ray  $a^n$ through $e$ such that 
 \[
     |a_n^n|, |a_0^n| > n \text{ and }
-    \angle(U_1(\rho(a_n^n)), U_1(\rho(a_0^n))) < \frac{1}{n}.
+    \angle(U_1(\rho(a_n^n)), U_{d-1}(\rho(a_0^n))) < \frac{1}{n}.
 \]
-Due to compactness of $\Gamma \cup \partial \Gamma$ we can find some subsequence  ${k_n}$ and $x,y \in \partial \Gamma$ such that $a^{k_n}_{k_n} \to x$, $a^{-k_n}_0 \to y$  and $x\neq y$.
-Since the limit map is dynamics preserving, we have that
+Due to compactness of $\Gamma \cup \partial \Gamma$ we can find some subsequence  ${k_n}$ and $x,y \in \partial \Gamma$ such that $a^{k_n}_{k_n} \to x$, $a^{k_n}_0 \to y$.
+Since there exists a geodesic joining $a_{k_n}^{k_n}, a_0^{k_n}$ passing from $e$, we also know that $x\neq y$.
+Also, the limit map being dynamics preserving, we have that
 \[
     \angle (\xi^1(x), \xi^{d-1}(y)) = 0,
 \]
@@ -549,6 +501,80 @@ The following can be found in \cite[Proposition 3.3]{pozzetti_anosov_2023}:
     \centering
     \includegraphics[width=0.8\textwidth]{cone.jpg}
 \end{figure}
+\section{Proof of bound}
+We are now ready to prove the upper bound of the Hausdorff dimension of the limit set by formalizing the proof strategy outlined in the beginning of this chapter.
+\begin{lemma}[Upper bound for dimension]\label{lem:upper_bound}
+Let $\rho: \Gamma \to \SL(d, \mathbb R)$ be a projective Anosov representation. 
+Then:
+\[
+    \dim_{\mathcal H}(\xi^1 (\partial \Gamma) ) \leq \dim_F(\rho).
+\]
+\end{lemma}
+
+\begin{proof}[Proof of \cref{lem:upper_bound}]
+Let $p \in \llbracket 2, d \rrbracket$.
+Then using \cref{prop:basin_covering}, \cref{lem:boundary_covering}, and \cref{lem:ellipsoid_covering} we have that for $T>0$ large enough, $\xi^1(\partial \Gamma)$ is covered by the family
+\[
+    \mathcal U_T = \left\{ \rho(\gamma) B_{\alpha_1, \alpha}(\rho(\gamma)) : |\gamma| = T \right\},
+\]
+and that each basin $\rho(\gamma) B_{\alpha_1, \alpha}(\rho(\gamma))$ is in turn covered by
+\[
+    2^{p-2} \cdot \frac{\sigma_p(g)^{p-2}}{\sigma_2(g) \cdots \sigma_{p-1}(g)}
+\]
+many balls of radius
+\[
+    \sqrt{d-1} \frac{1}{\sin \alpha} \frac{\sigma_p(g)}{\sigma_1(g)}.
+\]
+By the definition of the Hausdorff measure, for $s \geq 0$:
+\begin{align*}
+    \mathcal H^s(\xi^1(\partial \Gamma)) &\leq
+    \sum_{|\gamma| = T}
+        2^{2p+1} \cdot 
+        \frac{\sigma_2(\rho(\gamma))}{\sigma_1(\rho(\gamma))} \cdots 
+            \frac{\sigma_{p-1}(\rho(\gamma))}{\sigma_1(\rho(\gamma))}
+        \left(
+            \frac{\sigma_p(\rho(\gamma))}{\sigma_1(\rho(\gamma))}
+        \right)^{-(p-2)}
+        \left(
+            \sqrt{d-1} \frac{1}{\sin \alpha} \frac{\sigma_p(\rho(\gamma))}{\sigma_1(\rho(\gamma))}
+        \right)^s =\\
+        &=
+        2^{2p+1} \cdot \left( \frac{\sqrt{d-1}}{\sin \alpha}\right)^s  
+        \sum_{|\gamma| = T} 
+        \frac{\sigma_2(\rho(\gamma))}{\sigma_1(\rho(\gamma))} \cdots 
+            \frac{\sigma_{p-1}(\rho(\gamma))}{\sigma_1(\rho(\gamma))}
+        \left(
+            \frac{\sigma_p(\rho(\gamma))}{\sigma_1(\rho(\gamma))}
+        \right)^{s-(p-2)} =\\
+        &=
+        2^{2p+1} \cdot \left( \frac{\sqrt{d-1}}{\sin \alpha}\right)^s  
+        \sum_{|\gamma| = T}
+        e^{-\left( \alpha_{1 2} + \ldots + \alpha_{1 (p-1)} + (s - (p-2))\alpha_{1 p} \right)\rho(\gamma)}\\
+        &=
+        2^{2p+1} \cdot \left( \frac{\sqrt{d-1}}{\sin \alpha}\right)^s  
+        \sum_{|\gamma| = T}
+        e^{-\Psi_s^p(\rho(\gamma))}
+\end{align*}
+and thus
+\begin{align*}
+    \mathcal H^s(\xi^1(\partial \Gamma)) \leq
+    2^{2p+1} \cdot \left( \frac{\sqrt{d-1}}{\sin \alpha}\right)^s
+    \sum_{|\gamma| = T}
+    e^{-\max_p \Psi_s^p(\rho(\gamma)) }\lesssim \sum_{|\gamma| = T} e^{-F_s(\rho(\gamma))}.
+\end{align*}
+To see that the above implies the upper bound, consider some $s > \dim_F(\rho)$.
+By the definition of the Falconer dimension, this implies that the Dirichlet series corresponding to the Falconer functional converges:
+\[
+    \sum_{\gamma \in \Gamma} e^{-F_s(\rho(\gamma))} < \infty
+\]
+and in particular
+\[
+    \mathcal H^s(\xi^1(\partial \Gamma)) \leq 
+    \lim_{T \to \infty} e^{-F_s(\rho(\gamma))} = 0.
+\]
+\end{proof}
+
+
 \chapter{Lower bound}\label{ch:lower_bound}
 \section{Busemann cocyle and Patterson-Sullivan measures}
 We denote with $\Pi$ the set of simple positive roots, and for $\Theta \subseteq \Pi$ we consider the Levi-Anosov subspace of $\mathfrak a$
@@ -556,7 +582,7 @@ We denote with $\Pi$ the set of simple positive roots, and for $\Theta \subseteq
     \mathfrak a_\Theta = \bigcap_{\alpha \notin \Theta} \ker \alpha,
 \]
 which in particular admits $\{ \omega_{\alpha_i} : \alpha_i \in \Theta \}$ as a basis.
-\begin{definition}
+\begin{definition}\index{Busemann cocycle}
     Let $\Theta \subseteq \Pi$. We define the Busemann cocycle
     \[
     b : \PSL(d, \mathbb R) \times \mathcal F_\Theta \to \mathfrak a_\Theta
@@ -628,7 +654,7 @@ i.e.\ $ \langle v_1 \wedge \cdots \wedge v_k, w_1 \wedge \cdots \wedge w_k \rang
         \item Follows from the definition of the Cartan projection and the Busemann cocycle.
     \end{enumerate}
 \end{proof}
-\begin{definition}
+\begin{definition}\index{Patterson-Sullivan measure}
     For a discrete subgroup $\Gamma < \PSL(d, \mathbb R), \phi \in (\alpha_\Theta)^*$,
     a $(\Gamma, \phi)$-Patterson Sullivan measure on $\mathcal F_\Theta$ is a finite Radon measure $\mu$ such that for every $\gamma \in \Gamma$
     \[
@@ -676,7 +702,7 @@ Then using the case $k=1$ we have that
 \end{proof}
 
 \section{Proof strategy}\label{sec:ProofStrategy}
-Denoting with $d_\Gamma = \dim_H \xi_\rho^1(\partial \Gamma)$ the Hausdorff  dimension of the limit set, we shall outline how to obtain its lower bound by the Falconer dimension
+Denoting with $d_\Gamma = \dim_{\mathcal H} \xi_\rho^1(\partial \Gamma)$ the Hausdorff  dimension of the limit set, we shall outline how to obtain its lower bound by the Falconer dimension
 \[
     d_\Gamma \geq h_\rho(F).
 \]
@@ -740,7 +766,7 @@ which holds for any $s>0$, and thus \cref{eq:JacobianBound} holds.
 The following is \cite[Proposition 6.4]{pozzetti_anosov_2023}:
 \begin{proposition}\label{prop:PSMeasureExists}
 Assume that $\xi^1_\rho(\partial \Gamma)$ is a Lipschitz submanifold of dimension $d_\Gamma$.
-Then there exists a $(\rho(\Gamma), J_{d_\Gamma}^u)$-Patterson-Sullivan measure on $\mathcal F_{1,d_\Gamma + 1}$.
+Then there exists a $(\rho(\Gamma), J_{d_\Gamma}^u)$-Patterson-Sullivan measure on $\mathcal F_{1,d_\Gamma + 1}(\mathbb R^d)$.
 \end{proposition}
 \begin{proof}
     By Rademacher's theorem, $\xi^1_\rho(\partial \Gamma)$ has a well-defined Lebesgue measure class, and Lebesgue-almost every $\xi^1_\rho(x) \in \xi^1_\rho(\partial \Gamma)$ admits a well-defined tangent space $T_{\xi^1_\rho(x)} \xi^1_\rho(\partial \Gamma)$.
@@ -849,8 +875,8 @@ Before giving the next definition, we recall that the annihilator annihilator of
 \[
     \mathrm{Ann}(y) = \left\{ x \in \mathcal F_{\Theta}(\mathbb R^d) : x^\theta \cap y^{d- \theta} \neq 0 \text{ for some } \theta \in \Theta \right\}.
 \]
-\begin{definition}
-Let $\rho: \Gamma \to \SL(d,\mathbb R)$ be a linear representation, $\Theta \subseteq \Pi$ and $\mu$ a measure over $\mathcal F_\Theta(\mathbb R^d)$.
+\begin{definition}\index{irreducible representation!with respect to measure}
+Let $\rho: \Gamma \to \SL(d,\mathbb R)$ be a linear representation, $\Theta \subseteq \Pi$ and $\mu$ a $(\rho(\Gamma), \phi)$-Patterson-Sullivan measure over $\mathcal F_\Theta(\mathbb R^d)$.
 We say that $\rho$ is $\mu$-irreducible there is no element in $\mathcal F_{i \Theta}(\mathbb R^d)$, whose annihilator is of full measure, i.e.\ for all $y \in \mathcal F_{i \Theta}(\mathbb R^d)$:
 \[
     \mu(\mathrm{Ann}(y)) < \mu(\mathcal F_{\Theta}(\mathbb R^d)).
@@ -925,13 +951,13 @@ We say that $\rho$ is $\mu$-irreducible there is no element in $\mathcal F_{i \T
 \end{proof}
 \section{Proof of the main theorem}
 In this section we shall prove the main theorem, which we restate for the reader's convenience:
-\begin{theorem}
-    Let $\Gamma < \PSL(d, \mathbb R)$ be a discrete subgroup, $\rho: \Gamma \to \SL(d, \mathbb R)$ be a Zariski-dense, projective Anosov representation such that $\xi^1_\rho(\partial \Gamma)$ is a Lipschitz submanifold of $\mathbb P(\mathbb R^d)$.
-    Denoting with $d_{\rho, \Gamma}$ the dimension of $\xi^1_\rho(\partial \Gamma)$, we have that
+\begin{theorem}\label{thm:main}
+    Let $\rho: \Gamma \to \SL(d, \mathbb R)$ be a Zariski-dense, projective Anosov representation such that $\xi^1_\rho(\partial \Gamma)$ is a Lipschitz submanifold of $\mathbb P(\mathbb R^d)$.
+    Then the dimension of the limit set $\xi_\rho^1(\partial \Gamma)$ equals the Falconer dimension of $\rho$:
     \[
-        d_{\rho, \Gamma} = \dim_F(\rho)
+        \dim \xi_\rho^1(\partial \Gamma) = h_\rho(F)
     \]
-    where $\dim_F(\rho) = h_\rho(F)$ is the Falconer dimension, and $F_s(a) = \max \{ \Psi_s^p(a) : p \in \llbracket 2, d \rrbracket\}$ is the Falconer functional.
+    where $F_s(a) = \max \{ \Psi_s^p(a) : p \in \llbracket 2, d \rrbracket\}$ is the Falconer functional.
 \end{theorem}
 \begin{proof}
     We have already seen in \cref{lem:upper_bound} that $d_{\rho, \Gamma} \leq \dim_F(\rho)$.
@@ -994,6 +1020,412 @@ In this section we shall prove the main theorem, which we restate for the reader
     
 \end{proof}
 
+\chapter{Dropping the Zariski-density assumption}\label{ch:no_zariski_density}
+Since many of interesting examples of Anosov subgroups are not Zariski-dense, one could certainly argue that the Zariski-density assumption in \cref{thm:main} is not cheap.
+The reason that it's needed is that otherwise one can't guarantee that it is $\mu$-irreducible for a Patterson-Sullivan measure $\mu$. 
+In fact, Zariski-density is not assumed in \cite{pozzetti_anosov_2023}, where the authors suggest a way to obtain $\mu$-irredubility through the following lemma which as we will see below is false.
+
+\begin{lemma}[Lemma 6.8 in \cite{pozzetti_anosov_2023}]\label{lem:irreducibility}
+Let $\Gamma$ be a hyperbolic group and $\eta:\Gamma \to \PGL(d, \mathbb R)$ be a strongly irreducible projective Anosov representation such that $\xi_\eta(\partial \Gamma)$ is homeomorphic to $\mathbb S^{d_\Gamma}$, and which admits a measurable $\eta$-equivariant section
+$\zeta: \partial \Gamma \to \mathcal F_{\{ \sf a_1, \sf a_{d_\Gamma + 1}\}} (\mathbb R^d)$.
+Then $\eta$ is $\mu$-irreducible for any $(\eta(\Gamma), \phi)$-Patterson-Sullivan measure $\mu$ on $\zeta(\partial \Gamma) \subseteq \mathcal F_{\{ \sf a_1, \sf a_{d_\Gamma + 1}\}} (\mathbb R^d)$.
+\end{lemma}
+
+For convenience, we recall that a linear representation $\rho: \Gamma \to \GL(d, \mathbb R)$ is strongly irreducible\index{irreducible representation!strongly} if there is no proper $\rho(\Gamma)$-invariant subspace of $\mathbb R^d$,
+and it is $\mu$-irreducible if there is no element in $\mathcal F_{i \Theta}(\mathbb R^d)$, whose annihilator is of full measure.
+
+More specifically, in the proof of the preceeiding lemma, the authors argue by contradiction that if the result is not true, then there exists subspaces $W_0 \in \mathcal G_{d-d_\Gamma - 1}$ and $V \in \mathcal G_{d-d_\Gamma - 1}$ such that
+\[
+\eta(\gamma) V \cap W_0 \neq 0
+\]
+for all $\gamma \in \Gamma$.
+Indeed, if this were not the case, then there exist $(W_0, P_0) \in \mathcal F_{{\sf a}_{d-d_\Gamma - 1}, {\sf a}_{d-1}}$ such that $\mathrm{Ann}(W_0,P_0)$ is of full $\mu$ measure.
+In fact, $\eta$-equivariance of $\zeta$ implies that one can choose $W_0, P_0$ such that $P_0 \in \xi^{d-1}_\eta(\partial \Gamma)$, meaning that for $\mu$-almost every $(\xi^1_\eta(x), \zeta(x)^{d_\Gamma + 1}) \in \zeta(\partial \Gamma)$, we have that $\zeta(x)^{d_\Gamma + 1} \cap W_0 \neq 0$.
+Again using the $\eta$-equivariance of $\zeta$, we have that for all $\gamma \in \Gamma$, the set 
+$\left\{ \zeta(x) \in \zeta(\partial \Gamma) : \zeta(x)^{d_\Gamma + 1} \cap \gamma W_0 \neq 0 \right\}$
+is of full measure, which implies that their intersection is non-empty, and we can take $V = \zeta(x)^p$ for any $x \in \partial \Gamma$ such that $\zeta(x)$ lies in this intersection.
+
+Finally to conlude, the authors assert that this is absurd by using \cite[Proposition 10.3]{labourie_anosov_2006}:
+\begin{proposition}[Labourie]\label{prop:labourie}
+Let $G \leq \SL(d, \mathbb R)$ be an algebraic group.
+If $C \in \mathcal G_{k}(\mathbb R^d), B \in \mathcal G_{d-k}(\mathbb R^d)$ such that
+\begin{equation}\label{eq:irreducibility}
+    g C \cap B \neq 0,
+\end{equation}
+then the connected component of $G$ containing the identity element is not irreducible.
+\end{proposition}
+
+However, the results of \cref{lem:irreducibility} and \cref{prop:labourie} are false, leaving room for further investigation.
+In particular, below we present a direct counterexample to \cref{prop:labourie}, followed by a construction which shows that \cref{eq:irreducibility} does not contradict strong irreducibility, and where the representation $\eta$ is not $\mu$-irreducible, thus disproving \cref{lem:irreducibility}.
+Nevertheless, if we proceed to calculate the dimension of the respective limit set and the critical exponent of the Falconer functional, we notice that they coincide and hence do not provide a counterexample to the main result presented in \cite{pozzetti_anosov_2023}, which suggests that the result may still hold at least for certain special cases.
+
+\begin{example}
+    Consider the space $\mathbb R^{d. d}$, that is $\mathbb R^{2d}$ with the bilinear form $\langle x, y \rangle = x_1 y_1 + \cdots + x_d y_d - x_{d+1} y_{d+1} - \cdots y_{2d}$, and let $S \subseteq \mathcal G_d (\mathbb R^{2d})$ to be the set of maximal isotropic subspaces of $\mathbb R^{d,d}$.
+    Assuming that $d$ is odd, one can show \todo{Outline proof steps for counterexample to Labourie's lemma} that for any subspaces $V, W$ in the same component of $S$, we have $gV \cap W \neq 0$ for all $g \in \SO(d,d)$.
+    However, for $d>0$ of any parity, we have that $\SO_0(d,d)$ acts irreducibly on $\SO(d,d)$, which means that the choice of any $V,W$ in the same connected component of $S$ provides a counterexample to \cref{prop:labourie} for $G=\SL(2d, \mathbb R)$.
+\end{example}
+
+After providing a counterexample to \cref{prop:labourie} as above, one could object that this does not necessarily imply that the result of \cref{lem:irreducibility} is false.
+For this, one would need to provide another counterexample for \cref{lem:irreducibility} as well, which is the goal of the next pages and is summarised in \cref{prop:irreducibility_countexample}.
+Before giving the statement of the latter, we recall that a uniform lattice $\Gamma$ \index{uniform lattice} of a locally compact group $G$ is a discrete subgroup of $G$ that is co-compact, i.e.\ $G/\Gamma$ is compact.
+
+\begin{proposition}\label{prop:irreducibility_countexample}
+    Let $\Gamma \leq \SU(2,1)$ be a uniform lattice and $\eta: \Gamma \to \SL(\mathfrak{su}(2,1))$ be the restriction of the adjoint representation.
+    Then
+    \begin{enumerate}[label=(\roman*)]
+        \item $\eta$ is strongly irreducible,
+        \item $\eta$ is projective Anosov
+        \item $\eta$ admits a measurable $\eta$-equivariant section: 
+        \begin{align*}
+            \zeta: \partial \Gamma &\to \mathcal F_{\{1, 4 \}}(\mathfrak{su}(2,1)) \simeq \mathcal P\\
+            x &\mapsto (\xi^1(x), T_{\xi^1(x)} \xi^1(\partial \Gamma)) \simeq (\xi^1(x), (\d_{\xi^1(x)}p)^{-1}(T_{\xi^1(x)}\xi^1(\partial \Gamma))\xi^1(x)).
+        \end{align*}
+        where $d_{\xi^1(x)}p: \hom( \xi^1(x), \su(2,1)) \to \hom(\xi^1(x), \su(2,1)/ \xi^1(x))$ is the canonical projection.
+        \item For all $x, y \in \partial \Gamma: \zeta(x)^4 \cap \zeta(y)^4 \neq 0$.
+        \item For any $y_0 \in \SU(2,1)/P_0$ and 
+        $W_0 \in \mathcal G_7(\mathbb R^4)$ that contains $\zeta(y_0)^4$, we have that 
+        $\Ann(\zeta(y_0)^4, W_0) \supseteq \zeta(\SU(2,1)/P_0)$ and is in particular of full $\mu$-measure, for any $(\eta(\Gamma), \phi)$-Patterson-Sullivan measure $\mu$ supported over
+        $\zeta(\partial \Gamma)$.
+        \item
+        \[
+        h_\rho(F) = \dim_{\mathcal H} (\xi^1_\rho(\partial \Gamma)) = 3.
+        \]
+    \end{enumerate}
+\end{proposition}
+
+For the sake of readability, we have broken up the proof of \cref{prop:irreducibility_countexample} into multiple propositions which are then combined.
+
+
+
+\begin{remark}
+    When $G = \Isom(X)$ is the isometry group of a complete Riemannian manifold $X$, and $\Gamma$ is a uniform lattice of $G$,then it acts properly discontinuously and cocompactly on $X$.
+\end{remark}
+
+We begin by showing proving the Anosov property of $\eta$.
+\begin{proposition}\label{prop:counterexample_anosov}
+    Let $\Gamma$ be a uniform lattice of $\SU(2,1)$, and $\eta: \Gamma \to \SL(\mathfrak{su}(2,1))$ be the restriction of the adjoint representation: $\eta(\gamma) = \Ad_{\gamma}$ for all $\gamma \in \Gamma$.
+    Then $\eta$ is projective Anosov.
+\end{proposition}
+\begin{proof}
+Let $\gamma \in \Gamma$.
+Since $\gamma \in \SU(2,1)$, we have that
+\[
+\gamma = k_1 \exp\left( r(\gamma) x_0 \right) k_2
+\]
+for $x_0$ a fixed non-zero in the Weyl-chamber $\mathbb R x_0$ of $\su(2,1), r(\gamma) \in \mathbb R$ and $k_1, k_2 \in \U(2)$.
+Then by the definition of a uniform lattice, we have that $\Gamma$ acts properly discontinuously and cocompactly, which means that the inclusion $\Gamma \hookrightarrow \SU(2,1)$ is projective Anosov (since $\SU(2,1)$ is of rank 1).
+Thus there exist constants $L \geq 1, b \geq 0$ such that for all $\gamma \in \Gamma$:
+\[
+r(\gamma) \geq {\sf a}_1(x_0)^{-1}(L|\gamma| - b) = L'|\gamma| - b'.
+\]
+Note that ${\sf a}_1(x_0) > 0 $ since $x_0$ is in the interior of the Weyl-chamber $\mathbb R x_0$.
+
+Letting $k_1' = Ad_{k_1}, k_2' = Ad_{k_2}$ and $K' \leq \SL(\su(2,1))$ be a maximal comapct subgroup containing them, we have that:
+\[
+\eta(\gamma) = \Ad_{\gamma} = k_1' \Ad_{\exp(r(\gamma) x_0)} k_2' = k_1' \exp(r(\gamma) \ad_{x_0}) k_2'.
+\]
+
+Thus
+\begin{align*}
+    {\sf a}_1(\mu(\eta(\gamma))) = r(\gamma) {\sf a}_1(\ad_{x_0}) \geq (L'|\gamma| - b'){\sf a}_1(x_0)
+\end{align*}
+which is Anosov because ${\sf a}_1(\ad_{x_0}) > 0$, as can be seen by concrete calculations.
+\end{proof}
+
+Before giving an expression for the projective part of the limit map of $\eta$, we make a few observations regarding Gromov boundary of $\Gamma$.
+In particular, we claim that since $\Gamma$ is a uniform lattice os $\SU(2,1)$, we have that $\partial \Gamma$ is homeomorphic to $\SU(2,1)/P$, where $P$ is a parabolic subgroup of $\SU(2,1)$, and it coincides with the stabilizer of some isotropic line $l \in \partial_\infty \mathbb H^2_\mathbb C$.
+
+Indeed, for a uniform lattice $\Gamma$ of the isometry group $G$ of a homogenous $G$-space $X$, the Milnor-Švarc lemma implies that for any $x_0 \in X$, the map $\Gamma \to X, \gamma \mapsto \gamma x_0$ is a quasi-isometry.
+In our case $G = \SU(2,1)$ and $X = \mathbb H^2_\mathbb C$ is a hyperbolic metric space, so it the quasi-isometry extends to a homeomorphism $\partial \Gamma \to \partial H^2_\mathbb C$ of the Gromov-boundaries.
+On the other hand, the action of $\SU(2,1)$ on $\partial_\infty \mathbb H^2_\mathbb C$ is transitive, so we have that $\partial \mathbb H^2_\mathbb C \simeq \SU(2,1)/P$ where $P$ is the stabilizer of a point in $\partial \mathbb H^2_\mathbb C$.
+In fact, we have that $P$ is a parabolic subgroup of $SU(2,1)$.
+The combination of the above, along with the fact that the geometric and the Gromov boundaries agree in the case of $\mathbb H^2_\mathbb C$, we deduce that $\partial \Gamma \simeq \SU(2,1)/P$.
+
+To calculate the projective part of the limit map, we shall show that there exists a unique $\SU(2,1)$-equivariant map from $\partial \Gamma$ to $\mathbb P (\mathbb R^d)$.
+The uniqueness follows from the following characterisation of limit maps: 
+\begin{lemma}\label{lem:equivariance_uniqueness}
+    Let $\rho: \Gamma \to \SL(d, \mathbb R) $ be a strongly irreducible projective Anosov representation, and denote with $\xi_\rho: \partial \Gamma \to \mathbb P(\mathbb R^d)$ its limit map.
+    Then $\xi^1_\rho$ is the unique continuous, $\rho(\Gamma)$-equivariant map from $\partial \Gamma$ to $\mathbb P(\mathbb R^d)$.
+\end{lemma}
+\begin{proof}
+    Let $\eta^1: \partial \Gamma \to \mathbb P(\mathbb R^d)$ be a continuous, $\rho(\Gamma)$-equivariant map.
+    Since the action of $\Gamma$ on its boundary $\partial \Gamma$ has dense orbits, it suffices to show that it agrees with $\xi^1_\rho$ on at least one boundary point.
+
+    Suppose for the shake of contradiction that $\eta^1$ does not coincide with $ \xi^1$ and let $z \in \partial \Gamma, y \in \partial \Gamma \backslash \{z\}$.
+    Then for any $x \in \partial \Gamma \backslash \{y \}$ we may find some quasi-geodesic $\{\gamma_n\}_n$ such that $\gamma_n \to x, \gamma_{-n} \to y$ as $n \to \infty$.
+    Then since $z \neq y$ we know that $\gamma_n z \to z$ as $n \to \infty$ and continuity of $\eta^1$ implies that $\eta^1(\gamma_n z) \to \eta^1(z)$.
+    But equivariance of $\eta^1$ and the fact that $\xi^1$ is dynamics-preserving implies that $\eta(\gamma_n z) = \rho(\gamma_n) \eta(z) \to \xi^1(x)$,
+    unless $\eta^1(z) \in \xi^{d-1}(y)$.
+    But if in fact $\eta^1(z) \not \in \xi^{d-1}(y)$, then the limits would agree, i.e.\ $\eta^1(x) = \xi^1(x)$ which is a contradiction.
+    Thus we have that $\eta^1(z) \in \xi^{d-1}(y)$ and since $y$ was an arbitrary points of $\partial \Gamma \backslash \{y\}$, we have that
+    \[
+    \eta^1(z) \in \bigcap_{y \in \partial \Gamma \backslash \{z\}} \xi^{d-1}(y) \subseteq 
+    \bigcap_{y \in \partial \Gamma \backslash \Gamma \cdot z} \xi^{d-1}(y).
+    \] 
+    In particular, the set appearing on the right hand side is $\rho$-equivariant, non-empty proper subset of $\mathbb R^d$, which contradicts the strong irreducibility assumption of $\rho$.
+\end{proof}
+
+Given the lemma above, it suffices to find an $\SU(2,1)$-equivariant map from $\partial \Gamma$ to $\mathbb P(\mathbb R^d)$.
+\begin{proposition}\label{prop:counterexample_limit_map}
+    Let $\Gamma$ be a uniform lattice of $\SU(2,1)$, and $\eta: \Gamma \to \SL(\mathfrak{su}(2,1))$ be the restriction of the adjoint representation: $\eta(\gamma) = \Ad_{\gamma}$ for all $\gamma \in \Gamma$.
+    The projective part of the limit map of $\eta$ is given by
+    \[
+        \xi_\eta: \partial \Gamma = \SU(2,1)/P_0 \to \mathbb P(\mathfrak{su}(2,1)), \quad \xi_\eta(g P_0) = \mathbb R \Ad_{\gamma} x_0.
+    \]
+    where  $P_0 = \mathrm{St}_{\SU(2,1)} [1:0:0]$ and 
+    \[
+    x_0 = i \begin{pmatrix} 0 & 0 & 1 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix} \in \su(2,1).
+    \]
+    Its derivative satisfies: 
+    \[
+    d_x \xi(T_x \SU(2,1)/P_0) = \pi(\ad_{\xi^1(x)} \su(2,1))
+    \]
+    where $\pi : \hom (\xi^1(x), \su(2,1)) \to \hom(\xi^1(x), \su(2,1)/ \xi^1(x))$ is the canonical projection.
+\end{proposition}
+\begin{proof}
+Since by \cref{lem:equivariance_uniqueness} the limit map is the unique continuous $\rho$-equivariant from the boundary of $\Gamma$ to the projective space, it suffices to show that there exists an $\eta$-equivariant map $\xi^1:\SU(2,1)/P_0 \to \mathbb P(\mathfrak{su}(2,1))$, since it will then restrict to the limit map on $\partial \Gamma$.
+
+We consider the parabolic subgroup $P_0 = \mathrm{St}_{\SU(2,1)} [1:0:0]$ of $\SU(2,1)$.
+Then its Lie algebra is given by:
+\[
+\mathfrak p_0 = \mathrm{St}_{\su(2,1)}[1:0:0] = \left\{ \begin{pmatrix} u - is & a & i t \\ 0 & 2is & - \bar a \\ 0 & 0 & -u - is \end{pmatrix} : a \in \mathbb C, u,s,t \in \mathbb R \right\}.
+\]
+Since for $\mathbb R x \in \mathbb P(\su(2,1))$ we have that $P_0$ fixes $\mathbb R x$ if and only if $\mathfrak p_0$ fixes $\mathbb R x$.
+But a quick calculation shows that the only element of $\su(2,1)$ fixed by $\mathfrak p_0$ is $x_0$.
+
+For the calculation of the image of the differential at the identity coset $P$, we differentiate the commutative diagram:
+
+\begin{tikzcd}
+    \SU(2,1) \arrow[r, "\Ad_\cdot x_0"] \arrow[d] & \su(2,1) \arrow[d] \\
+    \SU(2,1)/P_0 \arrow[r, "\xi^1"] & \mathbb P(\su(2,1))
+\end{tikzcd}
+to get
+\begin{tikzcd}
+    \su(2,1) \arrow[r, "\ad_\cdot x_0"] \arrow[d] & \su(2,1) \arrow[d, "\pi"] \\
+    \su(2,1)/\mathfrak p_0 \arrow[r, "\d_P \xi^1"] & T_{\xi^1(P)} \mathbb P(\su(2,1))
+\end{tikzcd}
+
+In the general case we use the equivariance of the limit map
+\begin{align*}
+    \d_{gP} \xi^1 (T_{gP} \SU(2,1)/P_0) &=
+    d_{gP} \xi^1 d_P g (T_P \SU(2,1)/P_0) =
+    d_{\xi^1(P)} g d_P \xi^1 (T_P \SU(2,1)/P_0) =\\
+    &= d_{\xi^1(P)} g \pi(\ad_{\xi^1(P)} \su(2,1)) =\\
+    &= \pi(Ad_g(\ad_{\xi^1(P)} \su(2,1))) = \pi(\ad_{Ad_g \xi^1(P)} \su(2,1))=\\
+    &= \pi(\ad_{\xi^1(gP)} \su(2,1)).
+\end{align*}
+\end{proof}
+
+Before moving on, we recall that all parabolic subgroups of $\SU(2,1)$ are conjugate to each other, so we have the following identification, which will be useful in the proof of \cref{prop:irreducibility_countexample} and the following lemma:
+\begin{align*}
+    \SU(2,1)/{P_0} &\leftrightarrow \{ \text{ Parabolic subgroups of } \SU(2,1) \} &\leftrightarrow \{ \text{ Parabolic subalgebras of } \su(2,1) \} \\
+    g P_0 &\leftrightarrow g P_0 g^{-1} &\leftrightarrow \Ad_g(\mathfrak p_0)    
+\end{align*}
+
+\begin{lemma}\label{lem:adjoint_parabolic}
+    $\Ad_{\SU(2,1)}$ acts transitively on pairs of distinct parabollc subalgebras of $\su(2,1)$.
+    In other words, for every distinct parabolic subalgebras $\mathfrak p, \mathfrak p' \leq \su(2,1)$, there exists some $g \in \SU(2,1)$ such that $\Ad_g(\mathfrak p) = \mathfrak p_0$ and $\Ad_g \mathfrak p' = \mathfrak p_0^t$, where $\mathfrak p_0,  \mathfrak p_0^t$ are the subalgebras of the parabolic subgroups $P_0 = \mathrm{St}_{\SU(2,1)} [1:0:0]$ and $P_0^t = \left\{ g^t : g \in P_0 \right\} = \mathrm{St}_{\SU(2,1)} [0:0:1]$ respectively.
+\end{lemma}
+\begin{proof}
+    Recall that we have defined $P_0 = \mathrm{St}_{\SU(2,1)}[1:0:0]$.
+    To see why $P_0^t = \mathrm{St}_{\SU(2,1)}[0:1:0]$, we note that $P_0^t = g_0 P_0 g_0 = g_0 P_0 g_0^{-1} = \mathrm{St}_{\SU(2,1)} g_0 [1:0:0] = \mathrm{St}_{\SU(2,1)} [0:0:1]$ for
+    \[
+    g_0 = \begin{pmatrix} 0 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & 0 \end{pmatrix}.
+    \]
+    Thus $\mathfrak p_0 = \mathrm{St}_{\su(2,1)}[1:0:0]$ and $\mathfrak p_0^t = \mathrm{St}_{\su(2,1)}[0:0:1]$.
+    Let now $l, l' \in \partial_\infty \mathbb H^2_\mathbb C$ be the isotropic lines corresponding to $\mathfrak p, \mathfrak p'$ respectively, i.e.\ $\mathfrak p = \mathrm{St}_{\su(2,1)}l$ and $\mathfrak p' \mathrm{St}_{\su(2,1)}l'$.
+    Denoting with $P = \mathrm{St}l, P' = \mathrm{St}l'$ the respective parabolic subgroups, Witt's theorem guarantees that there exists some $g \in \SU(2,1)$ such that $g l = \mathbb Re_1, g l' = \mathbb R e^3$.
+    Then we have that $g P g^{-1} = \mathrm{St}_{\SU(2,1)}gl = P_0$ and $g P' g^{-1} = \mathrm{St}_{\SU(2,1)}gl' = P_0^t$.
+\end{proof}
+
+We are now ready to fill in the gaps, and provide a proof of \cref{prop:irreducibility_countexample}.
+\begin{proof}[Proof of \cref{prop:irreducibility_countexample}.]
+    \begin{enumerate}[label=(\roman*)]
+    \item Follows from the fact that $\SU(2,1)$ is a simple Lie group.
+    \item Shown in \cref{prop:counterexample_anosov}.
+    \item Follows from the fact that $\xi^1$ is $\SU(2,1)$-equivariant and the equivariant identification of $\mathcal F_{\{1, 4 \}}(\mathfrak{su}(2,1)) \simeq \mathcal P$.
+    \item Letting $g\in \SU(2,1)$ be as in \cref{lem:adjoint_parabolic}, we have that $\Ad_g(\mathfrak p_0) = \mathfrak p$ and $\Ad_g(\mathfrak p_0^t) = \mathfrak p'$.
+    Thus $\zeta(x)^4 \cap \zeta(y)^4 \neq \emptyset$ if and only if
+    \begin{align*}
+        \emptyset \neq Ad_g (\zeta(x)^4 \cap \zeta(y)^4) &=
+        \Ad_g \zeta(x)^4 \cap \Ad_g \zeta(y)^4 = 
+        \zeta(g x)^4 \cap \zeta(g y)^4 =
+        \zeta(\mathfrak p_0)^4 \cap \zeta(\mathfrak p_0^t)^4=\\
+        &= \pi \left( \mathbb R \begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & -1 \end{pmatrix}\right).
+    \end{align*}
+    For the last equality, we use \cref{prop:counterexample_limit_map} and the fact that $\mathfrak p_0^t = \Ad_g \mathfrak p_0$ for 
+    $$g = \begin{pmatrix} 0 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & 0 \end{pmatrix},$$
+    to conclude that
+    \[
+    \zeta(\mathfrak p_0) = 
+    \zeta(P_0) = 
+    \pi\left(
+    \left\{
+    \begin{pmatrix} u & a & it \\ 0 & 0 & - \bar a \\ 0 & 0 & -u \end{pmatrix} :
+    a \in \mathbb C, u, t \in \mathbb R
+    \right\}
+    \right),
+    \]
+    and
+    \[
+    \zeta(\mathfrak p_0^t) = 
+    \zeta(g P_0) = \Ad_g \zeta(P_0) =
+    \pi\left(
+    \left\{
+    \begin{pmatrix} u & 0 & 0 \\ a & 0 & 0 \\ i t & - \bar a & 0 \end{pmatrix} :
+    a \in \mathbb C, u, t \in \mathbb R
+    \right\}
+    \right).
+    \]
+    \item This is evident from the preceeding point of the proposition.
+    \item Since $\Gamma \leq \SU(2,1)$ is a uniform lattice,, we know that $\partial \Gamma \simeq \partial_\infty H^2_\mathbb C \simeq \mathbb S^3$, hence $d_\Gamma = 3$.
+    Thus, by the arguements presented in \cref{ch:upper_bound}, it suffices to show that $h_\eta(J_{3}^u) = 1$.
+    Since $\SU(2,1)$ is of rank-1, one can show that
+    \[
+    J_3^u(\mu(\eta(\gamma))) = 2 d(\gamma [0:0:1], [0:0:1]),
+    \]
+    where
+    \[
+    \cosh^2\left(\frac{d(x,y)}{2}\right) = \frac{\langle x, y \rangle \langle y, x \rangle}{\langle x, x \rangle \langle y, y \rangle},
+    \]
+    and $ \langle x, y \rangle = x_1 \bar y_1 + x_2 \bar y_2 + x_3 \bar y_3 $ for $x,y \in \mathbb H^2_{\mathbb C}$, which implies that the critical exponent of $J_3^u$ is equal to half of the critical exponent $\delta_\Gamma$ of $\Gamma$, i.e.
+    \[
+    h_\eta(J_3^u) = \frac{\delta_\Gamma}{2} := \lim_{R \to \infty} 
+         \frac{\sharp \{ \gamma: d(\gamma [0:0:1], [0:0:1]) \leq R \}}{R}.
+    \]
+    But the critical exponent of $\Gamma$ is equal to the volume entropy of the metric $d$, which can be explicitly computed:
+    \[
+    \delta_\Gamma = \lim_{R\to \infty} \frac{\log \mathrm{Vol} \left(B_{R}\left([0:0:1]\right)\right)}{R} = 2.
+    \]
+    \end{enumerate}
+    \end{proof}
+    
+As can be seen in the \cref{prop:irreducibility_countexample}, the above construction provides a counterexample to \cref{lem:irreducibility} and to \cref{prop:irreducibility_countexample}, but a direct calculation shows that it verifies the result of the main theorem.
+For this reason, it is natural to look for special cases, where \cref{eq:irreducibility} constitutes indeed a contradiction.
+In particular, we have found that this is indeed true if we add the assumption that $\eta(\Gamma)$ is Zariski-dense in $\SO(2,p)$ for some $p$ different than $2$, which covers a particularly interesting source of examples of discrete subgroups of $\SO(2,p)$, namely quasi-Fuchsian representations which are intimitely connected with the construction of globally hyperbolic maximally compact Cauchy manifolds (see \cite{monclair2023gromov}).
+This provides a modified version of the main theorem:
+\begin{theorem}\label{thm:main_anti_de_sitter}
+    Let $\rho: \Gamma \to \SL(d, \mathbb R)$ be a projective Anosov representation such that $\xi^1_\rho(\partial \Gamma)$ is a Lipschitz submanifold of $\mathbb P(\mathbb R^d)$.
+    Assume moreover that $\dim \xi_\rho^1(\partial \Gamma) = d-3, d > 4$ and $\rho(\Gamma)$ is Zariski-dense in $\SO(2,d-2)$. \todo{Is it not the case $d=4$ that is of importance in physics?}
+    Then
+    \[
+        \dim \xi_\rho^1(\partial \Gamma) = h_\rho(F).
+    \]
+\end{theorem}
+The proof of the above theorem will in part be based on reducing it to the analogous result for the case of $\SO(1, d-1)$, which we will first state and prove.
+
+\begin{lemma}\label{lem:SO_1_d-1}
+    Let $\rho: \Gamma \to \SL(d, \mathbb R)$ be a projective Anosov representation such that $\xi^1_\rho(\partial \Gamma)$ is a Lipschitz submanifold of $\mathbb P(\mathbb R^d)$.
+    Assume moreover that $\dim \xi_\rho^1(\partial \Gamma) = d - 2, d \geq 3$, and $\rho(\Gamma)$ is Zariski-dense in $\SO(1,d-1)$. Then
+    \[
+        \dim \xi_\rho^1(\partial \Gamma) = h_\rho(F).
+    \]
+\end{lemma}
+\begin{proof}
+    The proof is analogous to the proof of \cref{thm:main}, with the only difference that $\mu$-irreducibility does not follow trivially from Zariski-density.
+    Nevertheless, we still follow the strategy of \cite{pozzetti_anosov_2023} and argue by contradiction.
+    Up to swapping $V$ and $W$ we can assume that $\dim V = 1$ and $\dim W = d - 1$.
+    Then the arguements following the statement of \cref{lem:irreducibility} show that it suffices to show that for any $V \in \mathcal G_1(\mathbb R^d), W \in \mathcal G_{d-1}(\mathbb R^d)$ there exists some $g \in \SO(1,d-1)$ such that
+    \[
+    g V \cap W = 0.
+    \]  
+    Using Witt's theorem, we see that this is equivalent to showing that for any $V \in \mathcal G_1(\mathbb R^d), W \in \mathcal G_{d-1}(\mathbb R^d)$ there exists some $V' \in \mathcal G_1(\mathbb R^d)$ such that
+    \[
+    \mathrm{sgn \omega_{|V}} = \mathrm{sgn \omega_{|V'}} \quad \text{and} \quad V' \cap W = 0,
+    \]
+    where $\omega$ is the standard form on $\mathbb R^{1,d-1}$.    
+    In other words, we need to show that the complement of every hyperplane $W \subseteq R^d$ contains vectors of all signatures.
+    In fact, we will show that it contains two zero-vectors, infinitely many positive vectors and infinitely many negative vectors.
+
+    Let $w \in W$ be a non-zero vector.
+    Such a vector exists because otherwise $W$ would be an isotropic subspace of dimension $d-1 \geq 2$ which is not possible for a form of signature $(1, d-1)$.
+    Let $u \in W^c$ be a vector of the opposite sign to $w$, which exists since otherwise $\omega$ would be either positive or negative on $\mathbb R^d$.
+    Then the affine line $L = \{ u_t := u + tw : t \in \mathbb R \}$ does not intersect $W$ and contains vectors of all signatures.
+    Indeed, assume without loss of generality that $\omega(u,u) > 0 > \omega(w,w)$.
+    Then
+    \[
+    \omega(u_t, u_t) = \omega(w,w) t^2 + 2\omega(u, w) t + \omega(u,u).
+    \]
+    The discriminant of the above quadratic is $4\omega(u,w)^2 - 4\omega(u,u)\omega(w,w)$, which is positive since $u$ and $w$ have opposite signs.
+    Let $t_1 < t_2$ be the two roots of the above quadratic.
+    Then
+    \begin{equation}\label{eq:affine_line}
+    \omega(u_t, u_t)
+    \begin{cases}
+        > 0 & \text{if } t \in (t_1, t_2) \neq \emptyset \\
+        = 0 & \text{if } t = t_1 \text{ or } t = t_2 \\
+        < 0 & \text{if } t \notin [t_1, t_2]
+    \end{cases}.    
+    \end{equation}
+\end{proof}
+To reduce the proof of \cref{thm:main_anti_de_sitter} to the proof of \cref{lem:SO_1_d-1}, we will use the following lemma:
+\begin{lemma}\label{lem:induced_form}
+    \todo{Type up the proof of the quadratic form reduction that I have already handwritten.}
+    Let $\omega$ be a non-degenerate form on $\mathbb R^d$ and $v$ a zero-vector for $\omega$.
+    Then $\omega$ induces the form $\tilde{\omega}$ on $\perp v / \mathbb R v$ given by
+    \[
+    \tilde \omega(x + \mathbb Rv, y + \mathbb Rv) = \omega(x,y),
+    \]
+    and which has signature $\mathrm{sgn}( \tilde \omega) = \mathrm{sgn}(\omega) - (1,1)$.
+\end{lemma}
+
+We are now ready to provide a proof for \cref{thm:main_anti_de_sitter}:
+\begin{proof}[Proof of \cref{thm:main_anti_de_sitter}]
+    The same arguements as in the proof of \cref{lem:SO_1_d-1} show that it suffices to show that for any $V \in \mathcal G_2(\mathbb R^d), W \in \mathcal G_{d-2}(\mathbb R^d)$ there exists some $V' \in \mathcal G_2(\mathbb R^d)$ that is transverse to $W$ and has the same signature as $V$.
+    
+    For the case where $V$ is non-degenerate, we can perturb $V$ to a non-degenerate hyperplane $V'$ that is transverse to $W$ without changing its signature.
+    
+    The case where $V$ is degenerate is more subtle.
+    Assuming that $\dim(V \cap V^\perp) \geq 1$, we first show that there exists some zero vector $v \in W^c$ such that $W \not \subseteq v^\perp$.
+    Indeed, the same arguements as in the \cref{lem:SO_1_d-1} show that there exist $w \in W, u \in W^c$ such that $\omega(w,w) > 0 > \omega(u,u)$ and that there exist $t_1 < t_2$ such that 
+    \cref{eq:affine_line} holds for the affine line $L = \{ u_t := u + tw : t \in \mathbb R \} \subseteq W^c$.
+    In particular $u_{t_1}, u_{t_2}$ are not contained in $W$.
+    Moreover, at least one of $u_{t_1}, u_{t_2}$ is not orthogonal to $W$, since otherwise $w = (u_{t_2} - u_{t_1})^{-1} \in \langle u_{t_1}, u_{t_2} \rangle$ would be orthogonal to $W$, which is absurd because $w$ was assumed to be non-zero. 
+    
+    Let $p: v^\perp \to v^\perp/\mathbb Rv$ be the canonical projection.
+    We claim that for $W' = p(W \cap v^\perp)$,
+    \[
+    W' \text{ is a hyperplane of } v^\perp/\mathbb Rv \text{ and } \omega \text{ induces a form of signature } (1, d-3) \text{ on } v^\perp/\mathbb Rv.
+    \].
+    The signature of the induced form follows from \cref{lem:induced_form}.
+    To calculate the dimension of $W'$, note that $\dim p(W \cap v^\perp) = \dim(W \cap v^\perp)$ since $\ker p \cap W = \mathbb R v \cap W = 0$, by the fact that $v$ is not contained in $W$.
+    On the other hand $\dim (W \cap v^\perp) = \dim(\ker W \ni x \mapsto (v,x)) = \dim W - 1 = d-3$, while $\dim (v^\perp/\mathbb R v) = \dim v^\perp - 1 = (d-1)- 1 = d-2$.
+
+    For any $x \in v^\perp$ such that $p(x)$ is transverse to $W'$, we have that $V' = \langle v, x \rangle$ is a plane that is transverse to $W$.
+    To show transversality, we let $r, s \in \mathbb R$ such that $r v + s x \in W$.
+    Then $p(r v + s x) = s p(x) \in W'$, which implies that $s = 0$ by the choice of $x$.
+    But then $r v \in W$ which means that $r = 0$ by the choice of $v$.
+    In fact, the same arguements show that $x$ and $v$ are linearly independent and hence $V$ is a plane.
+
+    Finally, we show that we by picking the apropriate $x$, we can ensure that $V'$ has the same signature as $V$.
+    Indeed, $\dim V = 2$, so $\mathrm{sgn}(\omega_{|V}) \in \{ (1,1,0), (0,2,0), (0,1,1) \}$.
+    Letting $x$ be a positive, negative or zero vector respectively, we have that 
+    \[
+    \omega_{|V'} \in \left\{
+        \begin{bmatrix}
+        0 & 0 \\
+        0 & 1 \\
+        \end{bmatrix},
+        0,
+        \begin{bmatrix}
+            0 & 0 \\
+            0 & -1 \\
+        \end{bmatrix}
+    \right\} \text{ in the basis } \{v, x\}
+    \]
+    respectively.
+\end{proof}
+\todo{inline}{Try to generalize the above in other choises of $\SO(p,q)$}
+\todo[inline]{Is $\Ad_{\SU(2,1)}$ Zariski-dense in $\SO(\mathfrak{su(2,1)}, K)$? If yes, then a generalisation of \cref{thm:main_anti_de_sitter} to $\SO(4,4)$ would account for the validity of the result in the case of \cref{prop:irreducibility_countexample}}
+
+\chapter{Conclusion}
+Anosov representations have been a subject of interest ever since their introduction in \cite{labourie_anosov_2006}, and are now considered as a natural genralisation of convex-cocompact representations into Lie groups of rank higher than 1.
+Their limit set, aside from being a natural object to study in its own right, has been shown to have applications in such diverse fields as anti-de Sitter geometry, being important in the characterisation of globally hyperbolic maximally compact Cauchy manifolds.
+
+In this thesis, based upon the work of \cite{pozzetti_anosov_2023}, we have explored different situations where that the Falconer functional of an Anosov subgroup is equal to the Hausdorff dimension of its limit set, provided that the latter is a Lipschitz submanifold of the projective space.
+In \cref{ch:upper_bound} we have done this under the assumption that the Anosov subgroup is Zariski-dense in $\SL(d, \mathbb R)$ and in \cref{ch:no_zariski_density} we have shown that this is not necessary, provided that the Anosov subgroup is Zariski-dense in $\SO(2,p)$ for some $p \neq 2$.
+
+However, we have yet no reason to believe that this last result is optimal, and it would be interesting to investigate whether it can be generalised for instance to the case where the group is Anosov and dense in $\SO(p,q)$, or even to the non-Anosov case.
 \appendix
 \chapter{Tangent space to the Grassmanian}
 Let $V$ be a $d$-dimensional real vector space. 
@@ -1107,213 +1539,9 @@ where $\pi : \hom(l, V) \to \hom(l, V/l)$ is the canonical projection.
     \end{tikzcd}
 \end{proof}
 
-\chapter{Irreducible actions problem}
-The matter of this chapter has to do with an obstruction, found in the proof of this lemma: 
-\begin{lemma}[Lemma 6.8 in \cite{pozzetti_anosov_2023}]
-Let $\Gamma$ be a hyperbolic group and $\eta:\Gamma \to \PGL(d, \mathbb R)$ be a strongly irreducible projective Anosov representation such that $\xi_\eta(\partial \Gamma)$ is homeomorphic to $S^{d_\Gamma}$, and which admits a measurable $\eta$-equivariant section
-$\zeta: \partial \Gamma \to \mathcal F_{\{ \sf a_1, \sf a_{d_\Gamma + 1}\}} (\mathbb R^d)$.
-Then $\eta$ is $\mu$-irreducible for any $(\eta(\Gamma), \phi)$-Patterson-Sullivan measure $\mu$ on $\mathcal F_{\{ \sf a_1, \sf a_{d_\Gamma + 1}\}} (\mathbb R^d)$.
-\end{lemma}
 
-For convenience, we recall that a linear representation $\rho: \Gamma \to \GL(d, \mathbb R)$ is strongly irreducible if there is no proper $\rho(\Gamma)$-invariant subspace of $\mathbb R^d$,
-and it is $\mu$-irreducible if there is no element in $\mathcal F_{i \Theta}(\mathbb R^d)$, whose annihilator is of full measure.
 
-In what follows, we will show that the above lemma is false, by providing a counterexample.
-Let $\Gamma$ be a uniform lattice of $\SU(2,1)$ (i.e.\ acts convex cocompactly ), and $\eta: \Gamma \to \SL(\mathfrak{su}(2,1))$ be the restriction of the adjoint representation, i.e. $\eta(\gamma) = \Ad_{\gamma}$ for all $\gamma \in \Gamma$.
 
-For convenience, we recall the definition of a uniform lattice:
-\begin{definition}
-    Let $G$ be a locally compact group.
-    A uniform lattice is a discrete subgroup $\Gamma \leq G$ that is co-compact, i.e.\ $G/\Gamma$ is compact.  
-\end{definition}
-\begin{remark}
-    When $G = \Isom(X)$ is the isometry group of a complete Riemannian manifold $X$, and $\Gamma$ is a uniform lattice of $G$,then it acts properly discontinuously and cocompactly on $X$.
-\end{remark}
-
-We begin by showing proving the Anosov property of $\eta$.
-\begin{proposition}\label{prop:counterexample_anosov}
-    $\eta$ is projective Anosov.
-\end{proposition}
-\begin{proof}
-Let $\gamma \in \Gamma$.
-Since $\gamma \in \SU(2,1)$, we have that
-\[
-\gamma = k_1 \exp\left( r(\gamma) x_0 \right) k_2
-\]
-for $x_0$ a fixed non-zero in the Weyl-chamber $\mathbb R x_0$ of $\su(2,1), r(\gamma) \in \mathbb R$ and $k_1, k_2 \in \U(2)$.
-Then by the definition of a uniform lattice, we have that $\Gamma$ acts properly discontinuously and cocompactly, which means that the inclusion $\Gamma \hookrightarrow \SU(2,1)$ is projective Anosov (since $\SU(2,1)$ is of rank 1).
-Thus there exist constants $L \geq 1, b \geq 0$ such that for all $\gamma \in \Gamma$:
-\[
-r(\gamma) \geq {\sf a}_1(x_0)^{-1}(L|\gamma| - b) = L'|\gamma| - b'.
-\]
-Note that ${\sf a}_1(x_0) > 0 $ since $x_0$ is in the interior of the Weyl-chamber $\mathbb R x_0$.
-
-Letting $k_1' = Ad_{k_1}, k_2' = Ad_{k_2}$ and $K' \leq \SL(\su(2,1))$ be a maximal comapct subgroup containing them, we have that:
-\[
-\eta(\gamma) = \Ad_{\gamma} = k_1' \Ad_{\exp(r(\gamma) x_0)} k_2' = k_1' \exp(r(\gamma) \ad_{x_0}) k_2'.
-\]
-
-Thus
-\begin{align*}
-    {\sf a}_1(\mu(\eta(\gamma))) = r(\gamma) {\sf a}_1(\ad_{x_0}) \geq (L'|\gamma| - b'){\sf a}_1(x_0)
-\end{align*}
-which is Anosov because ${\sf a}_1(\ad_{x_0}) > 0$, as can be seen by concrete calculations.
-\end{proof}
-
-Before giving an expression for the projective part of the limit map of $\eta$, we make a few observations regarding Gromov boundary of $\Gamma$.
-In particular, we claim that since $\Gamma$ is a uniform lattice os $\SU(2,1)$, we have that $\partial \Gamma$ is homeomorphic to $\SU(2,1)/P$, where $P$ is a parabolic subgroup of $\SU(2,1)$, and it coincides with the stabilizer of some isotropic line $l \in \partial_\infty \mathbb H^2_\mathbb C$.
-
-Indeed, for a uniform lattice $\Gamma$ of the isometry group $G$ of a homogenous $G$-space $X$, the Milnor-Švarc lemma implies that for any $x_0 \in X$, the map $\Gamma \to X, \gamma \mapsto \gamma x_0$ is a quasi-isometry.
-In our case $G = \SU(2,1)$ and $X = \mathbb H^2_\mathbb C$ is a hyperbolic metric space, so it the quasi-isometry extends to a homeomorphism $\partial \Gamma \to \partial H^2_\mathbb C$ of the Gromov-boundaries.
-On the other hand, the action of $\SU(2,1)$ on $\partial_\infty \mathbb H^2_\mathbb C$ is transitive, so we have that $\partial \mathbb H^2_\mathbb C \simeq \SU(2,1)/P$ where $P$ is the stabilizer of a point in $\partial \mathbb H^2_\mathbb C$.
-In fact, we have that $P$ is a parabolic subgroup of $SU(2,1)$.
-The combination of the above, along with the fact that the geometric and the Gromov boundaries agree in the case of $\mathbb H^2_\mathbb C$, we deduce that $\partial \Gamma \simeq \SU(2,1)/P$.\todo{Add proofs of these.}
-
-To calculate the projective part of the limit map, we shall show that there exists a unique $\SU(2,1)$-equivariant map from $\partial \Gamma$ to $\mathbb P (\mathbb R^d)$.
-The uniqueness follows from the following characterisation of limit maps: 
-\begin{lemma}\label{lem:equivariance_uniqueness}
-    Let $\rho: \Gamma \to \SL(d, \mathbb R) $ be a strongly irreducible projective Anosov representation, and denote with $\xi_\rho: \partial \Gamma \to \mathbb P(\mathbb R^d)$ its limit map.
-    Then $\xi^1_\rho$ is the unique continuous, $\rho(\Gamma)$-equivariant map from $\partial \Gamma$ to $\mathbb P(\mathbb R^d)$.
-\end{lemma}
-\begin{proof}
-    Let $\eta^1: \partial \Gamma \to \mathbb P(\mathbb R^d)$ be a continuous, $\rho(\Gamma)$-equivariant map.
-    Since the action of $\Gamma$ on its boundary $\partial \Gamma$ has dense orbits, it suffices to show that it agrees with $\xi^1_\rho$ on at least one boundary point.
-
-    Suppose for the shake of contradiction that $\eta^1$ does not coincide with $ \xi^1$ and let $z \in \partial \Gamma, y \in \partial \Gamma \backslash \{z\}$.
-    Then for any $x \in \partial \Gamma \backslash \{y \}$ we may find some quasi-geodesic $\{\gamma_n\}_n$ such that $\gamma_n \to x, \gamma_{-n} \to y$ as $n \to \infty$.
-    Then since $z \neq y$ we know that $\gamma_n z \to z$ as $n \to \infty$ and continuity of $\eta^1$ implies that $\eta^1(\gamma_n z) \to \eta^1(z)$.
-    But equivariance of $\eta^1$ and the fact that $\xi^1$ is dynamics-preserving implies that $\eta(\gamma_n z) = \rho(\gamma_n) \eta(z) \to \xi^1(x)$,
-    unless $\eta^1(z) \in \xi^{d-1}(y)$.
-    But if in fact $\eta^1(z) \not \in \xi^{d-1}(y)$, then the limits would agree, i.e.\ $\eta^1(x) = \xi^1(x)$ which is a contradiction.
-    Thus we have that $\eta^1(z) \in \xi^{d-1}(y)$ and since $y$ was an arbitrary points of $\partial \Gamma \backslash \{y\}$, we have that
-    \[
-    \eta^1(z) \in \bigcap_{y \in \partial \Gamma \backslash \{z\}} \xi^{d-1}(y) \subseteq 
-    \bigcap_{y \in \partial \Gamma \backslash \Gamma \cdot z} \xi^{d-1}(y).
-    \] 
-    In particular, the set appearing on the right hand side is $\rho$-equivariant, non-empty proper subset of $\mathbb R^d$, which contradicts the strong irreducibility assumption of $\rho$.
-\end{proof}
-
-Given the lemma above, it suffices to find an $\SU(2,1)$-equivariant map from $\partial \Gamma$ to $\mathbb P(\mathbb R^d)$.
-\begin{proposition}\label{prop:counterexample_limit_map}
-    The projective part of the limit map of $\eta$ is given by
-    \[
-        \xi_\eta: \partial \Gamma = \SU(2,1)/P_0 \to \mathbb P(\mathfrak{su}(2,1)), \quad \xi_\eta(g P_0) = \mathbb R \Ad_{\gamma} x_0.
-    \]
-    where  $P_0 = \mathrm{St}_{\SU(2,1)} [1:0:0]$ and 
-    \[
-    x_0 = i \begin{pmatrix} 0 & 0 & 1 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix} \in \su(2,1).
-    \]
-    Its derivative satisfies: 
-    \[
-    d_x \xi(T_x \SU(2,1)/P_0) = \pi(\ad_{\xi^1(x)} \su(2,1))
-    \]
-    where $\pi : \hom (\xi^1(x), \su(2,1)) \to \hom(\xi^1(x), \su(2,1)/ \xi^1(x))$ is the canonical projection.
-\end{proposition}
-\begin{proof}
-Since by \cref{lem:equivariance_uniqueness} the limit map is the unique continuous $\rho$-equivariant from the boundary of $\Gamma$ to the projective space, it suffices to show that there exists an $\eta$-equivariant map $\xi^1:\SU(2,1)/P_0 \to \mathbb P(\mathfrak{su}(2,1))$, since it will then restrict to the limit map on $\partial \Gamma$.
-
-We consider the parabolic subgroup $P_0 = \mathrm{St}_{\SU(2,1)} [1:0:0]$ of $\SU(2,1)$.
-Then its Lie algebra is given by:
-\[
-\mathfrak p_0 = \mathrm{St}_{\su(2,1)}[1:0:0] = \left\{ \begin{pmatrix} u - is & a & i t \\ 0 & 2is & - \bar a \\ 0 & 0 & -u - is \end{pmatrix} : a \in \mathbb C, u,s,t \in \mathbb R \right\}.
-\]
-Since for $\mathbb R x \in \mathbb P(\su(2,1))$ we have that $P_0$ fixes $\mathbb R x$ if and only if $\mathfrak p_0$ fixes $\mathbb R x$.
-But a quick calculation shows that the only element of $\su(2,1)$ fixed by $\mathfrak p_0$ is $x_0$.
-
-For the calculation of the image of the differential at the identity coset $P$, we differentiate the commutative diagram:
-
-\begin{tikzcd}
-    \SU(2,1) \arrow[r, "\Ad_\cdot x_0"] \arrow[d] & \su(2,1) \arrow[d] \\
-    \SU(2,1)/P_0 \arrow[r, "\xi^1"] & \mathbb P(\su(2,1))
-\end{tikzcd}
-to get
-\begin{tikzcd}
-    \su(2,1) \arrow[r, "\ad_\cdot x_0"] \arrow[d] & \su(2,1) \arrow[d, "\pi"] \\
-    \su(2,1)/\mathfrak p_0 \arrow[r, "\d_P \xi^1"] & T_{\xi^1(P)} \mathbb P(\su(2,1))
-\end{tikzcd}
-
-In the general case we use the equivariance of the limit map
-\begin{align*}
-    \d_{gP} \xi^1 (T_{gP} \SU(2,1)/P_0) &=
-    d_{gP} \xi^1 d_P g (T_P \SU(2,1)/P_0) =
-    d_{\xi^1(P)} g d_P \xi^1 (T_P \SU(2,1)/P_0) =\\
-    &= d_{\xi^1(P)} g \pi(\ad_{\xi^1(P)} \su(2,1)) =\\
-    &= \pi(Ad_g(\ad_{\xi^1(P)} \su(2,1))) = \pi(\ad_{Ad_g \xi^1(P)} \su(2,1))=\\
-    &= \pi(\ad_{\xi^1(gP)} \su(2,1)).
-\end{align*}
-\end{proof}
-
-Recall that all parabolic subgroups of $\SU(2,1)$ are conjugate to each other, so we have the following identification:
-\begin{align*}
-    \SU(2,1)/{P_0} &\leftrightarrow \{ \text{ Parabolic subgroups of } \SU(2,1) \} &\leftrightarrow \{ \text{ Parabolic subalgebras of } \su(2,1) \} \\
-    g P_0 &\leftrightarrow g P_0 g^{-1} &\leftrightarrow \Ad_g(\mathfrak p_0)    
-\end{align*}
-
-\begin{lemma}\label{lem:adjoint_parabolic}
-    Let $\mathfrak p, \mathfrak p' \leq \su(2,1)$ be two distinct parabolic subalgebras.
-    Then there exists some $g \in \SU(2,1)$ such that $\Ad_g(\mathfrak p) = \mathfrak p_0$ and $\Ad_g \mathfrak p' = \mathfrak p_0^t$.
-\end{lemma}
-
-The following proposition implies that the falsehood of the lemma in the beginning of this chapter.
-\begin{proposition}
-    Let $\Gamma \leq \SU(2,1)$ be a uniform lattice and $\eta: \Gamma \to \SL(\mathfrak{su}(2,1))$ be the restriction of the adjoint representation.
-    Then
-    \begin{enumerate}[label=(\roman*)]
-        \item $\eta$ is strongly irreducible,
-        \item $\eta$ is projective Anosov
-        \item $\eta$ admits a measurable $\eta$-equivariant section: 
-        \begin{align*}
-            \zeta: \partial \Gamma &\to \mathcal F_{\{1, 4 \}}(\mathfrak{su}(2,1)) \simeq \mathcal P\\
-            x &\mapsto (\xi^1(x), T_{\xi^1(x)} \xi^1(\partial \Gamma)) \simeq (\xi^1(x), (\d_{\xi^1(x)}p)^{-1}(T_{\xi^1(x)}\xi^1(\partial \Gamma))\xi^1(x)).
-        \end{align*}
-        where $d_{\xi^1(x)}p: \hom( \xi^1(x), \su(2,1)) \to \hom(\xi^1(x), \su(2,1)/ \xi^1(x))$ is the canonical projection.
-        \item For all $x, y \in \partial \Gamma: \zeta(x)^4 \cap \zeta(y)^4 \neq 0$.
-        \item For any $y_0 \in \SU(2,1)/P_0$ and 
-        $W_0 \in \mathcal G_7(\mathbb R^4)$ that contains $\zeta(y_0)^4$, we have that 
-        $\Ann(\zeta(y_0)^4, W_0) \supseteq \zeta(\SU(2,1)/P_0)$ and is in particular of full $\mu$-measure, for any $(\eta(\Gamma), \phi)$-Patterson-Sullivan measure $\mu$ supported over
-        $\zeta(\partial \Gamma)$.
-    \end{enumerate}
-\end{proposition}
-\begin{proof}
-\begin{enumerate}[label=(\roman*)]
-\item Follows from the fact that $\SU(2,1)$ is a simple Lie group.
-\item Shown in \cref{prop:counterexample_anosov}.
-\item Follows from the fact that $\xi^1$ is $\SU(2,1)$-equivariant and the equivariant identification of $\mathcal F_{\{1, 4 \}}(\mathfrak{su}(2,1)) \simeq \mathcal P$.
-\item Letting $g\in \SU(2,1)$ be as in \cref{lem:adjoint_parabolic}, we have that $\Ad_g(\mathfrak p_0) = \mathfrak p$ and $\Ad_g(\mathfrak p_0^t) = \mathfrak p'$.
-Thus $\zeta(x)^4 \cap \zeta(y)^4 \neq \emptyset$ if and only if
-\begin{align*}
-    \emptyset \neq Ad_g (\zeta(x)^4 \cap \zeta(y)^4) &=
-    \Ad_g \zeta(x)^4 \cap \Ad_g \zeta(y)^4 = 
-    \zeta(g x)^4 \cap \zeta(g y)^4 =
-    \zeta(\mathfrak p_0)^4 \cap \zeta(\mathfrak p_0^t)^4=\\
-    &= \pi \left( \mathbb R \begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & -1 \end{pmatrix}\right).
-\end{align*}
-For the last equality, we use \cref{prop:counterexample_limit_map} and the fact that $\mathfrak p_0^t = \Ad_g \mathfrak p_0$ for 
-$$g = \begin{pmatrix} 0 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & 0 \end{pmatrix},$$
-to conclude that
-\[
-\zeta(\mathfrak p_0) = 
-\zeta(P_0) = 
-\pi\left(
-\left\{
-\begin{pmatrix} u & a & it \\ 0 & 0 & - \bar a \\ 0 & 0 & -u \end{pmatrix} :
-a \in \mathbb C, u, t \in \mathbb R
-\right\}
-\right),
-\]
-and
-\[
-\zeta(\mathfrak p_0^t) = 
-\zeta(g P_0) = \Ad_g \zeta(P_0) =
-\pi\left(
-\left\{
-\begin{pmatrix} u & 0 & 0 \\ a & 0 & 0 \\ i t & - \bar a & 0 \end{pmatrix} :
-a \in \mathbb C, u, t \in \mathbb R
-\right\}
-\right).
-\]
-\end{enumerate}
-\end{proof}
 
 \printindex
 \printbibliography
