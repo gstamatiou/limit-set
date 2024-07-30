@@ -29,41 +29,10 @@
 \tableofcontents
 
 \chapter{Introduction}
-Let $X = \mathbb H_{\mathbb R}^n$ be the real hyperbolic space and $\Gamma \leq \SO(1, n)$ be a discrete convex-cocompact subgroup of isometries.
-Sullivan \cite{sullivan1979density} proved that the exponential growth of the orbits of the action $\Gamma \curvearrowright X$ is equal to the Hausdorff dimension of the limit set $\Lambda_\Gamma$ of $\Gamma$, providing a stunning connection between the geometry of the limit set and the dynamics of the group action.
-Since then, there have been numerous generalizations of this result to other settings, such as the action of other kinds of discrete groups acting on hyperbolic spaces (see for instance \cite{roblin2003ergodicite,dal2000series,coornaert1993mesures}), or to other kinds of spaces (for instance \cite{coornaert1993mesures} for the case of $X$ being a gromov hyperbolic space).
-For our part, we will be interested in the generalization of Sullivan's result to higher-rank by considering Anosov subgroups of $\SL(d, \mathbb R)$ that are not necessarily convex-cocompact and whose limit set is a Lipschitz submanifold of the real projective space $\mathbb P(\mathbb R^d)$, as was done in \cite{glorieux_hausdorff_2023,pozzetti_anosov_2023}.
-This direction is motivated by the fact that Anosov subgroups are considered to be a generalization of convex co-compact subgroups in rank one symmetric spaces to ones of higher rank.
-
-The method that was used in \cite{sullivan1979density} to prove the above result was to construct a Patterson-Sullivan measure over the limit set of $\Gamma$.
-However, in the higher-rank case, more work was needed for Patterson-Sullivan theory to be developed by Quint \cite{quint2002mesures} and further elaborated in \cite{pozzetti_anosov_2023} to be able to construct such a measure over limit sets living in flag varieties.
-Moreover, a substantial contribution of \cite{pozzetti_anosov_2023} was to consider the unstable Jacobian, whose critical exponent carries the geometric information of the limit-set.
-However, we noticed a gap in the proof of the main result of \cite{pozzetti_anosov_2023} which we filled in this thesis by adding certain assumptions on the Zariski-closure of the subgroup considered, and which we hope can be further generalised providing further directions to investigate.
-
-\section{Limit sets and critical exponents}
-\begin{definition}\index{limit set}
-    Let $\Gamma$ be a discrete group of isometries of a metric space $(X,d)$.
-    We define the limit set of $\Gamma$ to be the set of accumulation points of the orbit of some fixed $x \in X$:
-    \[
-    \Lambda_\Gamma = \overline{\Gamma \cdot x} - \Gamma \cdot x.
-    \]
-\end{definition}
-\begin{remark}
-    One can show that the definition of the limit set is independent of the choice of $x$.
-    When moreover $\Gamma$ is nonelementary (i.e.\ it does not admit any finite invariant subset of $X \cup \partial X$), it is easy to see that $\Lambda \Gamma \subseteq \partial X$ and one can show that it is the minimal closed $\Gamma$-invariant subset of $\partial X$ (see for example \cite[Proposition 4.7]{quint2006overview}).
-\end{remark}
-\begin{definition}\index{critical exponent!subgroup}
-    Let $\Gamma$ be a discrete group of isometries of a metric space $(X,d)$.
-    We define the critical exponent of $\Gamma$ to be the asymptotic exponential growth of its orbits, i.e.\ the following limit:
-    \[
-    \delta_\Gamma = \limsup_{n\to \infty} \frac{\log \sharp \{ \gamma \in \Gamma : d(x, \gamma x) \leq n \}}{n}
-    \]
-    for some fixed $x \in X$.
-\end{definition}
-\begin{remark}
-    It is not hard to show that the critical exponent is independent of the choice of $x$.    
-\end{remark}
-
+Let $\mathbb H_{\mathbb R}^n$ be the real hyperbolic space and $\Gamma \leq \SO(1, n)$ be a discrete convex-cocompact subgroup of isometries.
+To the action $\Gamma \curvearrowright \mathbb H_{\mathbb R}^n$, we associate (\cref{def:group_critical_exponent}) its critical exponent $\delta_\Gamma$, which is a dynamical invariant expressing the exponential growth rate of the $\Gamma$-orbits in $\mathbb H_{\mathbb R}^n$.
+Another object associated (\cref{def:limit_set}) to the action is the limit set $\Lambda_\Gamma$, which should be thought of as the set of accumulation points of an orbit at infinity.
+In \cite{sullivan1979density}, Sullivan proved that the critical exponent $\delta_\Gamma$ is equal to the Hausdorff dimension of the limit set $\Lambda_\Gamma$, providing a stunning connection between the fractal geometry of the limit set and the dynamics of the group action:
 \begin{theorem}[\cite{sullivan1979density}]
     Let $\Gamma \leq \PSO(1,n)$ be convex co-compact.
     Then the critical exponent of $\Gamma$ is equal to the Hausdorff dimension of its limit set:
@@ -72,31 +41,183 @@ However, we noticed a gap in the proof of the main result of \cite{pozzetti_anos
     \]
 \end{theorem}
 
-There have been numerous generalizations of the above result (see for example \cite{ledrappier_dimension_2023, glorieux_hausdorff_2023, pozzetti_anosov_2023,link2004measures,quint2002mesures,coornaert1993mesures}).
-In this thesis, we will focus on the case of Anosov representations of discrete groups into $\SL(d, \mathbb R)$, mainly based on \cite{pozzetti_anosov_2023}.
-A reason to consider Anosov subgroups for this purpose is that they are considered to be a generalization of convex co-compact subgroups in rank one symmetric spaces to ones of higher rank.
-In particular, their Gromov boundary is realised as a subset of the real projective space, which will replace the role of the limit set $\Lambda_\Gamma$ in the higher rank case.
-More concretely, the main goal of this thesis is to present a proof of the following result, found in \cite{pozzetti_anosov_2023}:
+To accomplish this, Sullivan generalised to all hyperbolic spaces the construction done for the hyperbolic plane by Patterson in \cite{patterson1976limit} of a $\Gamma$-quasi-equivariant measure on the limit set of hyperbolic space.
+Since then, there have been numerous generalizations of this result to other settings, such as the action of other kinds of discrete groups on hyperbolic spaces (see for instance \cite{roblin2003ergodicite,dal2000series,coornaert1993mesures}), or to other kinds of spaces (for instance \cite{coornaert1993mesures} for the case of $X$ being a Gromov hyperbolic space).
+
+Here, we will in large part follow \cite{pozzetti_anosov_2023}, whose authors are interested in the generalization of Sullivan's result to certain subgroups of higher rank Lie groups.
+In particular, they focus on Anosov subgroups of $\SL(d, \mathbb R)$, which are 
+defined (in \cref{def:anosov} using the characterisation of \cite{kapovich2017anosov}) as the subgroups arising from representations into $\SL(d, \mathbb R)$ with a singular value growth that is exponentially controlled by the word length of the group element.
+They are particularly relevant in this context because they are considered as a promising generalization of convex co-compact subgroups of rank one Lie groups to ones of higher rank,
+amd their Gromov boundary is realised as a subset of the projective space through the boundary map (\cref{thm:boundary_map}), which will be the analogue of the limit set $\Lambda_\Gamma$ to the higher rank case.
+The only regularity assumption that they pose on the representations considered is that the limit set is a Lipschitz submanifold of the ambient projective space, which in particular is the case for three large classes of examples, namely maximal representations (\cite{burger2010surface}), Anosov quasi-fuchsian AdS representations (\cite{merigot2012anosov}) and $\mathbb H^{p,q}$-convex-cocompact representations (\cite{danciger2018convex}).
+
+On second glance (more extensively described in \cref{ex:critical_exponent}), the critical exponent of $\Gamma$ can be seen as the critical exponent (defined in \cref{def:functional_critical_exponent} as the radius of convergence for the respective Poincaré series) of a functional over the Cartan subalgebra of $\SL(d, \mathbb R)$, associating to each $\gamma$, its displacement $d(o, \gamma \cdot o)$ with respect to some fixed point $o \in X$.
+Given this, the following modified version of the result appearing in \cite{pozzetti_anosov_2023} should be seen as a natural generalization of Sullivan's theorem to the higher rank case:
 \begin{reptheorem}{thm:main}
     Let $\rho: \Gamma \to \SL(d, \mathbb R)$ be a Zariski-dense, projective Anosov representation in $\SL(d, \mathbb R)$ such that $\xi^1_\rho(\partial \Gamma)$ is a Lipschitz submanifold of $\mathbb P(\mathbb R^d)$.
     Then
     \[
-        \dim(\xi^1_\rho(\partial \Gamma)) = h_\rho(F),
+        \dim(\xi^1_\rho(\partial \Gamma)) = h_{\rho(\Gamma)}(F),
     \]
-    where $h_\rho(F)$ is the critical exponent of the Falconer functional $F$.
+    where $h_{\rho(\Gamma)}(F)$ is the critical exponent of the Falconer functional $F$.
 \end{reptheorem}
-As can be seen from the statement of the theorem, the main challenge is to find an appropriate functional whose critical exponent carries the geometric information of the limit set.
+The above statement differs from the one of the respective result in \cite{pozzetti_anosov_2023} in replacing the strong irreducibility assumption on the representation with that the Zariski-density of the subgroup in $\SL(d, \mathbb R)$, because of a gap that we noticed in the proof of the latter.
+Since this is a strong assumption that is not always satisfied in the three classes of examples presented above, we present the following result that covers certain cases of interest:
+\begin{reptheorem}{thm:main_anti_de_sitter}
+    Let $\rho: \Gamma \to \SL(d, \mathbb R)$ be a projective Anosov representation such that $\xi^1_\rho(\partial \Gamma)$ is a Lipschitz submanifold of $\mathbb P(\mathbb R^d)$.
+    Assume moreover that $\dim \xi_\rho^1(\partial \Gamma) = d-3, d > 4$ and $\rho(\Gamma)$ is Zariski-dense in $\SO(2,d-2)$. 
+    Then
+    \[
+        \dim \xi_\rho^1(\partial \Gamma) = h_{\rho(\Gamma)}(F).
+    \]
+\end{reptheorem}
+It should be noted that this result is possibly not optimal, as we hope its proof generalises (at least) to other groups of the form $\SO(p,q)$.
 
-The upper bound of the Hausdorff dimension (see \cref{ch:upper_bound}) follows a classical recipe of finding an appropriate covering of the limit set $\xi_\rho^1(\partial \Gamma)$, for which the Hausdorff content is dominated by the Dirichlet series of the functional $F$.
-In particular, the only part of the hypothesis that is utilized is that the representation is projective Anosov, meaning that it still holds without requiring that $\Lambda_\Gamma$ is a Lipschitz submanifold of $\mathbb P(\mathbb R^d)$ or that $\rho(\Gamma)$ is Zariski-dense.
+In the remaining of this chapter, we will recall the definition of the Hausdorff dimension, along with all necessary background on Lie groups, Anosov representations that will be necessary in the subsequent chapters.
+We will also introduce the Falconer functional and the unstable Jacobian, which will be the functionals whose critical exponents capture the geometric information of the dimension of the limit set.
 
-On the other hand, to establish the upper bound of the critical exponent one uses (in \cref{ch:lower_bound}) the more elaborate machinery of Patterson-Sullivan measures as generalised into higher rank by \cite{quint2002mesures} and further elaborated in \cite{pozzetti_anosov_2023}.
-For this part of the proof, the hypothesis that $\xi_\rho^1(\partial \Gamma)$ is a Lipschitz submanifold will be used (in \cref{prop:PSMeasureExists}) to construct a Patterson-Sullivan measure $\mu$ over $\mathcal F_{\{1, \d_\Gamma + 1\}}(\mathbb R^d)$, while the Zariski-density of $\rho(\Gamma)$ is necessary (see \cref{ex:ZariskiDense}) to show that it is $\mu$-irreducible and obtain estimates (in \cref{lem:PSMeasureBounds}) that will be used to prove that the sum defining the critical exponent is finite. 
-\section{Lie groups and Anosov representations}
-Throughout the thesis, we consider the usual Cartan subalgebra $\mathfrak a$ of $\SL(d,\mathbb R)$:
+In \cref{ch:upper_bound}, we will use a classical recipe to obtain the upper bound of the Hausdorff dimension, by finding an appropriate covering of the limit set $\xi_\rho^1(\partial \Gamma)$, for which the Hausdorff content is dominated by the Dirichlet series of the functional $F$.
+We would like to stress that the only part of the hypothesis utilized in that chapter is that the representation is projective Anosov, meaning that it still holds without requiring that $\Lambda_\Gamma$ is a Lipschitz submanifold of $\mathbb P(\mathbb R^d)$ or that $\rho(\Gamma)$ is Zariski-dense.
+
+On the other hand, to establish the upper bound in \cref{ch:lower_bound} of the critical exponent one uses the more elaborate machinery of Patterson--Sullivan measures as generalised into higher rank by \cite{quint2002mesures} and further developed in \cite{pozzetti_anosov_2023}.
+For this part of the proof, the hypothesis that $\xi_\rho^1(\partial \Gamma)$ is a Lipschitz submanifold will be introduced (in \cref{prop:PSMeasureExists}) to construct a Patterson--Sullivan measure $\mu$ over a space of partial flags, while the Zariski-density of $\rho(\Gamma)$ is necessary (see \cref{ex:ZariskiDense}) to show that it is $\mu$-irreducible (that is, the measure of the set of transverse flags to each flag is positive, see \cref{def:mu_irreducible}) and obtain estimates (in \cref{lem:PSMeasureBounds}) that will be used to prove that the sum defining the critical exponent is finite.
+
+Finally, in \cref{ch:no_zariski_density} we trace the gap in the proof of \cite{pozzetti_anosov_2023} to lemma appearing in \cite{labourie_anosov_2006} and provide two counterexamples that show it is substantial.
+Then we present the proof of \cref{thm:main_anti_de_sitter}, and conclude with some remarks on the generalisation of the result to other subgroups.
+
+
+\section{Limit sets and critical exponents}
+\begin{definition}\index{limit set}\label{def:limit_set}
+    Let $\Gamma$ be a discrete group of isometries of a metric space $(X,d)$.
+    We define the limit set $\Lambda_\Gamma$ of $\Gamma$ to be the set of accumulation points of the orbit of some fixed $x \in X$.
+\end{definition}
+\begin{remark}
+    One can show that the definition of the limit set is independent of the choice of $x$.
+    When moreover $\Gamma$ is nonelementary (i.e.\ it does not admit any finite invariant subset of $X \cup \partial X$), it is easy to see that $\Lambda_\Gamma \subseteq \partial X$ and one can show that it is the minimal closed $\Gamma$-invariant subset of $\partial X$ (see for example \cite[Proposition 4.7]{quint2006overview}).
+    \todo{Either remove references to the boundaru $\partial X$ or introduce it, and check if more hypothesis are needed for the characterisation}
+\end{remark}
+\begin{definition}\index{critical exponent!subgroup}\label{def:group_critical_exponent}
+    Let $\Gamma$ be a discrete group of isometries of a metric space $(X,d)$.
+    We define the critical exponent of $\Gamma$ to be the asymptotic exponential growth of its orbits, i.e.\ the following limit:
+    \begin{align*}
+        \delta_\Gamma &= \limsup_{n\to \infty} \frac{\log \sharp \{ \gamma \in \Gamma : d(x, \gamma x) \leq n \}}{n} =\\
+        &= \inf \left\{ 
+            s \in \mathbb R : \sum_{\gamma \in \Gamma} e^{-s d(x, g \cdot x)}
+        \right\}  < \infty
+    \end{align*}
+    for some fixed $x \in X$.
+\end{definition}
+\begin{remark}
+    It is not hard to show that the critical exponent is independent of the choice of $x$.    
+\end{remark}
+
+
+Later in the thesis, we will be using certain terms to refer to lattices, which we recall below:
+\begin{definition}
+    Let $G$ be a Lie group, and $\Gamma \leq G$ a discrete subgroup. 
+    \begin{enumerate}[label=(\roman*)]
+        \item $\Gamma$ is a lattice if it is co-finite, meaning that the quotient $G/\Gamma$ admits a finite $G$-invariant measure.
+        \item $\Gamma$ is a uniform lattice if it is co-compact, meaning that the quotient $G/\Gamma$ is compact.
+    \end{enumerate}
+\end{definition}
+
+\section{Gromov hyperbolic groups}
+In this seection we recall the basic definitions and facts of Gromov hyperbolic spaces and groups which were introduced by Gromov to generalise certain metric properties of hyperbolic spaces.
+For more details or proofs of the following facts, we refer to \cite{ghys2013groupes}.
+
+Let $(X, d)$ be a metric space.
+The Gromov product of two points $x, y \in X$ with respect to a point $z \in X$ is defined as
+\[
+(x, y)_z = \frac{d(x,z) + d(y,z) - d(x,y)}{2}.
+\]
+For some $\delta > 0$, we say that $X$ is $\delta$-hyperbolic if for all $x,y,z,w \in X$ the following relation is satisfied
+\[
+(x, y)_z \geq \min \{ (x, w)_z, (w, y)_z \} - \delta.
+\]
+
+A map $f$ defined over $[0, \infty)$ or $\mathbb N$ that takes values in $\mathbb N$ is called a geodesic ray if 
+$$d(f(t), f(s)) = |t-s|$$
+ holds for all $t, s \in \mathbb [0, \infty)$ or $\mathbb N$ respectively.
+It is called a $(c, C)$-quasigeodesic ray if it satisfies 
+$$\frac{1}{C}|t-s| - c \leq d(f(t), f(s)) \leq C|t-s| + c$$
+for all $t, s \in \mathbb [0, \infty)$ or $\mathbb N$ respectively.
+
+Supposing that $X$ is a geodesic metric space (meaning that for any $x,y \in X$, there exists a geodesic joining $x$ and $y$), we define the Gromov boundary $\partial_\infty X$ as the set of equivalence classes of geodesics in $X$ that start from a fixed base point $z \in X$ under the equivalence relation
+\[
+f \sim g \text{ if and only if } \sup_t d(f(t), g(t)) < \infty.
+\]
+We could consider the same equivalence relation over $(c,C)$-quasigeodesic rays, and the resulting space would be another model for the Gromov boundary, homeomorphic to the previous one. 
+In any case, it is important to know that the space $\partial_\infty X$ is metrizable and compact.
+
+Let $\Gamma$ be a finitely generated group and $S$ be a symmetric (meaning that $s^{-1} \in S$ for any $s \in S$) generating set.
+The Cayley graph $\Gamma$ with respect to $S$ is the graph whose vertices are the elements of $\Gamma$ and there is an edge between $g, h \in \Gamma$ if and only if $g^{-1}h \in S$.
+It becomes a metric space with the word metric $d_S(g,h)$ defined as the length of the shortest path in the Cayley graph connecting $g$ and $h$.
+The group $\Gamma$ is called hyperbolic if the Cayley graph is $\delta$-hyperbolic for some $\delta > 0$.
+The space $\hat \Gamma \equaldef \Gamma \cup \partial_\infty \Gamma$ is compact.
+
+Finally, another object that will become useful in later chapters are the coarse cones on the boundary of a hyperbolic group $\Gamma$, which was taken from \cite{pozzetti_anosov_2023}.
+For $c_0, c_1 > 0$, we define it as follows:
+\[
+C_{\infty}^{c_0, c_1}(\gamma) = \left\{ [(a_j)_{j \in \mathbb N}] : (a_j)_j \text{ is a } (c_0,c_1)\text{-quasi-geodesic ray, } a_0 = \gamma^{-1} \text{ and } e \in \left\{ a_j \right\}_{j} \right\}.
+\]
+\section{Grassmanians and flag spaces}
+In this section we will recall some terminology and notions related to Grassmanians and flag spaces, that will prove useful in \cref{sec:lie_groups} in presenting the dynamical properties of Anosov representations, as well as in \cref{ch:upper_bound}, where we will construct an open cover for the limit set of Anosov subgroups.
+
+For $k \in \llbracket [1, d] \rrbracket$, the Grassmanian $\mathcal G_k(\mathbb R^d)$ is the space of $k$-dimensional subspaces of $\mathbb R^d$.
+For two subspaces $V \in \mathcal G_k(\mathbb R^d), W \in \mathcal G_l(\mathbb R^d)$ of possibly different dimensions, we can define the notion of an angle as
+\[
+\angle (V, W) \equaldef \min_{v \in V^\times, w \in W^\times} \angle(v,w) \in [0, \pi/2],
+\]
+where $V^\times \equaldef V \backslash \{0\}$, while the angle between vectors $v, w \in \mathbb R^d$ is defined as
+\[
+\angle(v,w) \equaldef \arccos \left( \frac{\langle v,w \rangle}{\langle v, v \rangle \langle w, w \rangle} \right) \in [0, \pi].
+\]
+
+
+For $\Theta \subseteq \llbracket 1, d \rrbracket$ we define the space of partial flags 
+$$\mathcal F_\Theta(\mathbb R^d) = \left\{ (x_\theta)_{\theta \in \Theta} : x_\theta \in \mathcal G_i(\mathbb R^d) \text{ for } \theta \text{ and } x_{\theta} \leq x_{\theta'} \text{ for } \theta < \theta' \text{ in } \Theta \right\}, $$
+where $\mathcal G_r(\mathbb R^d)$ is the $r$-th Grassmanian, that is the space of $r$-dimensional subspaces of $\mathbb R^d$.
+To each $\Theta \subseteq \llbracket 1, d \rrbracket$, we associate $i\Theta = \{ d - \theta : \theta \in \Theta \}$. 
+In this notation, two flags $(x_\theta)_\theta \in \mathcal F_\Theta(\mathbb R^d)$ and $(y_{\theta})_\theta \in \mathcal F_{i\Theta}(\mathbb R^d)$ are transverse if $x_\theta \cap y_{d-\theta} = \{0\}$ for all $\theta \in \Theta$.
+For the shake of readability, we will often skip writing the braces around the indices of the flags and write $\mathcal F_{i,j}(\mathbb R^d)$ instead of $\mathcal F_{\{i,j\}}(\mathbb R^d)$.
+
+
+
+
+\section{Lie groups and Anosov representations}\label{sec:lie_groups}
+Let $G$ be a real semisimple Lie group, whose Lie algebra is denoted by $\mathfrak g$, $K$ is a maximal compact subgroup of $G$ whose algebra is denoted by $\mathfrak k$.
+We let $\mathfrak p$ be the orthogonal complement of $\mathfrak k$ in $\mathfrak g$ with respect to the Killing form.
+We denote with $\mathfrak a$ a maximal abelian subalgebra of $\mathfrak p$.
+A non-trivial linear form $\alpha \in \mathfrak a^*$ is called a restricted root when the set
+\[
+\mathfrak g_\alpha = \left\{
+    u \in \mathfrak g : \ad_g(a) = \alpha(a) u \text{ for all } a \in \mathfrak a
+\right\}
+\] 
+is not zero.
+The set of restricted roots is denoted by $\Delta$ and the closure of any component
+\[
+\mathfrak a^+ \subseteq \mathfrak a \backslash \bigcup_{\alpha \in \Delta} \ker \alpha
+\]
+is called a Weyl chamber.
+
+
+The following theorem is a fundemental result in the theory of semi-simple Lie groups:
+\begin{theorem}[Cartan decomposition]\index{Cartan!decomposition}
+Let $K$ be maximal compact subgroup, $\mathfrak a$ a Cartan subalgebra  of $\mathfrak g$ and $\mathfrak a^+$ a Weyl chamber of $\mathfrak a$.
+Then $G$ can be decomposed as $G = K e^{\mathfrak a^+} K$, while for every $g \in G$, there exists a unique $\mu(g)$ such that $g \in K e^{\mu(g)} K$.    
+\end{theorem}
+
+The map
+\[
+\mu: G \to \mathfrak a^+
+\] 
+appearing in the theorem is called the Cartan projection.\index{Cartan!projection}
+
+For us, the only relevant case will be $G = \SL(d, \mathbb R)$, so we will fix the maximal compact subgroup $K = \SO(d, \mathbb R)$, the Cartan subalgebra
 \[
     \mathfrak a = \left\{
-        \diag(\alpha_1, \ldots, \alpha_d) : \alpha_1 + \cdots \alpha_d = 0
+        \diag(\alpha_1, \ldots, \alpha_d) : \alpha_1 + \cdots + \alpha_d = 0
     \right\}
 \]
 and its Weyl chamber
@@ -105,93 +226,149 @@ and its Weyl chamber
         \diag(\alpha_1, \ldots, \alpha_d) : \alpha_1 \geq \cdots \geq \alpha_d
     \right\}.
 \]
-Denoting with $K = \SO(d, \mathbb R), A^+ = e^{\mathfrak a^+} $, we have the Cartan decomposition:
-\begin{align*}
-    \mathfrak{sl}(d, \mathbb R) &\rightarrow K \times A^+ \times K\\
-    g &\mapsto (k_g, a_g, l_g) 
-\end{align*}
-such that $g = k_g a_g l_g$.
-In particular $a_g = \diag(\sigma_1(g), \ldots, \sigma_d(g))$ with $\sigma_1 \geq \cdots \geq \sigma_d(g)$,
-where $\sigma_i(g)$ is the $i$-th singular value of $g$, i.e.\ eigenvalue of $g^t \cdot g$.
-We denote with 
-\begin{align*}
-    a: \SL(d, \mathbb R) &\to \mathfrak a\\
-    g &\mapsto \diag(a_1(g), \cdots, a_d(g))
-\end{align*}
-the Cartan projection and with ${\sf a}_{ij} = a_i - a_j \in \mathfrak a^*$ the roots of $\mathfrak a$.
-
-We will use the spaces
+Note that then, the Cartan decomposition of $\SL(d, \mathbb R)$ is the same as the 
+The Cartan projection is then given by
 \[
-    U_p(g) = \mathbb R u_1(g) \oplus \cdots \oplus \mathbb R u_p(g)   
+\mu(g) = \diag(\lambda_1(g), \ldots, \lambda_d(g))
 \]
-where $u_i(g) = k_g \cdot e_i$.
-One can easily show that the decomposition
+where $\log \sigma_i(g) = \lambda_i(g)$ is the $i$-th singular value\index{singular value} of $g$, i.e.\ the square root of the eigenvalue of $g^t \cdot g$.
+The restricted roots are ${\sf a}_{ij} = a_i - a_j \in \mathfrak a^*$ and the $i$-th fundamental weight is defined as $\omega_{i}(a) = a_1 + \cdots + a_i$, for $i \in \llbracket 1, d - 1\rrbracket$.
+
+Before going on with the definition and the properties of Anosov representations, we will briefly discuss the way that a linear transformation in $\SL(d, \mathbb R)$ acts on the euclidean space $\mathbb R^d$, namely by streching and contracting.
+Let $g \in \SL(d, \mathbb R)$, and consider a Cartan decomposition $g = k_g e^{\mu(g)} l_g$.
+Since $g$ acts linearly on $\mathbb R^d$, to understand its action on the Euclidean space it suffices to understand its action on the unit sphere $\mathbb S^{d-1}$, which $g$ distorts into an ellipsoid (see \cref{fig:ball_stretching}).
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{ball_streching.jpg}
+    \caption{Linear transformations map spheres to elllipsoids.}
+    \label{fig:ball_stretching}
+\end{figure}
+
+In other words, we claim that the image of the unit sphere through $g$ is an ellipsoid with axes
+\[
+u_i(g) = k_g e_i, \text{ for } i \in \llbracket 1, d \rrbracket
+\]
+and respective lengths $\sigma_i(g) = e^{\lambda_i(g)}$.
+Indeed, if we write $w = \beta_1 u_1(g) + \cdots + \beta_d u_d(g)$, then $w \in g \cdot \mathbb S^{d-1}$ if and only if 
+\begin{align*}
+    \| g^{-1}w \|^2 &= \| \beta_1 \sigma_i(g)^{-1} l_g^{-1} + \cdots + \beta_d \sigma_d(g)^{-1}\|^2 =\\
+    &= \left(\frac{\beta_1}{\sigma_1(g)}\right)^2 + \cdots + \left(\frac{\beta_d}{\sigma_d(g)} \right)^2 \leq 1,
+\end{align*}
+which is precisely the defining inequality for an ellipsoid.
+
+Recall that for a general element in $g \in \SL(d, \mathbb R)$, we may not make any assumption on the singular values $\sigma_i(g)$ except from the fact that they are in non-increasing order.
+In particular, certain singular values may coincide, which in the context of the above discussion means that the choice of the axes $u_i(g)$ is arbitrary.
+In fact, when for instance $\sigma_2(g) = \sigma_3(g)$, any rotation of the orthonormal basis on the $\mathbb R u_i(g) \oplus \mathbb R u_{i+1}(g)$ plane will give the equally valid orthonormal choice of axis $u_1(g), \cos(\theta) u_1(g) + \sin(\theta) u_2(g), -\sin(\theta) u_1(g) + \cos(\theta) u_2(g), u_3(g), \cdots, u_d(g)$.
+This has to do with the fact that the choice of elements $k_g, l_g$ in the Cartan decomposition of $g$ is not unique (see \cref{fig:arbitrary_axis}).
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{arbitrary_axis.jpg}
+    \caption{Equality between singular values results in axes ambiguity.}
+    \label{fig:arbitrary_axis}
+\end{figure}
+
+When however there is a singular value gap, i.e.\ $\sigma_p(g) > \sigma_{p+1}(g)$, then (noting that $\sigma_{d-p+1}(g^{-1}) < \sigma_{d-p}(g^{-1})$ as well because $\sigma_i(g^{-1}) = \sigma_{d-i + 1}(g)^{-1}$) the choice of the axis $u_p(g)$ is unique up to a sign, and the attracting and repelling $p$-planes of $g$ are well defined:
+\begin{align*}
+    U_p(g) &\equaldef k_g \cdot \mathbb R e_1 \oplus \cdots \oplus \mathbb R e_p\\
+    U_{d-p}(g^{-1}) &\equaldef l_g^{-1} \cdot \mathbb R e_{p+1} \oplus \cdots \oplus \mathbb R e_d\\
+\end{align*}
+are well defined and form a decomposition
 \[
     g^{-1} \cdot U_p(g) \oplus U_{d-p}(g^{-1})
 \]
-is orthogonal with respect to the standard inner product and that
-$u_p(g^{-1}) = l_g^{-1} e_{d-p+1}(g).$
-\begin{definition}
+that is orthogonal with respect to the standard inner product on $\mathbb R^d$.\todo{Prove that attracting flag is well-defined when there exists a singular value gap, and explain that in the bassin, g attracts flags uniformly to the attracting flag} 
+
+In particular, when $g \in \SL(d, \mathbb R)$ has a gap between the $\theta$-th and $(\theta+1)$-th singular values for all $\theta \in \Theta \subseteq \llbracket 1, d-1 \rrbracket$, we define for any $\alpha > 0$ the basin of attraction of $g$ as
+\[
+B_{\Theta, \alpha}(g) \equaldef \left\{ x \in \mathcal F_{\Theta}(\mathbb R^d) : \angle \left(x^\theta, U_{d-\theta}(g^{-1})\right) \text{ for all } \theta \in \Theta \right\}.
+\]
+We may think of the basin of attraction as the set of flags that are away from the repelling flag $\left(U_{d-\theta}(g^{-1})\right)_{\theta \in \Theta}$ of $g$.
+To justify the name, we briefly mention informally the fact that flags contained in the basin of attraction are uniformly attracted to the attracting flag $U_{\Theta}(g)$ under the action of $g$, and refer to \cite{bochi2019anosov}[Lemma A.6].
+Often, for readability purposes, we will often skip writing the curly braces around the indices comprising $\Theta$.
+
+We are now ready to give one of the various equivalent definitions of Anosov representations in the literature.
+In light of the previous discussion, one could phrase it as: "a representation in $\SL(d, \mathbb R)$ is $p$-Anosov if the length of the $p$-th axis of the ellipsoid $g \cdot \mathbb S^{d-1}$ is exponentially larger than the length of the $(p+1)$-th axis, with the exponential rate controlled by the word length of the group element". 
+\begin{definition}\label{def:anosov}
     Let $\rho: \Gamma \to \SL(d, \mathbb R)$ be a linear representation and $p \in \llbracket 1, d-1 \rrbracket$.
     We say that $\rho$ is $p$-Anosov if there exist constants $\mu, C>0$ such that for all $\gamma \in \Gamma$:
     \[
         \frac{\sigma_{p+1}}{\sigma_p}(\rho(\gamma)) \leq C e^{-\mu |\gamma|}.
     \]
-    One can show that in that case there exists an equivariant continuous map $\xi: \hat \Gamma \to \mathcal F_{p, d-p}(\mathbb R^d) $ that restricts to
+\end{definition}
+
+The following theorem shows the dynamical behaviour of Anosov representations through their action on flag spaces.
+In particular, a $p$-Anosov representation $\rho$ will have a well-defined attracting flag $\xi^p_\rho(x)$ in $\mathcal F_{p, d-p}(\mathbb R^d)$ for every $x \in \partial \Gamma$.
+\begin{theorem}[\cite{labourie_anosov_2006,kapovich2017anosov}]\label{thm:boundary_map}
+    \index{Anosov!boundary maps}
+    Let $\rho: \Gamma \to \SL(d, \mathbb R)$ be a $p$-Anosov representation.
+    Then there exists an equivariant continuous map $\xi: \hat \Gamma \to \mathcal F_{p, d-p}(\mathbb R^d) $ that restricts to
     \begin{align*}
-        \xi^p(\gamma) &= U_p(\rho(\gamma)) = k \cdot \mathbb R e_1 \oplus \cdots \oplus \mathbb R e_p\\
-        \xi^{d-p}(\gamma) &= U_{d-p}(\rho(\gamma)) = k \cdot \mathbb R e_1 \oplus \cdots \oplus \mathbb R e_{d-p},
+        \xi^p(\gamma) &= U_p(\rho(\gamma)) \equaldef k \cdot \mathbb R e_1 \oplus \cdots \oplus \mathbb R e_p\\
+        \xi^{d-p}(\gamma) &= U_{d-p}(\rho(\gamma)) \equaldef k \cdot \mathbb R e_1 \oplus \cdots \oplus \mathbb R e_{d-p},
     \end{align*}
-    for $\gamma \in \Gamma, \rho(\gamma) = k e^a l$.
-    Moreover, it has the following transversality property on the boudnary: for every $x, y \in \partial \Gamma$, the flags $xi_\rho(x), \xi_\rho(y)$ are transverse unless $x=y$.
-    \end{definition}    
+    for $\gamma \in \Gamma, \rho(\gamma) = k e^a l$ and where $e_1, \ldots, e_d$ is the standard orthonormal basis for the Euclidean inner product.
+    Moreover, it has the following transversality property on the boudnary: for every $x, y \in \partial \Gamma$, the flags $\xi_\rho(x), \xi_\rho(y)$ are transverse unless $x=y$.
+\end{theorem}
+Again, we would like to stress that if the elements of the Anosov subgroup did not have the singular value gap, then the attracting flags $U_p, U_{d-p}$ would not be well defined.
 
 \section{Important functionals and definitions}
+In this section we will introduce certain functionals on the Weyl chamber, whose critical exponents (see \cref{def:functional_critical_exponent}) is going to generalise the critical exponent of the group to the higher rank case.
 \begin{definition}\index{Falconer!functional}\index{unstable Jacobian}
 For $p \in \llbracket 2, \ldots, d \rrbracket, s\in \mathbb R $
-we define the functionals $\Psi_s^p: \mathfrak a \to \mathbb R$, the Falconer functional $F_s: \mathfrak a \to \mathbb R$, and the unstable Jacobian $J_p^u: \mathfrak a \to \mathbb R$ as follows:
+we define the functionals $\Psi_s^p: \mathfrak a^+ \to \mathbb R$, the Falconer functional $F_s: \mathfrak a^+ \to \mathbb R$, and the unstable Jacobian $J_p^u: \mathfrak a^+ \to \mathbb R$ as follows:
 \begin{align*}
 \Psi_s^p &= 
-    {\sf a}_{12} + \cdots + {\sf a}_{1(p-1)} + (s - (p-2)){\sf a}_{1p}\\
-F_s(g) &= \min 
+    {\sf a}_{1,2} + \cdots + {\sf a}_{1,p-1} + (s - (p-2)){\sf a}_{1,p}\\
+F_s(a) &= \min 
     \left\{
-        \sum_{j=2}^d s_j \alpha_{1j}(a(g)) : s_j \in (0,1], \sum_{j=2}^d s_j = s 
+        \sum_{j=2}^d s_j \alpha_{1,j}(a) : s_j \in (0,1], \sum_{j=2}^d s_j = s 
     \right\}\\
-J_p^u(g) &= (p+1)\omega_1 - \omega_{p+1} =
-{\sf a}_{12} + \cdots + {\sf a}_{1(p+1)}.
+J_p^u &= (p+1)\omega_1 - \omega_{p+1} =
+{\sf a}_{1,2} + \cdots + {\sf a}_{1,p+1}.
 \end{align*}
 \end{definition}
 
-\begin{remark}
-The functionals defined above are related by the following relation:
+\begin{lemma}\label{lem:functional_relations}
+The functionals defined above are related as follows:
+\begin{align*}
+    F_s(a) &= \max_{p \in \llbracket 2, d \rrbracket} \Psi_s^p(a) = \Psi_s^{p_0}(a) \text{ for } s \in [p_0 - 2, p_0 -1]. \text{ for all } a \in \mathfrak a^+\\
+    \frac{s}{p} J_{p}^u &\leq \Psi_{s+p}^{p + 1} \text{ for all } s > 0
+\end{align*}
+\end{lemma}
+\begin{proof}
+Indeed, a quick calculation shows that for $s \geq 0, p \in \llbracket 2, d \rrbracket$ and $a \in \mathfrak a^+$ we have that:
 \[
-    F_s(g) = \max_{p \in \llbracket 2, d \rrbracket} \Psi_s^p(g)
-\]
-Moreover for any $a \in \mathfrak a$,
-\[
-    F_s(a) = \Psi_s^{p_0}(a) \text{ for } s \in [p_0 - 2, p_0 -1].
-\]
-Indeed, a quick calculation shows that for $s \geq 0$ and $p \in \llbracket 2, d \rrbracket$:
-\[
-    \Psi_s^p(g) \leq \Psi_s^p(g) \text{ if and only if } s \geq p-1.
+    \Psi_s^p(a) \leq \Psi_s^p(a) \text{ if and only if } s \geq p-1.
 \]
 and that equality holds in the case $s = p - 1$.
 Thus for $s \in [p - 2, p-1]$ we have that
 \begin{align*}
-    s \geq p-2, \ldots, 1 &\text{ implies that } \Psi_s^p(g) \geq \ldots \geq \Psi_s^{2}(g)\\
-    s \leq p, \ldots, d-1 &\text{ implies that } \Psi_s^p(g) \leq \ldots \leq \Psi_s^d(g)
+    s \geq p-2, \ldots, 1 &\text{ implies that } \Psi_s^p(a) \geq \ldots \geq \Psi_s^{2}(a)\\
+    s \leq p, \ldots, d-1 &\text{ implies that } \Psi_s^p(a) \leq \ldots \leq \Psi_s^d(a)
 \end{align*}
-Another way to see this (refer to \cref{fig:max}) is to note that $\Psi_s^2(g), \cdots, \Psi_s^d(g)$ is a sequence of functions that are affine in $s$, with slopes $\alpha_{12}(g) \leq \cdots \leq \alpha_{1d}(g)$ and that they satisfy $\Psi_1^2(g) = \Psi_2^2(g), \Psi_2^3(g) = \Psi_3^4(g) \ldots, \Psi_{d-2}^{d-1}(g) = \Psi_{d-2}^d(g)$.
+Another way to see this (refer to \cref{fig:max}) is to note that $\Psi_s^2(a), \cdots, \Psi_s^d(a)$ is a sequence of functions that are affine in $s$, with slopes $\alpha_{12}(a) \leq \cdots \leq \alpha_{1d}(a)$ and that they satisfy $\Psi_1^2(a) = \Psi_2^2(a), \Psi_2^3(a) = \Psi_3^4(a) \ldots, \Psi_{d-2}^{d-1}(a) = \Psi_{d-2}^d(a)$.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.4\textwidth]{max.jpg}
-    \caption{Visual illustration that $\max_p\Psi_s^p(g) = \Psi_s^{p_0}(g) \text{ for } s \in [p_0 - 2, p_0 -1]$.}
+    \caption{Visual illustration that $\max_p\Psi_s^p(a) = \Psi_s^{p_0}(a) \text{ for } s \in [p_0 - 2, p_0 -1]$.}
     \label{fig:max}
-\end{figure}    
-\end{remark}
+\end{figure}
 
+For the inequality, the calculations has as follows:
+\begin{align*}
+    \Psi_s^{p + 1} &=
+    {\sf a}_{1,2} + \cdots + {\sf a}_{1,p + 1} + (s-p) {\sf a_{1,p+2}} =\\
+    &= 
+    {\sf a}_{1,2} + \cdots + {\sf a}_{1,p + 1} + p\left(\frac{s}{p}-1\right) {\sf a_{1,p+2}} \geq\\
+    &\geq
+    {\sf a}_{1,2} + \cdots + {\sf a}_{1,p + 1} + \left(\frac{s}{p}-1\right) ({\sf a}_{1,2} + \cdots + {\sf a}_{1,p + 1}) =\\
+    &=
+    \frac{s}{p} J_{p}^u.
+\end{align*}
+
+\end{proof}
 \begin{remark}
-    The reason to consider the functional $\Psi_s^p, F_s$ will be apparent in \cref{ch:upper_bound}, where we prove that the Hasudorff dimension of the limit set is bounded above by the critical exponent of the Falconer functional.
+    The reason to consider the functionals $\Psi_s^p, F_s$ will be apparent in \cref{ch:upper_bound}, where we prove that the Hausdorff dimension of the limit set is bounded above by the critical exponent of the Falconer functional.
     There, we will see that the sums in the left-hand-side of the equality
 \begin{align*}
     \min_{p \in \llbracket 2, d \rrbracket} 
@@ -208,15 +385,31 @@ For the use of the unstable Jacobian $J_p^u$ we refer to \cref{sec:ProofStrategy
 
 As described in the begining of this section, some of the core objects that we will be working with are critical exponents and Hausdorff dimensions, which we recall below:
 \begin{definition}\index{critical exponent!of functional}
-Let $\phi \in \mathfrak a^*$ be a functional over the Cartan subalgebra.
-We define its critical exponent to be
+    \label{def:functional_critical_exponent}
+Let $\phi \in \mathfrak (a^+)^*$ be a functional over the Weyl chamber and $\Gamma \leq \SL(d, \mathbb R)$ a discrete subgroup.
+We define the critical exponent of $\phi$ over $\Gamma$ to be
 \[
-    h_\rho(\phi) = \inf
+    h_\Gamma(\phi) = \inf
     \left\{
-        s > 0: \sum_{\gamma \in \Gamma} e^{-\phi(\rho(\gamma))} < \infty
+        s > 0: \sum_{\gamma \in \Gamma} e^{-\phi(\gamma)} < \infty
     \right\}.
 \]    
 \end{definition}
+
+\begin{example}
+    \label{ex:critical_exponent}
+    \todo{Is this true for Cartan subalgebras of rank-1 Lie groups?}
+    Let $\Gamma$ be a uniform lattice of $\SO(1, d)$.
+    Then any functional $\phi \in \mathfrak a^*$ is of the form
+    \[
+        \phi(\mu(\gamma)) = d_\phi(\gamma \cdot o, o) 
+    \]
+    for some distance $d_\phi$ on $\mathbb H^d$.
+    In particular, fixing some $\phi \in \mathfrak a^*$ such that $d_\phi = d$, we have that
+    \[
+    h_\Gamma(\phi) = \delta_\Gamma.
+    \] 
+\end{example}
 
 When $\phi = F$ is the Falconer functional, we obtain the following special case (of projective Anosov representations, i.e.\ $P = {1}$) of a definition from \cite{ledrappier_dimension_2023}:
 \begin{definition}\index{Falconer!dimension}
@@ -230,7 +423,7 @@ When $\phi = F$ is the Falconer functional, we obtain the following special case
 \end{definition}
 
 Lastly, we recall the definition of the Hausdorff dimension:
-\begin{definition}\index{Hausdorff!dimension}
+\begin{definition}\index{Hausdorff!dimension}\label{def:hausdorff_dimension}
     Let $(X,\d)$ be a metric space and $A \subseteq X$ be a subset.
     We define the Hausdorff dimension of $A$ to be
     \[
@@ -248,62 +441,67 @@ Lastly, we recall the definition of the Hausdorff dimension:
     \]
 \end{definition}
 
+\section{Hausdorff measures and densities}\label{sec:measures_and_densities}
+\begin{definition}
+    Let $V \in \mathcal G_{p+1}{\mathbb R^d}$ and $l \in \mathbb P(V)$.
+    Using the canonical identification $T_l \mathbb P(V) \simeq \hom (l, V/l)$, we define the density $|\Omega_{l, V}|: \left( T_l \mathbb P(V) \right)^p \to \mathbb R^+$ by
+    \[
+        |\Omega_{l,V}|(\phi_1, \ldots, \phi_p) = 
+        \frac{\| v \wedge \tilde \phi_1(v) \wedge \cdots \wedge \tilde \phi_p (v) \|}{\|v\|^{p+1}}
+    \]
+    for any $v \in l - \{ 0\}$, where $\tilde \phi_1, \ldots \tilde \phi_p \in \hom(l, V)$ are such that $\phi_i = \tilde \phi_i + \hom(l, l)$ and $\| \cdot \|$ denotes the norm on $\bigwedge^{p+1} \mathbb R^d$ induced by the standard euclidean inner product.
+\end{definition}
+
+\todo{Add some theory on densities and show that the density on $\mathcal F_{1. p+1} (mathbb R^d)$ is $\mathbb SL(d, R)$ equivariant}
+
 
 \chapter{Upper bound}\label{ch:upper_bound}
-In this section we prove the upper bound of the Hausdorff dimension, namely that for a projective Anosov representation in $\SL(d, \mathbb R)$, the Hausdorff dimension of the limit set is bounded above by the Falconer dimension:
+In this section we prove the upper bound on the Hausdorff dimension, namely that for a projective Anosov representation in $\SL(d, \mathbb R)$, the Hausdorff dimension of the limit set is bounded above by the Falconer dimension:
+\begin{replemma}{lem:upper_bound}[Upper bound for dimension]
+    Let $\rho: \Gamma \to \SL(d, \mathbb R)$ be a projective Anosov representation. 
+    Then:
+    \[
+        \dim_{\mathcal H}(\xi^1 (\partial \Gamma) ) \leq h_{\rho(\Gamma)}(F).
+    \]
+\end{replemma}
+    
+The idea of the proof is to find a covering whose Hausdorff content is dominated by the Dirichlet series of some functional $\Psi_s^p$, which will in turn imply that $\dim_{\mathcal H}(\xi^1(\partial \Gamma)) \leq h_{\rho(\Gamma)}(\Psi^p) $.
+Choosing then the most ``effective'' cover (i.e.\ the one which yields the smallest Hausdorff content up to a constant) we obtain that
 \[
-\dim_{\mathcal H} (\xi_\rho^1(\partial \Gamma)) \leq h_\rho(F).
+    \dim_{\mathcal H}(\xi^1(\partial \Gamma)) \leq h_{\rho(\Gamma)}(F) = h_{\rho(\Gamma)} \left(\max_p \Psi^p \right)
 \]
-
-The idea of the proof of \cref{lem:upper_bound} is to find a covering whose Hausdorff content is dominated by the Dirichlet series of some functional $\Psi_s^p$, which will in turn imply that $\dim_H(\xi^1(\partial \Gamma)) \leq h_\rho(\Psi^p) $.
-Choosing then the most "effective" cover (i.e.\ the one which yields the smallest Hausdorff content up to a constant) we obtain that
+To obtain this we first cover $\xi^1(\partial \Gamma)$ by the shifted bassins of attraction $\rho(\gamma) \cdot B_{\alpha_1, \alpha} (\rho(\gamma))$ for $\gamma \in \Gamma$ satisfying $|\gamma| = T$.
+Then, for each $p \in \llbracket 2, d \rrbracket$, the set $\rho(\gamma) \cdot B_{\alpha_1, \alpha} (\rho(\gamma))$ is contained in an ellipsoid of axes lengths
 \[
-    \dim_H(\xi^1(\partial \Gamma)) \leq h_\rho(F) = h_\rho \left(\max_p \Psi^p \right)
+    \beta_2 = \frac{1}{\sin(\alpha)} \frac{\sigma_2}{\sigma_1}(\rho(\gamma)), \ldots, 
+    \beta_d = \frac{1}{\sin(\alpha)} \frac{\sigma_d}{\sigma_1}(\rho(\gamma)).
 \]
-To obtain this we first cover $\xi^1(\partial \Gamma)$ by the bassins of attraction $\rho(\gamma) \cdot B_{\alpha_1, \alpha} (\rho(\gamma))$ for $\gamma \in \Gamma$ satisfying $|\gamma| = T$.
-Then we cover each bassin by an ellipsoid of axes lengths
+which in turn is covered by roughly $\beta_2 \cdots \beta_{p-1}/\beta_p^{p-2}$ balls of radius $\sqrt{d-1} \beta_p$.
+Using this cover to bound the Hausdorff content of $\xi_\rho^1(\partial \Gamma)$, we obtain the bound
 \[
-    \frac{1}{\sin(\alpha)} \frac{\sigma_2}{\sigma_1}(\rho(\gamma)), \ldots, 
-    \frac{1}{\sin(\alpha)} \frac{\sigma_d}{\sigma_1}(\rho(\gamma)).
+    \mathcal H^s(\xi^1(\partial \Gamma)) \lesssim \sum_{|\gamma| = T} e^{-\Psi_s^p(\rho(\gamma))} \leq \sum_{|\gamma| = T} e^{-F_s(\rho(\gamma))}.
 \]
-Finally we cover each ellipsoid by balls of some fixed radius $r>0$.
-It can be shown by comparing the series appearing in the Hausdorff content of each resulting cover that the most "effective" choice of $r$ depends only on the Hausdorff exponent $s > 0$ and in any case will be to have $r$ equal (up to a constant) to the the length of an axis of the ellipsoid, i.e.\
-\[
-    r \in \left\{
-        \frac{1}{\sin(\alpha)} \frac{\sigma_2}{\sigma_1}(\rho(\gamma)), \ldots, 
-        \frac{1}{\sin(\alpha)} \frac{\sigma_d}{\sigma_1}(\rho(\gamma)).    
-    \right\}
-\]
-In particular, when $s \in [p-2, p-1]$, the most effective choice is $r = \sigma_p(\rho(\gamma))/\sigma_1(\rho(\gamma))$, whose Hausdorff content is dominated by the Dirichlet series of $\Psi_s^p$.
+If we assume that $s > h_{\rho(\Gamma)}(F)$, then the right-hand side of the inequality converges to zero as we let $T \to \infty$, which means that $\mathcal H^s(\xi_\rho^1(\partial \Gamma)) = 0$, giving us the desired bound.
+Finally for each $q \in \llbracket 2, d \rrbracket$, we cover each ellipsoid by balls of some of radius $\beta_q$.
 
 
 \section{Lemmata}
-\begin{definition}
-    Let $V$ be a finite-dimensional $\mathbb R$-vector space.
-    We consider a decomposition
-    \[
-        V = \mathbb R u_1 \bigoplus \cdots \bigoplus \mathbb R u_d
-    \] 
-    be a direct decomposition that is orthogonal with respect to a fixed inner-product over $V$.
-    Given $\beta_2 \geq \ldots \beta_d > 0$, we define an ellipsoid with axes $u_1 \oplus u_p(g)$ and lengths $\beta_p$ to be the image of
-    \[
-        \left\{
-            v = \sum_1^d v_i u_i\in V : \sum_2^d \left( \frac{v_j}{\beta_j} \right)^2 \leq 1
-        \right\}
-    \]
-    through the projection $ V \to \mathbb P (V)$.
-\end{definition}
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.4\textwidth]{ellipsoid.jpg}
-    \caption{Depiction in $\mathbb R^3$ of an ellipsoid of $\mathbb P(\mathbb R^2)$}
-    \label{fig:ellipsoid}
-\end{figure}    
-
-The following aims to be something along the lines of \cite*[Lemma 2.4]{pozzetti_anosov_2023}:
+To simplify the proof of the bound, we present a few preliminary facts in the form of lemmata, whose proofs constitute the matter of this section.
+Our first goal will be to obtain an open cover for the limit set using basins of attraction of elements in the Anosov subgroup at a fixed distance from the identity.
+It appears as \cite[Proposition 3.5]{pozzetti_anosov_2023}.
+\begin{lemma}\label{lem:boundary_covering}
+Let $\rho: \Gamma \to SL(d, \mathbb R)$ be projective Anosov.
+Then for $\alpha > 0$ small enough, there exists some $T_0 > 0$ such that for all $T \geq T_0$ the family
+\[
+    \mathcal U_T = \left\{ \rho(\gamma) B_{\alpha_1, \alpha}(\rho(\gamma)) : |\gamma| = T \right\}
+\]
+is an open covering of $\xi^1(\partial \Gamma)$.
+\end{lemma}
+To prove this, we will need the following lemma (\cite[Lemma 2.4]{pozzetti_anosov_2023}).
+It essentially tells us that if we evaluate an Anosov representation at two points of a geodesic passing from $e \in \Gamma$ that are far apart, then the attracting line at one point is uniformely (with respect to geodesics) far apart from the attracting hyperplane at the other point.
 \begin{lemma}\label{lem:angle}
     Let $\rho: \Gamma \to \SL(d, \mathbb R)$ be a projective Anosov representation.
-    For $\alpha > 0$ small enough, there exists $L>0$ such that for any geodesic ray $(a_j)_j$ through $e$ we have:
+    For $\alpha > 0$ small enough, there exists $T>0$ such that for any geodesic ray $(a_j)_{j \in \mathbb N}$ through $e$ we have:
     \[
         \angle(U_1(\rho(a_i)), U_{d-1}(\rho(a_0))) > \alpha
     \]
@@ -311,14 +509,14 @@ The following aims to be something along the lines of \cite*[Lemma 2.4]{pozzetti
 \end{lemma}
 \begin{proof}
 Assume the contrary for the shake of contradiction.
-Then (see Figure \ref{fig:angle} ) for each $n>0$ there exists a geodesic ray  $a^n$ through $e$ such that 
+Then (see Figure \ref{fig:angle} ) for each $n>0$, there exists a geodesic ray  $(a^n)_{j \in \mathbb N}$ through $e$ such that 
 \[
     |a_n^n|, |a_0^n| > n \text{ and }
     \angle(U_1(\rho(a_n^n)), U_{d-1}(\rho(a_0^n))) < \frac{1}{n}.
 \]
 Due to compactness of $\Gamma \cup \partial \Gamma$ we can find some subsequence  ${k_n}$ and $x,y \in \partial \Gamma$ such that $a^{k_n}_{k_n} \to x$, $a^{k_n}_0 \to y$.
 Since there exists a geodesic joining $a_{k_n}^{k_n}, a_0^{k_n}$ passing from $e$, we also know that $x\neq y$.
-Also, the limit map being dynamics preserving, we have that
+Also, the limit map being continuous (\cref{thm:boundary_map}), we have that
 \[
     \angle (\xi^1(x), \xi^{d-1}(y)) = 0,
 \]
@@ -330,17 +528,8 @@ which contradicts its transversality property.
     \caption{Situation in \cref{lem:angle}}
     \label{fig:angle}
 \end{figure}    
-
-The following is \cite[Proposition 3.5]{pozzetti_anosov_2023}.
-\begin{lemma}\label{lem:boundary_covering}
-Let $\rho: \Gamma \to SL(d, \mathbb R)$ be projective Anosov.
-Then for $\alpha > 0$ small enough, there exists some $T_0 > 0$ such that for all $T \geq T_0$ the family
-\[
-    \mathcal U_T = \left\{ \rho(\gamma) B_{\alpha_1, \alpha}(\rho(\gamma)) : |\gamma| = T \right\}
-\]
-is an open covering of $\xi^1(\partial \Gamma)$.
-\end{lemma}
-\begin{proof}
+We may now proceed with the proof of \cref{lem:boundary_covering}:
+\begin{proof}[Proof of \cref{lem:boundary_covering}]
     Let $\alpha, T > 0$ be as in the statement of \cref{lem:angle} and $x \in \partial \Gamma$ be represented by a geodesic ray $(\gamma_j)_{j\geq 0}$ starting from $e$.
     Then $(\gamma_T^{-1} \gamma_j)_j$ is a geodesic ray starting from $(\gamma_T)^{-1}$ that passes through $e$, so
     \[
@@ -354,20 +543,69 @@ is an open covering of $\xi^1(\partial \Gamma)$.
     and thus $\xi^1(x) \in \rho(\gamma_T) \cdot B_{\alpha_1, \alpha}(\rho(\gamma_T))$.
 \end{proof}
 
-The following is \cite[Proposition 3.8]{pozzetti_anosov_2023}.
+The next step will be to cover each of the sets in $\mathcal U_T$ by ellipsoids in the projective space, which are merely the projectivisation of the usual ellipsoids in $\mathbb R^d$.
+Note that while in the case of the latter, the axes are lines (for instance $\mathbb Re_1, \ldots, \mathbb Re_d$), their projective analogue should be planes (for instance $\mathbb R u_1 \oplus \mathbb R u_2, \ldots \mathbb R u_1 \oplus \mathbb R u_d$).
+\todo{Does this clarifying comment on the axes of the ellipsoid help?}
+\begin{definition}\index{ellipsoid}
+    Let $V$ be a finite-dimensional $\mathbb R$-vector space.
+    We consider a decomposition
+    \[
+        V = \mathbb R u_1 \bigoplus \cdots \bigoplus \mathbb R u_d
+    \] 
+    that is orthogonal with respect to a fixed inner-product over $V$.
+    Given $\beta_2 \geq \ldots \beta_d > 0$, we define an ellipsoid with axes $\left(u_1 \oplus u_p\right)_{p \in \llbracket 2, d \rrbracket}$ and lengths $(\beta_p)_{p \in \llbracket 2, d \rrbracket}$ to be the image of
+    \[
+        \left\{
+            v = \sum_1^d v_i u_i\in V : \sum_2^d \left( \frac{v_j}{\beta_j} \right)^2 \leq 1
+        \right\}
+    \]
+    through the projection $ V \to \mathbb P (V)$.
+\end{definition}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{ellipsoid.jpg}
+    \caption{Depiction in $\mathbb R^3$ of an ellipsoid of $\mathbb P(\mathbb R^2)$}
+    \label{fig:ellipsoid}
+\end{figure}
+\todo{Correct ellipsoid drawing}
+When we want to distinguish between the projective ellipsoid of the above definition and the usual ellipsoid in $\mathbb R^d$, we will refer to the latter as a euclidean ellipsoid.
+When there is no ambiguity, we will simply refer to the projective ellipsoid as an ellipsoid.
+
+The following is \cite[Proposition 3.8]{pozzetti_anosov_2023} and tells us that each set of the covering $\mathcal U_T$ from \cref{lem:boundary_covering} is contained in a projective ellipsoid, whose axes correspond to the axes of the euclidean ellipsoid $g \cdot \mathbb S^{d-1}$, and whose axes depend on the singular values of $g$.
+Recalling the discussion preceeding \cref{def:anosov}, it should not come as a surprise since the bassin of attraction is a set of flags that are streched and contracted at a uniform degree under the action of $g$.
 \begin{proposition}\label{prop:basin_covering}
-For each $g\in \SL(d, \mathbb R), \alpha > 0$, 
-the basin of attraction $g \cdot B_{\alpha_1, \alpha}(g)$ lies in the ellipsoid with axes $u_1(g) \oplus u_p(g)$ with lengths
+Let $g \in \SL(d, \mathbb R), \alpha > 0$, fix a Cartan decomposition $g = k_g e^{\mu(g)} l_g$ and consider the corresponding choice of axes $u_i(g) = k_g e_i, u_i(g^{-1}) = l_g^{-1} e_{d-i+1}$ for $i \in \llbracket 1, d \rrbracket$, along with the respective flags $U_i(g), U_i(g^{-1})$.
+Denoting with
+\[
+B_{{\sf a_1}, \alpha}(g) = \left\{ x \in \mathbb P(\mathbb R^d) : \angle(x, U_{d-1}(g^{-1})) > \alpha \right\}
+\]
+the bassin of attraction of $g$, the set $g \cdot B_{{\sf a_1}, \alpha}(g)$ lies in the ellipsoid with axes $\left(u_1(g) \oplus u_p(g)\right)_{p \in \llbracket 2, d \rrbracket}$ of lengths
 \[
     \frac{1}{\sin \alpha} \cdot \frac{\sigma_p(g)}{\sigma_1(g)}
 \]
 \end{proposition}
 \begin{proof}
-Using the definition of the basin of attraction (see \cref{fig:projection} ), we have that $w = w_1 u_1(g^{-1}) + \cdots + w_d u_d(g^{-1}) \in B_{\alpha_1, \alpha}(g)$ if and only if
+Using the definition of the basin of attraction (see \cref{fig:projection} ), for $w \in \mathbb R^d$, we have (up to considering $-w$ instead of $w$) that: 
+\[
+\angle(\mathbb R w, U_{d-1}(g^{-1})) = \angle(w, w') = \frac{|w_d|}{|w|},
+\]
+when
+\begin{align*}
+    w &= w_1 u_1(g^{-1}) + \cdots + w_d u_d(g^{-1})\\
+    &= w_1 l_g^{-1} e_c(g) + \cdots + w_d l_g^{-1} e_1(g)\\
+\end{align*}
+and
+\begin{align*}
+    w' &= w - w_d u_d(g^{-1}) =\\
+    &= w_1 u_1(g^{-1}) + \cdots + w_{d-1} u_{d-1}(g^{-1})\\
+    &= w_d l_g^{-1} e_1(g) + \cdots + w_1 l_g^{-1} e_{d-1}(g).
+\end{align*}
+Then $\mathbb R w \in B_{\alpha_1, \alpha}(g)$ if and only if
 \[
     w_d^2 \geq (\sin \alpha)^2 \sum_1^d w_i^2.
 \]
-Considering now some $v = v_1 u_1(g) + \cdots + v_d u_d(g) \in g \cdot B_{\alpha_1, \alpha}(g)$
+Considering now some $v = v_1 u_1(g) + \cdots + v_d u_d(g)$ such that 
+$\mathbb R v \in g \cdot B_{\alpha_1, \alpha}(g)$
 we have that
 \begin{align*}
     w = g^{-1} v &= v_1 \sigma_1(g)^{-1} l_g^{-1} e_1(g) + \cdots v_d \sigma_d(g)^{-1} l_g^{-1} e_d(g)\\
@@ -378,24 +616,29 @@ Hence
 \[
     \sigma_1(g)^{-2} \cdot v_1^2 \geq (\sin a)^2 \sum_1^d \sigma_i(g)^{-2} v_i^2.
 \]
+Since the only condition on $v$ is that the line through $v$ lies in $g \cdot B_{\alpha_1, \alpha}(g)$, we may choose $v$ such that $v_1 = \sigma_1(g)$.
+Indeed, the only case that this would not be possible is when 
+$$v \in \mathbb R(u_2(g) \oplus \cdots u_d(g)) = g U_{d-1}(g^{-1}), $$
+which is not possible since this would imply that $g^{-1} v \in U_{d-1}(g^{-1})$.
+Thus, the inequality above becomes precisely the condition for $\mathbb R w$ to lie in the projective ellipsoid.
 \end{proof}
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.4\textwidth]{projection.jpg}
+    \includegraphics[width=0.6\textwidth]{projection.jpg}
     \caption{Aid for \cref{prop:basin_covering}}
     \label{fig:projection}
 \end{figure}
 
 The following is \cite[Lemma 3.7]{pozzetti_anosov_2023}:
 \begin{lemma}\label{lem:ellipsoid_covering}
-For any $p \in \llbracket 2, d \rrbracket$, an ellipsoid in $\mathbb P(\mathbb R^d)$ of axes lengths $\beta_2, \cdots, \beta_d$ is covered by
+For any $p \in \llbracket 2, d \rrbracket$, an ellipsoid in $\mathbb P(\mathbb R^d)$ of axes lengths $\beta_2 \geq \cdots \geq \beta_d$ is covered by
 \[
     2^{p - 2} \frac{\beta_2 \cdots \beta_{p-1}}{\beta_p^{p-2}}
 \]
 many (projected) balls of radius $\sqrt{d-1} \beta_p$.
 \end{lemma}
 \begin{proof}
-We assume that $E$ is an ellipsoid about $\mathbb R e_1$, so it suffice to cover its intersection $E_1 = E \cap U_1 \subseteq \mathbb R^{d-1}$ with the affine chart $U_1 = \{ [x_1: \ldots, x_d ] \in \mathbb P(\mathbb R^d) : x_1 \neq 0 \}$.
+We assume that $E$ is an ellipsoid about $\mathbb R e_1$, so it suffices to cover its intersection $E_1 = E \cap U_1 \subseteq \mathbb R^{d-1}$ with the affine chart $U_1 = \{ [x_1: \ldots, x_d ] \in \mathbb P(\mathbb R^d) : x_1 \neq 0 \}$.
 Clearly $E_1 \subseteq [-\beta_2, \beta_2] \times \ldots \times [-\beta_d, \beta_d]$, so we proceed by covering the rectangle with side-lengths $2\beta_2, \ldots, 2\beta_d$.
 Clearly each interval $(-\beta_j, \beta_j)$ is contained in the union of $\lceil \beta_j/\beta_p \rceil$ intervals of length $2\beta_p$, thus $E_1$ is contained in the union of
 \[
@@ -411,7 +654,8 @@ Since each such product is contained in a $(d-1)$-ball of radius $\sqrt{d-1} \be
 many $(d-1)$-balls of radius $\sqrt{d-1}\beta_p$ to cover $E_1$.
 \end{proof}
 
-The following can be found in \cite[Proposition 3.3]{pozzetti_anosov_2023}:
+The following can be found in \cite[Proposition 3.3]{pozzetti_anosov_2023}.
+It will not be used until \cref{ch:upper_bound}, but we include it here to stress the fact that (similarly to all results of this chapter and in contrast to the next one) it holds for any projective Anosov representation, without any more assumptions (like Zariski-density of the subgroup or regularity of the limit set).
 \begin{proposition}\label{prop:shadows}
     Let $\rho: \Gamma \to SL(d, \mathbb R)$ be projective Anosov and $\alpha > 0$
     Then there exist $c_0, c_1 > 0$ that depends only on $\alpha$ and $\rho$ such that for all $\gamma \in \Gamma$:
@@ -439,7 +683,7 @@ The following can be found in \cite[Proposition 3.3]{pozzetti_anosov_2023}:
         \geq
         \sin \alpha - Ce^{-\mu j}
     \end{align*}
-    which along with the uniform continuity of $\xi^1: \Gamma \cup \partial \Gamma \to \mathbb P(\mathbb R^d)$ this implies there exists some $\alpha' > 0$ and $L>0$ such that for all $j\geq L$:
+    which along with the uniform continuity of $\xi^1: \Gamma \cup \partial \Gamma \to \mathbb P(\mathbb R^d)$ implies that there exists some $\alpha' > 0$ and $L>0$ such that for all $j\geq L$:
     \[
         d(a_j, \gamma^{-1}) \geq \alpha'.
     \]
@@ -448,9 +692,9 @@ The following can be found in \cite[Proposition 3.3]{pozzetti_anosov_2023}:
     Using a coarse geometric arguement, we can show that for all $j \geq L$
     \[
         d(\gamma^{-1}, a_j) > \alpha' \Rightarrow
-        d([\gamma^{-1}, a_j], e) < \alpha''
+        d_{\mathcal H}([\gamma^{-1}, a_j], e) < \alpha''
     \]
-    for some $\alpha''$ that depends only on $\Gamma$ and $\alpha'$, where $[a_j, \gamma^{-1}]$ denotes any geodesic segment connecting $\gamma^{-1}$ and $a_j$.
+    for some $\alpha''$ that depends only on $\Gamma$ and $\alpha'$, where $[a_j, \gamma^{-1}]$ denotes any geodesic segment connecting $\gamma^{-1}$ and $a_j$, and $d_\mathcal H$ denotes the Hausdorff distance between sets.
     Indeed, \cite[Lemme 2.17]{ghys2013groupes} states that 
     $d([\gamma^{-1}, a_j]) \leq (\gamma_j^{-1}, a_j)_e + \delta$
     where $\delta$ is the hyperbolicity constant of $\Gamma$.
@@ -507,7 +751,7 @@ We are now ready to prove the upper bound of the Hausdorff dimension of the limi
 Let $\rho: \Gamma \to \SL(d, \mathbb R)$ be a projective Anosov representation. 
 Then:
 \[
-    \dim_{\mathcal H}(\xi^1 (\partial \Gamma) ) \leq \dim_F(\rho).
+    \dim_{\mathcal H}(\xi^1 (\partial \Gamma) ) \leq h_{\rho(\Gamma)}(F).
 \]
 \end{lemma}
 
@@ -519,7 +763,7 @@ Then using \cref{prop:basin_covering}, \cref{lem:boundary_covering}, and \cref{l
 \]
 and that each basin $\rho(\gamma) B_{\alpha_1, \alpha}(\rho(\gamma))$ is in turn covered by
 \[
-    2^{p-2} \cdot \frac{\sigma_p(g)^{p-2}}{\sigma_2(g) \cdots \sigma_{p-1}(g)}
+    2^{p-2} \cdot \frac{\sigma_2(g) \cdots \sigma_{p-1}(g)}{\sigma_p(g)^{p-2}}
 \]
 many balls of radius
 \[
@@ -529,7 +773,7 @@ By the definition of the Hausdorff measure, for $s \geq 0$:
 \begin{align*}
     \mathcal H^s(\xi^1(\partial \Gamma)) &\leq
     \sum_{|\gamma| = T}
-        2^{2p+1} \cdot 
+        2^{p-2} \cdot 
         \frac{\sigma_2(\rho(\gamma))}{\sigma_1(\rho(\gamma))} \cdots 
             \frac{\sigma_{p-1}(\rho(\gamma))}{\sigma_1(\rho(\gamma))}
         \left(
@@ -539,7 +783,7 @@ By the definition of the Hausdorff measure, for $s \geq 0$:
             \sqrt{d-1} \frac{1}{\sin \alpha} \frac{\sigma_p(\rho(\gamma))}{\sigma_1(\rho(\gamma))}
         \right)^s =\\
         &=
-        2^{2p+1} \cdot \left( \frac{\sqrt{d-1}}{\sin \alpha}\right)^s  
+        2^{p-2} \cdot \left( \frac{\sqrt{d-1}}{\sin \alpha}\right)^s  
         \sum_{|\gamma| = T} 
         \frac{\sigma_2(\rho(\gamma))}{\sigma_1(\rho(\gamma))} \cdots 
             \frac{\sigma_{p-1}(\rho(\gamma))}{\sigma_1(\rho(\gamma))}
@@ -547,22 +791,22 @@ By the definition of the Hausdorff measure, for $s \geq 0$:
             \frac{\sigma_p(\rho(\gamma))}{\sigma_1(\rho(\gamma))}
         \right)^{s-(p-2)} =\\
         &=
-        2^{2p+1} \cdot \left( \frac{\sqrt{d-1}}{\sin \alpha}\right)^s  
+        2^{p-2} \cdot \left( \frac{\sqrt{d-1}}{\sin \alpha}\right)^s  
         \sum_{|\gamma| = T}
         e^{-\left( \alpha_{1 2} + \ldots + \alpha_{1 (p-1)} + (s - (p-2))\alpha_{1 p} \right)\rho(\gamma)}\\
         &=
-        2^{2p+1} \cdot \left( \frac{\sqrt{d-1}}{\sin \alpha}\right)^s  
+        2^{p-2} \cdot \left( \frac{\sqrt{d-1}}{\sin \alpha}\right)^s  
         \sum_{|\gamma| = T}
         e^{-\Psi_s^p(\rho(\gamma))}
 \end{align*}
 and thus
 \begin{align*}
     \mathcal H^s(\xi^1(\partial \Gamma)) \leq
-    2^{2p+1} \cdot \left( \frac{\sqrt{d-1}}{\sin \alpha}\right)^s
+    2^{p-2} \cdot \left( \frac{\sqrt{d-1}}{\sin \alpha}\right)^s
     \sum_{|\gamma| = T}
     e^{-\max_p \Psi_s^p(\rho(\gamma)) }\lesssim \sum_{|\gamma| = T} e^{-F_s(\rho(\gamma))}.
 \end{align*}
-To see that the above implies the upper bound, consider some $s > \dim_F(\rho)$.
+To see that the above implies the upper bound, consider some $s > h_{\rho(\Gamma)}(F)$.
 By the definition of the Falconer dimension, this implies that the Dirichlet series corresponding to the Falconer functional converges:
 \[
     \sum_{\gamma \in \Gamma} e^{-F_s(\rho(\gamma))} < \infty
@@ -570,13 +814,26 @@ By the definition of the Falconer dimension, this implies that the Dirichlet ser
 and in particular
 \[
     \mathcal H^s(\xi^1(\partial \Gamma)) \leq 
-    \lim_{T \to \infty} e^{-F_s(\rho(\gamma))} = 0.
+    \lim_{T \to \infty} \sum_{|\gamma| = T} e^{-F_s(\rho(\gamma))} = 0.
 \]
 \end{proof}
 
+Looking again at the proof above, one could wonder whether the cover of the ellipsoid with axes $\beta_2, \cdots, \beta_d$ by balls of radius $\sqrt{d-1} \beta_p$ is optimal, in the sense that it gives the smallest Hausdorff content.
+To show that this is the case, consider the cover by balls of radius $r>0$. 
+This yields bounds of the form $\mathcal H^s(\xi_\rho^1(\partial \Gamma)) \lesssim \Phi_{r,s}$, where
+\[
+\Phi_{r,s} = \begin{cases}
+    \sum_{|\gamma| = T} r^s, \text{ for } r > \beta_2\\
+    \sum_{|\gamma| = T}  \frac{\beta_2 \cdots \beta_{p-1}}{r^{p-2}}  r^s, \text{ for } \beta_{p-1} < r < \beta_p, p \in \llbracket 3, d \rrbracket\\
+    \vdots\\
+    \sum_{|\gamma| = T}  \frac{\beta_2 \cdots \beta_{d}}{r^{d-1}} r^s, \text{ for } 0 < r < \beta_d.
+\end{cases}
+\]
+The opimality of $r = \beta_p$ can be seen that for $s \in [0,1], \Phi_{r,s}$ is increasing in $[\beta_2, \infty]$, and decreasing in $[0, \beta_2]$, so it is minimized as a function of $r$ for $r = \beta_2$, and thus gives the optimal Hausdroff content when $s \in [0,1]$.
+Proceeding similarly, we see that the analogue holds for each of the other intervals as well.
 
 \chapter{Lower bound}\label{ch:lower_bound}
-\section{Busemann cocyle and Patterson-Sullivan measures}
+\section{Busemann cocyle and Patterson--Sullivan measures}
 We denote with $\Pi$ the set of simple positive roots, and for $\Theta \subseteq \Pi$ we consider the Levi-Anosov subspace of $\mathfrak a$
 \[
     \mathfrak a_\Theta = \bigcap_{\alpha \notin \Theta} \ker \alpha,
@@ -591,9 +848,12 @@ which in particular admits $\{ \omega_{\alpha_i} : \alpha_i \in \Theta \}$ as a 
     \[
     g k \in K e^{b(g, k P_\Theta)} N.
     \]
+    \todo{Correct the definition of the Busemann cocycle\\
+    (see \cite{quint2002mesures} Lemme 6.1)\\
+    Then add proof for \cref{lem:busemann_weight}}
     where $N = \{ n \in \SL(d, \mathbb R) : n_{ij} = 0 \text{ for } i > j, n_{ii} = 1 \text{ for all } i \}$ is the unipotent group of upper subgroup of upper triangular matrices with $1$s on the diagonal, and $P_\Theta$ is the parabolic subgroup of $\PSL(d, \mathbb R)$ corresponding to $\Theta$, i.e.\ $\mathcal F_\Theta = \PSL(d, \mathbb R)/P_\Theta$.
 \end{definition}
-\begin{lemma}
+\begin{lemma}\label{lem:busemann_weight}
 For $y \in \mathcal F_\Theta(\mathbb R^d)$ we have    
 \[
     \omega_{\alpha_i}(b_\Theta(g, x)) =
@@ -604,6 +864,7 @@ for any basis $v_1, \ldots, v_i$ of $x^i \in \mathcal G_i(\mathbb R^d)$, where $
 i.e.\ $ \langle v_1 \wedge \cdots \wedge v_k, w_1 \wedge \cdots \wedge w_k \rangle := \det(\langle v_i, w_j \rangle)$.
 \end{lemma}
 
+
 \begin{definition}
     We define
     \[
@@ -612,7 +873,7 @@ i.e.\ $ \langle v_1 \wedge \cdots \wedge v_k, w_1 \wedge \cdots \wedge w_k \rang
     \]
     as
     \[
-    \Lambda^k(g)(v_1 \wedge \cdots \wedge v_k) = g v_1 \wedge \cdots \wedge g v_k
+    \Lambda^k(g)(v_1 \wedge \cdots \wedge v_k) = g v_1 \wedge \cdots \wedge g v_k,\quad
     \Lambda^k(\mathbb R v_1 \oplus \cdots \mathbb R v_k) =  v_1 \wedge \cdots \wedge v_k
     \]
 \end{definition}
@@ -654,11 +915,11 @@ i.e.\ $ \langle v_1 \wedge \cdots \wedge v_k, w_1 \wedge \cdots \wedge w_k \rang
         \item Follows from the definition of the Cartan projection and the Busemann cocycle.
     \end{enumerate}
 \end{proof}
-\begin{definition}\index{Patterson-Sullivan measure}
-    For a discrete subgroup $\Gamma < \PSL(d, \mathbb R), \phi \in (\alpha_\Theta)^*$,
-    a $(\Gamma, \phi)$-Patterson Sullivan measure on $\mathcal F_\Theta$ is a finite Radon measure $\mu$ such that for every $\gamma \in \Gamma$
+\begin{definition}\index{Patterson--Sullivan measure}
+    For a discrete subgroup $H < \PSL(d, \mathbb R), \phi \in (\alpha_\Theta)^*$,
+    a $(\Gamma, \phi)$-Patterson Sullivan measure on $\mathcal F_\Theta$ is a finite Radon measure $\mu$ such that for every $h \in H$
     \[
-        \frac{\d\gamma_* \mu}{\d\mu}(x) = e^{-\phi(b_\Theta(g^{-1},x))}, \text{ for all } x \in \mathcal F_\Theta(\mathbb R^d).
+        \frac{\d h_* \mu}{\d\mu}(x) = e^{-\phi(b_\Theta(h^{-1},x))}, \text{ for all } x \in \mathcal F_\Theta(\mathbb R^d).
     \]
 \end{definition}
 
@@ -670,7 +931,7 @@ There exists $K = K(\alpha) > 0$ such that for each $g \in \SL(d, \mathbb R), \s
 \]
 \end{lemma}\begin{proof}
 We begin by noting that it suffices to consider the case where $\phi = {\sf a}_k$
-for $\sf a_k \in \Theta$, since $\{ \omega_i \}_{\sf a_i \in \Theta} $ 
+for ${\sf a}_k \in \Theta$, since $\{ \omega_i \}_{{\sf a}_i \in \Theta} $ 
 is a basis for $\mathfrak a_\Theta^*$.
 
 We first consider the case where $k=1$.
@@ -702,139 +963,159 @@ Then using the case $k=1$ we have that
 \end{proof}
 
 \section{Proof strategy}\label{sec:ProofStrategy}
-Denoting with $d_\Gamma = \dim_{\mathcal H} \xi_\rho^1(\partial \Gamma)$ the Hausdorff  dimension of the limit set, we shall outline how to obtain its lower bound by the Falconer dimension
+Denoting with $d_\rho = \dim_{\mathcal H} \xi_\rho^1(\partial \Gamma)$ the Hausdorff  dimension of the limit set, we shall outline how to obtain its lower bound by the Falconer dimension
 \[
-    d_\Gamma \geq h_\rho(F).
+    d_\rho \geq h_{\rho(\Gamma)}(F).
 \]
 
-First we recall that $F_s(a) = \max \{ \Psi_s^p(a) : p \in \llbracket 2, d \rrbracket\}$ and in particular $h_\rho(F) \leq h_\rho(\Psi^{d_\Gamma + 1})$.
-Thus the lower bound will follow once we have shown that
-$$d_\Gamma \geq h_\rho(\Psi^{d_\Gamma + 1}).$$
+First we recall that $F_s(a) = \max \{ \Psi_s^p(a) : p \in \llbracket 2, d \rrbracket\}$,
+so the lower bound will follow once we have shown that
+$$d_\rho \geq h_{\rho(\Gamma)}(\Psi^{d_\rho + 1}),$$
+since $h_{\rho(\Gamma)}(F) \leq h_{\rho(\Gamma)}(\Psi^{d_\rho + 1})$.
 
-Noting that $\frac{s}{d_\Gamma} J_{d_\Gamma}^u \leq \Psi_{s+d_\Gamma}^{d_\Gamma + 1}$, the above bound will follow as soon as we have shown that
+But in \cref{lem:functional_relations}, we showed that $\frac{s}{d_\rho} J_{d_\rho}^u \leq \Psi_{s+d_\rho}^{d_\rho + 1}$, so the above bound will follow as soon as we have shown that
 \begin{equation}\label{eq:JacobianBound}
-    h_\rho(J_{d_\Gamma}) \leq 1.\tag{LB}
+    h_{\rho(\Gamma)}(J_{d_\rho}) \leq 1.\tag{LB}
 \end{equation}
-To obtain inequality (\ref{eq:JacobianBound}), one uses the method of Patterson-Sullivan-Quint, which may be summed up in
-\begin{align*}
-    \text{There exists a } (\phi, \rho)\text{-Patterson-Sullivan measure on } \mathcal F_\Theta(\mathbb R^d) 
-    \Rightarrow h_\rho(\phi) \leq 1,
-\end{align*}
-where $\phi \in \mathfrak a_\Theta$ and $ \Theta \subseteq \Pi$.
-The property that we will need of our measure is that there exists a collection of open sets ${U_\gamma}_\gamma \in \Gamma$ such that
+which will be obtained using the method of Patterson--Sullivan-Quint.
+To apply the latter, apart from showing the existance of a $(J_{d_\rho}^u, \rho)$-Patterson--Sullivan measure $\mu$, we will also need to show that there exists a collection of open sets $\{U_\gamma\}_\gamma \in \Gamma$ such that
 \begin{align*}\label{eq:GoodMeasure}
-    \mu(U_\gamma) \sim e^{-J_{d_\Gamma}^u(a(\rho(\gamma)))} \text{ and } 
-    M := \sup_{n \in \mathbb N}
+    \mu(U_\gamma) \sim e^{-J_{d_\rho}^u(a(\rho(\gamma)))} \text{ and } 
+    M \equaldef \sup_{n \in \mathbb N}
     \max
     \left\{\sharp A : A \subseteq \Gamma_n,  \bigcap_{\gamma \in A}U_\gamma \neq \emptyset \right\} < \infty\tag{MP}
 \end{align*}
 where $\Gamma_n = \{ \gamma \in \Gamma : |\gamma| = n \} $.
-For the proof of the existence of a $(J_{d_\Gamma}^u, \rho)$-Patterson-Sullivan measure that satisfies the property (\ref{eq:GoodMeasure}) we refer to \cref{sec:MeasureExistence}, noting that the Zariski-density assumption is necessary only for the equivalence appearing on the left hand side of \cref{eq:GoodMeasure}.
-Assuming that for the time being, below we outline the Patterson-Sullivan-Quint method of obtaining \cref{eq:JacobianBound}.
+For the proof of the existence of a $(J_{d_\rho}^u, \rho)$-Patterson--Sullivan measure that satisfies the property (\ref{eq:GoodMeasure}) we refer to \cref{sec:MeasureExistence}, noting that the Zariski-density assumption is necessary only for the equivalence appearing on the left hand side of \cref{eq:GoodMeasure}.
+Assuming that for the time being, below we outline the Patterson--Sullivan-Quint method of obtaining \cref{eq:JacobianBound}.
 
 Indeed, we first obtain the uniform in $n$ bound:
 \begin{align*}
     \sum_{\gamma \in \Gamma_n}
-    e^{-J_{d_\Gamma}^u(a(\rho(\gamma)))} \lesssim
+    e^{-J_{d_\rho}^u(a(\rho(\gamma)))} \lesssim
     \sum_{\gamma \in \Gamma_n}
     \mu(U_\gamma) \leq \frac{1}{M} \mu(\mathcal F_\Theta(\mathbb R^d)) < \infty
 \end{align*}
 along with the bound implied by the Anosov property of $\rho$:
 \begin{align*}
-J_{d_\Gamma}(a(\rho(\gamma))) \geq \mathsf a_{12} (a(\rho(\gamma))) \geq C|\gamma| - b
+J_{d_\rho}(a(\rho(\gamma))) \geq \mathsf a_{12} (a(\rho(\gamma))) \geq C|\gamma| - b
 \end{align*}
 to conclude that
 \begin{align*}
-\sum_{\gamma \in \Gamma} e^{-(s+1)J^u_{d_\Gamma}(a(\rho(\gamma)))} &=
-\sum_{n\geq 0} \sum_{\gamma \in \Gamma_n} e^{-s J^u_{d_\Gamma}(a(\rho(\gamma)))}
-    e^{-J^u_{d_\Gamma}(a(\rho(\gamma)))} \lesssim
+\sum_{\gamma \in \Gamma} e^{-(s+1)J^u_{d_\rho}(a(\rho(\gamma)))} &=
+\sum_{n\geq 0} \sum_{\gamma \in \Gamma_n} e^{-s J^u_{d_\rho}(a(\rho(\gamma)))}
+    e^{-J^u_{d_\rho}(a(\rho(\gamma)))} \lesssim
 \sum_{n\geq 0} e^{-s(Cn - b)} < \infty
 \end{align*}
 which holds for any $s>0$, and thus \cref{eq:JacobianBound} holds.
 
-\section{Existence of Patterson-Sullivan measure}\label{sec:MeasureExistence}
-\begin{definition}
-    Let $V \in \mathcal G_{p+1}{\mathbb R^d}$ and $l \in \mathbb P(V)$.
-    Using the canonical identification $T_l \mathbb P(V) \simeq \hom (l, V/l)$, we define the density $|\Omega_{l, V}|$ on $\bigwedge^p T_l \mathbb P(V)$ by
-    \[
-        |\Omega_{l,V}|(\phi_1, \ldots, \phi_p) = 
-        \frac{\| v \wedge \tilde \phi_1(v) \wedge \cdots \wedge \tilde \phi_p (v) \|}{\|v\|^{p+1}}
-    \]
-    for any $v \in l - \{ 0\}$, where $\tilde \phi_1, \ldots \tilde \phi_p \in \hom(l, V)$ are such that $\phi_i = \tilde \phi_i + \hom(l, l)$ and $\| \cdot \|$ denotes the norm on $\bigwedge^{p+1} \mathbb R^d$ induced by the euclidean inner product.
-\end{definition}
+\section{Existence of Patterson--Sullivan measure}\label{sec:MeasureExistence}
+Let $\rho:\Gamma \to \SL(d, \mathbb R)$ be a projective Anosov representation such that $\xi^1_\rho(\partial \Gamma)$ is a Lipschitz submanifold of dimension $d_\rho$.
+A naive approach would be to attempt to construct a Patterson--Sullivan measure over the limit set $\xi^1_\rho(\partial \Gamma)$.
+However, complications can arise in the Lipschitz regularity case, because the limit set does not admit a well-defined tangent space at every point.
+To overcome this difficulty, proceed as follows.
+To almost every $\xi \in \xi_\rho^1(\partial \Gamma)$, we have a well-defined tangent space $T_\xi \xi_\rho^1(\partial \Gamma)$.
+The latter, being a subspace of the tangent space $T_\xi(\mathbb P(\mathbb R^d))$ to the projective space $\mathbb P(\mathbb R^d)$, can be seen as the projectivisation (or a hyperplane) of a subspace of $\mathbb R^d$.
+In this way we can associate to almost every $\xi \in \xi_\rho^1(\partial \Gamma)$ an element of the flag space $\mathcal F_{1, d_\rho + 1}(\mathbb R^d)$, thus defining a measurable section $\zeta_\rho$.
+Restricting the density over the flag space defined in \cref{sec:measures_and_densities}, we obtain an almost every where defined density
+\[
+    \xi \mapsto |\Omega_{\zeta_\rho(\xi)}|.
+\]
 
 The following is \cite[Proposition 6.4]{pozzetti_anosov_2023}:
 \begin{proposition}\label{prop:PSMeasureExists}
-Assume that $\xi^1_\rho(\partial \Gamma)$ is a Lipschitz submanifold of dimension $d_\Gamma$.
-Then there exists a $(\rho(\Gamma), J_{d_\Gamma}^u)$-Patterson-Sullivan measure on $\mathcal F_{1,d_\Gamma + 1}(\mathbb R^d)$.
-\end{proposition}
+    Let $\rho: \Gamma \to \SL(d, \mathbb R)$ be a projective Anosov representation, and assume that that $\xi^1_\rho(\partial \Gamma)$ is a Lipschitz submanifold of dimension $d_\rho$.
+    Then there exists a $(\rho(\Gamma), J_{d_\rho}^u)$-Patterson--Sullivan measure on $\mathcal F_{1,d_\rho + 1}(\mathbb R^d)$, which is supported on the image of a $\rho$-equivariant measurable section
+    \[
+    \zeta_\rho: \xi_\rho^1(\partial \Gamma) \to \mathcal F_{1, d_\rho + 1}(\mathbb R^d)
+    \]
+    of the projection $\mathrm{pr}_1: \mathcal F_{1, d_\rho + 1}(\mathbb R^d) \to \mathbb P(\mathbb R^d)$.
+\end{proposition}\todo{Why do we construct a measure over $\mathcal F_{1,d_\rho + 1}(\mathbb R^d)$ and not the limit set? We had talked about it but I forgot.}
 \begin{proof}
     By Rademacher's theorem, $\xi^1_\rho(\partial \Gamma)$ has a well-defined Lebesgue measure class, and Lebesgue-almost every $\xi^1_\rho(x) \in \xi^1_\rho(\partial \Gamma)$ admits a well-defined tangent space $T_{\xi^1_\rho(x)} \xi^1_\rho(\partial \Gamma)$.
     Considering such a $\xi^1_\rho(x)$ we let
     \[
-        \pi : \hom(\xi^1_\rho(x), \mathbb R^d) \to \hom(\xi^1_\rho(x), \mathbb R^d/\xi^1_\rho(x)) \simeq T_{\xi^1_\rho(x)} \xi^1_\rho(\partial \Gamma),
+        \pi : \hom(\xi^1_\rho(x), \mathbb R^d) \to \hom(\xi^1_\rho(x), \mathbb R^d/\xi^1_\rho(x)) \simeq T_{\xi^1_\rho(x)} \mathbb P(\mathbb R^d),
     \]
     and
     \[
-        x^{d_\Gamma + 1} = \pi^{-1} (T_{\xi^1_\rho(x)} \xi^1_\rho(\partial \Gamma)) \xi^1_\rho(x) \in 
-        \mathcal G_{d_\Gamma + 1} (\mathbb R^d),
+        x^{d_\rho + 1} = \pi^{-1} (T_{\xi^1_\rho(x)} \xi^1_\rho(\partial \Gamma)) \xi^1_\rho(x) \in 
+        \mathcal G_{d_\rho + 1} (\mathbb R^d).
     \]
-    for which one can show that
+    The calculation of the dimension follows from the rank-nullity theorem on 
+    $\pi$ restricted to  $\pi^{-1}(T_{\xi_\rho^1(x)} \xi_\rho^1(\partial_\Gamma))$ 
+    and the fact that  
+    $\xi_\rho^1(\partial \Gamma) \leq \pi^{-1}(T_{\xi_\rho^1(x)} \xi_\rho^1(\partial_\Gamma)) $. 
+    Then \cref{prop:grassmanian_tangent_flags} implies that
     \[
-        T_{\xi^1_\rho(x)} \xi^1_\rho(\partial \Gamma) \simeq 
-        \hom(\xi^1_\rho(x), \mathbb R^d / \xi^1_\rho(x)) \simeq
-        \hom(\xi^1_\rho(x), x^{d_\Gamma + 1} / \xi^1_\rho(x)).
+        T_{\xi^1_\rho(x)} \xi^1_\rho(\partial \Gamma) = 
+        \hom(\xi^1_\rho(x), x^{d_\rho + 1} / \xi^1_\rho(x)),
     \]
-    In this notation, we shall define (Lebesgue-almost eeverywhere) the map
+    In this notation, we shall define (Lebesgue-almost everywhere) the map
     \begin{align*}
-        \zeta_\rho: \xi_\rho^1(\partial \Gamma) \to \mathcal F_{1, d_\Gamma + 1} (R^d), \quad 
-        \zeta_\rho(\xi_\rho^1(x)) = (\xi_\rho^1(x), x^{d_\Gamma + 1}).
+        \zeta_\rho: \xi_\rho^1(\partial \Gamma) \to \mathcal F_{1, d_\rho + 1} (R^d), \quad 
+        \zeta_\rho(\xi_\rho^1(x)) = (\xi_\rho^1(x), x^{d_\rho + 1}).
     \end{align*}
-
+    which is a section in the sense that the projection $\mathrm{pr}_1: \mathcal F_{1, d_\rho + 1} \to \mathbb P(\mathbb R^d)$ to the first coordinate satisfies $\mathrm{pr}_1 \circ \zeta_\rho = \mathrm{Id}$.
+    Moreover, it is $\rho(\Gamma)$ equivariant, since for $\gamma \in \Gamma$ we have
+    \begin{align*}
+        \rho(\gamma) \zeta_\rho(\xi_\rho^1(x)) &=
+         \left( \rho(\gamma) \xi_\rho^1(x), 
+            \rho(\gamma) \pi^{-1}(T_{\xi_\rho^1(x)} \xi_\rho^1(\partial \Gamma)) \right) =\\
+        &= \left( \rho(\gamma) \xi_\rho^1(x), 
+        \rho(\gamma) \pi^{-1}(T_{\xi_\rho^1(x)} \xi_\rho^1(\partial \Gamma)) \rho(\gamma)^{-1} \rho(\gamma) \xi_\rho^1(x) \right) =\\
+        &= \left( \rho(\gamma) \xi_\rho^1(x), 
+           \pi^{-1}(\rho(\gamma) T_{\xi_\rho^1(x)} \xi_\rho^1(\partial \Gamma)) \right) =\\
+        &= \left( \rho(\gamma) \xi_\rho^1(x), 
+        \pi^{-1}(T_{\rho(\gamma) \xi_\rho^1(x)} \xi_\rho^1(\partial \Gamma)) \right) =\\
+        &= \zeta_\rho(\rho(\gamma) \xi_\rho^1(x)) = 
+        \zeta_\rho( \xi_\rho^1(\gamma x)).
+    \end{align*}
+    \todo{Why is the section measurable?}
     We now define the non-negative density on $\xi_\rho^1(\partial \Gamma)$
     \[
         \mu_{\xi_\rho^1(x)} = |\Omega_{\zeta_\rho(\xi_\rho^1(x))}|
     \]
     which satisfies
     \[
-        \frac{\d \gamma_*\mu}{\d\mu}(\xi) = \frac{\d (\rho(\gamma)^{-1})^*\mu}{\d\mu}(\xi) =
-        e^{-J^u_{d_\Gamma + 1}(b_\Theta(\rho(\gamma)^{-1}, \zeta(x))))},
+        \frac{\d \rho(\gamma)_*\mu}{\d\mu}(\xi) = \frac{\d (\rho(\gamma)^{-1})^*\mu}{\d\mu}(\xi) =
+        e^{-J^u_{d_\rho + 1}(b_\Theta(\rho(\gamma)^{-1}, \zeta_\rho(x)))},
     \]
-    where the term on the left-hand side involves measures, the term between the two equalities involves densities, and $\Theta = \{1, d_\Gamma + 1\}$.
-    Indeed, for $\phi_1, \ldots, \phi_{d_\Gamma} \in T_{\xi_\rho^1(x)}\xi_\rho^1(\partial \Gamma)$:
+    where the term on the left-hand side involves measures, the term between the two equalities involves densities, and $\Theta = \{1, d_\rho + 1\}$.
+    The first equality holds for any density and its respective measure, while for the second one we consider $\phi_1, \ldots, \phi_{d_\rho} \in T_{\xi_\rho^1(x)}\xi_\rho^1(\partial \Gamma)$ and calculate:
     \begin{align*}
-        &(\rho(\gamma)^*\mu)_{\xi_\rho^1(x)} (\phi_1, \ldots, \phi_{d_\Gamma})\\
+        &(\rho(\gamma)^*\mu)_{\xi_\rho^1(x)} (\phi_1, \ldots, \phi_{d_\rho})\\
         &=
-        \mu_{\rho(\gamma)\xi_\rho^1(x)} (\rho(\gamma)\phi_1\rho(\gamma)^{-1}, \ldots, \rho(\gamma)\phi_{d_\Gamma} \rho(\gamma)^{-1}) \\
+        \mu_{\rho(\gamma)\xi_\rho^1(x)} (\rho(\gamma)\phi_1\rho(\gamma)^{-1}, \ldots, \rho(\gamma)\phi_{d_\rho} \rho(\gamma)^{-1}) \\
         &=
-        \frac{\|\rho(\gamma) \xi_\rho^1(x) \wedge \rho(\gamma) \phi_1(\xi_\rho^1(x)) \wedge \cdots \wedge \rho(\gamma) \phi_{d_\Gamma}(\xi_\rho^1(x))\|}
-        {\| \rho(\gamma) \xi_\rho^1(x) \|^{d_\Gamma + 1}} \\
+        \frac{\|\rho(\gamma) \xi_\rho^1(x) \wedge \rho(\gamma) \phi_1(\xi_\rho^1(x)) \wedge \cdots \wedge \rho(\gamma) \phi_{d_\rho}(\xi_\rho^1(x))\|}
+        {\| \rho(\gamma) \xi_\rho^1(x) \|^{d_\rho + 1}} \\
         &=
-        \frac{\|\rho(\gamma) \xi_\rho^1(x) \wedge \rho(\gamma) \phi_1(\xi_\rho^1(x)) \wedge \cdots \wedge \rho(\gamma) \phi_{d_\Gamma}(\xi_\rho^1(x))\|}
-        {\|\xi_\rho^1(x) \wedge \phi_1(\xi_\rho^1(x)) \wedge \cdots \wedge \phi_{d_\Gamma}(\xi_\rho^1(x))\|} \\
+        \frac{\|\rho(\gamma) \xi_\rho^1(x) \wedge \rho(\gamma) \phi_1(\xi_\rho^1(x)) \wedge \cdots \wedge \rho(\gamma) \phi_{d_\rho}(\xi_\rho^1(x))\|}
+        {\|\xi_\rho^1(x) \wedge \phi_1(\xi_\rho^1(x)) \wedge \cdots \wedge \phi_{d_\rho}(\xi_\rho^1(x))\|} \\
         &\quad \cdot
-        \frac{\|\xi_\rho^1(x) \wedge \phi_1(\xi_\rho^1(x)) \wedge \cdots \wedge \phi_{d_\Gamma}(\xi_\rho^1(x))\|}
-        {\|\rho(\gamma) \xi_\rho^1(x)\|^{d_\Gamma+1}}\cdot
-        \frac{\| \rho(\gamma)\xi_\rho^1(x)\|^{d_\Gamma+1}}{\|\xi_\rho^1(x)\|^{d_\Gamma+1}} \\
+        \frac{\|\xi_\rho^1(x) \wedge \phi_1(\xi_\rho^1(x)) \wedge \cdots \wedge \phi_{d_\rho}(\xi_\rho^1(x))\|}
+        {\|\rho(\gamma) \xi_\rho^1(x)\|^{d_\rho+1}}\cdot
+        \frac{\| \rho(\gamma)\xi_\rho^1(x)\|^{d_\rho+1}}{\|\xi_\rho^1(x)\|^{d_\rho+1}} \\
          &=
-         e^{\omega_{d_\Gamma}(b_\Theta(\rho(\gamma), \zeta_\rho(\xi_\rho^1(x))))} \cdot
-         \mu_{\xi_\rho^1(x)}(\phi_1, \ldots, \phi_{d_\Gamma}) \\
+         e^{\omega_{d_\rho}(b_\Theta(\rho(\gamma), \zeta_\rho(\xi_\rho^1(x))))} \cdot
+         \mu_{\xi_\rho^1(x)}(\phi_1, \ldots, \phi_{d_\rho}) \\
          &\quad \cdot
-         e^{-(p+1)\omega_1(b_\Theta(\rho(\gamma), \zeta_\rho(\xi_\rho^1(x))))} \\
+         e^{-(d_\rho+1)\omega_1(b_\Theta(\rho(\gamma), \zeta_\rho(\xi_\rho^1(x))))} \\
          &=
-         e^{-J_{d_\Gamma}^u(b_\Theta(\rho(\gamma)^{-1}, \zeta(\xi_\rho^1(x)))} \mu_{\xi_\rho^1(x)}(\phi_1, \ldots, \phi_{d_\Gamma}).
+         e^{-J_{d_\rho}^u(b_\Theta(\rho(\gamma)^{-1}, \zeta_\rho(\xi_\rho^1(x))))} \mu_{\xi_\rho^1(x)}(\phi_1, \ldots, \phi_{d_\rho}).
     \end{align*}
     
-    Finally, we let $\nu = {\zeta_\rho}_* \mu$, which is the wanted Patterson-Sullivan measure on $\mathcal F_{1, d_\Gamma + 1} (\mathbb R^d)$, since for $f \in C_c(\mathcal F_{1, d_\Gamma + 1} (\mathbb R^d))$:
+    Finally, we let $\nu = {\zeta_\rho}_* \mu$, which is the wanted Patterson--Sullivan measure on $\mathcal F_{1, d_\rho + 1} (\mathbb R^d)$, since for $f \in C_c(\mathcal F_{1, d_\rho + 1} (\mathbb R^d))$:
     \begin{align*}
-        \int_{\mathcal F_{1, d_\Gamma + 1} (\mathbb R^d)} f \d(\gamma_* {\zeta_\rho}_* \mu) &=
-        \int_{\xi_\rho^1(\partial \Gamma)} f \circ \gamma \circ \zeta_\rho \d \mu =
-        \int_{\xi_\rho^1(\partial \Gamma)} f \circ \zeta_\rho \circ \gamma \d \mu =\\
+        \int_{\mathcal F_{1, d_\rho + 1} (\mathbb R^d)} f \d(\rho(\gamma)_* {\zeta_\rho}_* \mu) &=
+        \int_{\xi_\rho^1(\partial \Gamma)} f \circ \rho(\gamma) \circ \zeta_\rho \d \mu =
+        \int_{\xi_\rho^1(\partial \Gamma)} f \circ \zeta_\rho \circ \rho(\gamma) \d \mu =\\
         &=
-        \int_{\xi_\rho^1(\partial \Gamma)} f \circ \zeta_\rho(\xi) e^{-J_{d_\Gamma}^u(b_\Theta(\rho(\gamma)^{-1}, \zeta(\xi_\rho^1(x)))} \d \mu(\xi_\rho^1(x)) =\\
+        \int_{\xi_\rho^1(\partial \Gamma)} f \circ \zeta_\rho(\xi_\rho^1(x)) e^{-J_{d_\rho}^u(b_\Theta(\rho(\gamma)^{-1}, \zeta_\rho(\xi_\rho^1(x)))} \d \mu(\xi_\rho^1(x)) =\\
         &=
-        \int_{\mathcal F_{1, d_\Gamma + 1} (\mathbb R^d)} 
-        f(y) e^{-J_{d_\Gamma}^u(b_\Theta(\rho(\gamma)^{-1}, y)} \d ({\zeta_\rho}_*\mu)(y)
+        \int_{\mathcal F_{1, d_\rho + 1} (\mathbb R^d)} 
+        f(y) e^{-J_{d_\rho}^u(b_\Theta(\rho(\gamma)^{-1}, y)} \d ({\zeta_\rho}_*\mu)(y)
     \end{align*}
 \end{proof}
 
@@ -876,7 +1157,8 @@ Before giving the next definition, we recall that the annihilator annihilator of
     \mathrm{Ann}(y) = \left\{ x \in \mathcal F_{\Theta}(\mathbb R^d) : x^\theta \cap y^{d- \theta} \neq 0 \text{ for some } \theta \in \Theta \right\}.
 \]
 \begin{definition}\index{irreducible representation!with respect to measure}
-Let $\rho: \Gamma \to \SL(d,\mathbb R)$ be a linear representation, $\Theta \subseteq \Pi$ and $\mu$ a $(\rho(\Gamma), \phi)$-Patterson-Sullivan measure over $\mathcal F_\Theta(\mathbb R^d)$.
+    \label{def:mu_irreducible}
+Let $\rho: \Gamma \to \SL(d,\mathbb R)$ be a linear representation, $\Theta \subseteq \Pi$ and $\mu$ a $(\rho(\Gamma), \phi)$-Patterson--Sullivan measure over $\mathcal F_\Theta(\mathbb R^d)$.
 We say that $\rho$ is $\mu$-irreducible there is no element in $\mathcal F_{i \Theta}(\mathbb R^d)$, whose annihilator is of full measure, i.e.\ for all $y \in \mathcal F_{i \Theta}(\mathbb R^d)$:
 \[
     \mu(\mathrm{Ann}(y)) < \mu(\mathcal F_{\Theta}(\mathbb R^d)).
@@ -884,7 +1166,7 @@ We say that $\rho$ is $\mu$-irreducible there is no element in $\mathcal F_{i \T
 \end{definition}
 
 \begin{example}\label{ex:ZariskiDense}
-    If $\rho(\Gamma)$ is Zariski-dense in $\SL (d, \mathbb R)$, then $\rho$ is $\mu$-irreducible for any $\rho$-quasi-equivariant measure $\mu$, and in particular for any $(\rho(\Gamma), \phi)$-Patterson-Sullivan measure.
+    If $\rho(\Gamma)$ is Zariski-dense in $\SL (d, \mathbb R)$, then $\rho$ is $\mu$-irreducible for any $\rho$-quasi-equivariant measure $\mu$, and in particular for any $(\rho(\Gamma), \phi)$-Patterson--Sullivan measure.
 \end{example}
 
 \begin{remark}\label{rem:irredubility}
@@ -921,7 +1203,7 @@ We say that $\rho$ is $\mu$-irreducible there is no element in $\mathcal F_{i \T
 \end{remark}
 
 \begin{lemma}\label{lem:PSMeasureBounds}
-    Let $\rho:\Gamma \to \SL(d, \mathbb R)$ be a representation and $\mu^\phi$ be a ($\rho(\Gamma), \phi$)-Patterson-Sullivan measure.
+    Let $\rho:\Gamma \to \SL(d, \mathbb R)$ be a representation and $\mu^\phi$ be a ($\rho(\Gamma), \phi$)-Patterson--Sullivan measure.
     If $\rho(\Gamma)$ is $\mu$-irreducible, then there exists some $\alpha_0 > 0$, such that for any $\alpha \in (0, \alpha_0)$, there's some $k = k(\alpha) > 0$ for which
     \[
         \frac{1}{k} e^{-\phi(a(\rho(\gamma)))} 
@@ -955,19 +1237,19 @@ In this section we shall prove the main theorem, which we restate for the reader
     Let $\rho: \Gamma \to \SL(d, \mathbb R)$ be a Zariski-dense, projective Anosov representation such that $\xi^1_\rho(\partial \Gamma)$ is a Lipschitz submanifold of $\mathbb P(\mathbb R^d)$.
     Then the dimension of the limit set $\xi_\rho^1(\partial \Gamma)$ equals the Falconer dimension of $\rho$:
     \[
-        \dim \xi_\rho^1(\partial \Gamma) = h_\rho(F)
+        \dim \xi_\rho^1(\partial \Gamma) = h_{\rho(\Gamma)}(F)
     \]
     where $F_s(a) = \max \{ \Psi_s^p(a) : p \in \llbracket 2, d \rrbracket\}$ is the Falconer functional.
 \end{theorem}
 \begin{proof}
-    We have already seen in \cref{lem:upper_bound} that $d_{\rho, \Gamma} \leq \dim_F(\rho)$.
+    We have already seen in \cref{lem:upper_bound} that $d_{\rho, \Gamma} \leq h_{\rho(\Gamma)}(F)$.
     For the opposite inequality, we merely need to piece together the results of the previous sections as outlined in \cref{sec:ProofStrategy}.
-    There we have seen that $h_\rho(F) \leq h_\rho(\Psi^{d_{\rho, \Gamma} + 2})$ since $F_s \geq \Psi_s^{d_{\rho, \Gamma} + 2}$, so may as well show that $h_\rho(\Psi^{d_{\rho, \Gamma} + 2}) \leq d_{\rho, \Gamma}$, i.e.\ that
+    There we have seen that $h_{\rho(\Gamma)}(F) \leq h_{\rho(\Gamma)}(\Psi^{d_{\rho, \Gamma} + 2})$ since $F_s \geq \Psi_s^{d_{\rho, \Gamma} + 2}$, so may as well show that $h_{\rho(\Gamma)}(\Psi^{d_{\rho, \Gamma} + 2}) \leq d_{\rho, \Gamma}$, i.e.\ that
     \[
         \sum_{\gamma \in \Gamma} e^{-\Psi^{d_{\rho, \Gamma} + 2}_s(\rho(\gamma))} < \infty
     \]
     for all $s \geq d_{\rho, \Gamma}$.
-    This will follow as soon as we have shown that $h_\rho(J_{d_{\rho, \Gamma}}) \leq 1$, since
+    This will follow as soon as we have shown that $h_{\rho(\Gamma)}(J_{d_{\rho, \Gamma}}) \leq 1$, since
     \begin{align*}
         \Psi_s^{d_{\rho, \Gamma} + 1} \circ a &=
         {\sf a}_{12} + \cdots + {\sf a}_{1(d_{\rho, \Gamma} + 1)} + (s-d_{\rho, \Gamma}) {\sf a_{1(d_{\rho, \Gamma}+2)}} =\\
@@ -981,7 +1263,7 @@ In this section we shall prove the main theorem, which we restate for the reader
     
     Using the Anosov property of $\rho$ we have that
     \[
-    J_{d_\Gamma}(a(\rho(\gamma))) \geq \mathsf a_{12} (a(\rho(\gamma))) \geq C|\gamma| - b    
+    J_{d_\rho}(a(\rho(\gamma))) \geq \mathsf a_{12} (a(\rho(\gamma))) \geq C|\gamma| - b    
     \]
     for certain $C, b > 0$ which when we break up the sum defining the critical exponent into the sum over the sets $\Gamma_T = \{ \gamma \in \Gamma: |\gamma| = T\}$ gives us:
     \begin{align*}
@@ -997,7 +1279,7 @@ In this section we shall prove the main theorem, which we restate for the reader
     \end{align*}
     
     To obtain a bound on the inner sums that is uniform in $T$, we recall \cref{prop:PSMeasureExists}. 
-    There we saw that $\xi^1_\rho(\partial \Gamma)$ being a Lipschitz submanifold of $\mathbb P(\mathbb R^d)$ implies the existence of a $(\rho(\Gamma), J_{d_{\rho, \Gamma}}^u)$-Patterson-Sullivan measure $\mu$ on $\zeta^1_\rho(\xi^1(\partial \Gamma)) \subseteq \mathcal F_{1, d_{\rho, \Gamma} + 1}(\mathbb R^d)$.
+    There we saw that $\xi^1_\rho(\partial \Gamma)$ being a Lipschitz submanifold of $\mathbb P(\mathbb R^d)$ implies the existence of a $(\rho(\Gamma), J_{d_{\rho, \Gamma}}^u)$-Patterson--Sullivan measure $\mu$ on $\zeta^1_\rho(\xi^1(\partial \Gamma)) \subseteq \mathcal F_{1, d_{\rho, \Gamma} + 1}(\mathbb R^d)$.
     By \cref{lem:boundary_covering_higher} we have that for $\alpha > 0$ small enough, there exists some $M, T_0 > 0$ such that for all $T \geq T_0$ the family
     \[
         \mathcal U_T = \left\{ \rho(\gamma) B_{\alpha, \Theta}(\rho(\gamma)) : |\gamma| = T \right\}
@@ -1022,27 +1304,27 @@ In this section we shall prove the main theorem, which we restate for the reader
 
 \chapter{Dropping the Zariski-density assumption}\label{ch:no_zariski_density}
 Since many of interesting examples of Anosov subgroups are not Zariski-dense, one could certainly argue that the Zariski-density assumption in \cref{thm:main} is not cheap.
-The reason that it's needed is that otherwise one can't guarantee that it is $\mu$-irreducible for a Patterson-Sullivan measure $\mu$. 
+The reason that it's needed is that otherwise one can't guarantee that it is $\mu$-irreducible for a Patterson--Sullivan measure $\mu$. 
 In fact, Zariski-density is not assumed in \cite{pozzetti_anosov_2023}, where the authors suggest a way to obtain $\mu$-irredubility through the following lemma which as we will see below is false.
 
 \begin{lemma}[Lemma 6.8 in \cite{pozzetti_anosov_2023}]\label{lem:irreducibility}
-Let $\Gamma$ be a hyperbolic group and $\eta:\Gamma \to \PGL(d, \mathbb R)$ be a strongly irreducible projective Anosov representation such that $\xi_\eta(\partial \Gamma)$ is homeomorphic to $\mathbb S^{d_\Gamma}$, and which admits a measurable $\eta$-equivariant section
-$\zeta: \partial \Gamma \to \mathcal F_{\{ \sf a_1, \sf a_{d_\Gamma + 1}\}} (\mathbb R^d)$.
-Then $\eta$ is $\mu$-irreducible for any $(\eta(\Gamma), \phi)$-Patterson-Sullivan measure $\mu$ on $\zeta(\partial \Gamma) \subseteq \mathcal F_{\{ \sf a_1, \sf a_{d_\Gamma + 1}\}} (\mathbb R^d)$.
+Let $\Gamma$ be a hyperbolic group and $\eta:\Gamma \to \PGL(d, \mathbb R)$ be a strongly irreducible projective Anosov representation such that $\xi_\eta(\partial \Gamma)$ is homeomorphic to $\mathbb S^{d_\rho}$, and which admits a measurable $\eta$-equivariant section
+$\zeta: \partial \Gamma \to \mathcal F_{\{ \sf a_1, \sf a_{d_\rho + 1}\}} (\mathbb R^d)$.
+Then $\eta$ is $\mu$-irreducible for any $(\eta(\Gamma), \phi)$-Patterson--Sullivan measure $\mu$ on $\zeta(\partial \Gamma) \subseteq \mathcal F_{\{ \sf a_1, \sf a_{d_\rho + 1}\}} (\mathbb R^d)$.
 \end{lemma}
 
 For convenience, we recall that a linear representation $\rho: \Gamma \to \GL(d, \mathbb R)$ is strongly irreducible\index{irreducible representation!strongly} if there is no proper $\rho(\Gamma)$-invariant subspace of $\mathbb R^d$,
 and it is $\mu$-irreducible if there is no element in $\mathcal F_{i \Theta}(\mathbb R^d)$, whose annihilator is of full measure.
 
-More specifically, in the proof of the preceeiding lemma, the authors argue by contradiction that if the result is not true, then there exists subspaces $W_0 \in \mathcal G_{d-d_\Gamma - 1}$ and $V \in \mathcal G_{d-d_\Gamma - 1}$ such that
+More specifically, in the proof of the preceeiding lemma, the authors argue by contradiction that if the result is not true, then there exists subspaces $W_0 \in \mathcal G_{d-d_\rho - 1}$ and $V \in \mathcal G_{d-d_\rho - 1}$ such that
 \[
 \eta(\gamma) V \cap W_0 \neq 0
 \]
 for all $\gamma \in \Gamma$.
-Indeed, if this were not the case, then there exist $(W_0, P_0) \in \mathcal F_{{\sf a}_{d-d_\Gamma - 1}, {\sf a}_{d-1}}$ such that $\mathrm{Ann}(W_0,P_0)$ is of full $\mu$ measure.
-In fact, $\eta$-equivariance of $\zeta$ implies that one can choose $W_0, P_0$ such that $P_0 \in \xi^{d-1}_\eta(\partial \Gamma)$, meaning that for $\mu$-almost every $(\xi^1_\eta(x), \zeta(x)^{d_\Gamma + 1}) \in \zeta(\partial \Gamma)$, we have that $\zeta(x)^{d_\Gamma + 1} \cap W_0 \neq 0$.
+Indeed, if this were not the case, then there exist $(W_0, P_0) \in \mathcal F_{{\sf a}_{d-d_\rho - 1}, {\sf a}_{d-1}}$ such that $\mathrm{Ann}(W_0,P_0)$ is of full $\mu$ measure.
+In fact, $\eta$-equivariance of $\zeta$ implies that one can choose $W_0, P_0$ such that $P_0 \in \xi^{d-1}_\eta(\partial \Gamma)$, meaning that for $\mu$-almost every $(\xi^1_\eta(x), \zeta(x)^{d_\rho + 1}) \in \zeta(\partial \Gamma)$, we have that $\zeta(x)^{d_\rho + 1} \cap W_0 \neq 0$.
 Again using the $\eta$-equivariance of $\zeta$, we have that for all $\gamma \in \Gamma$, the set 
-$\left\{ \zeta(x) \in \zeta(\partial \Gamma) : \zeta(x)^{d_\Gamma + 1} \cap \gamma W_0 \neq 0 \right\}$
+$\left\{ \zeta(x) \in \zeta(\partial \Gamma) : \zeta(x)^{d_\rho + 1} \cap \gamma W_0 \neq 0 \right\}$
 is of full measure, which implies that their intersection is non-empty, and we can take $V = \zeta(x)^p$ for any $x \in \partial \Gamma$ such that $\zeta(x)$ lies in this intersection.
 
 Finally to conlude, the authors assert that this is absurd by using \cite[Proposition 10.3]{labourie_anosov_2006}:
@@ -1084,11 +1366,11 @@ Before giving the statement of the latter, we recall that a uniform lattice $\Ga
         \item For all $x, y \in \partial \Gamma: \zeta(x)^4 \cap \zeta(y)^4 \neq 0$.
         \item For any $y_0 \in \SU(2,1)/P_0$ and 
         $W_0 \in \mathcal G_7(\mathbb R^4)$ that contains $\zeta(y_0)^4$, we have that 
-        $\Ann(\zeta(y_0)^4, W_0) \supseteq \zeta(\SU(2,1)/P_0)$ and is in particular of full $\mu$-measure, for any $(\eta(\Gamma), \phi)$-Patterson-Sullivan measure $\mu$ supported over
+        $\Ann(\zeta(y_0)^4, W_0) \supseteq \zeta(\SU(2,1)/P_0)$ and is in particular of full $\mu$-measure, for any $(\eta(\Gamma), \phi)$-Patterson--Sullivan measure $\mu$ supported over
         $\zeta(\partial \Gamma)$.
         \item
         \[
-        h_\rho(F) = \dim_{\mathcal H} (\xi^1_\rho(\partial \Gamma)) = 3.
+        h_{\rho(\Gamma)}(F) = \dim_{\mathcal H} (\xi^1_\rho(\partial \Gamma)) = 3.
         \]
     \end{enumerate}
 \end{proposition}
@@ -1309,7 +1591,7 @@ This provides a modified version of the main theorem:
     Assume moreover that $\dim \xi_\rho^1(\partial \Gamma) = d-3, d > 4$ and $\rho(\Gamma)$ is Zariski-dense in $\SO(2,d-2)$. \todo{Is it not the case $d=4$ that is of importance in physics?}
     Then
     \[
-        \dim \xi_\rho^1(\partial \Gamma) = h_\rho(F).
+        \dim \xi_\rho^1(\partial \Gamma) = h_{\rho(\Gamma)}(F).
     \]
 \end{theorem}
 The proof of the above theorem will in part be based on reducing it to the analogous result for the case of $\SO(1, d-1)$, which we will first state and prove.
@@ -1318,7 +1600,7 @@ The proof of the above theorem will in part be based on reducing it to the analo
     Let $\rho: \Gamma \to \SL(d, \mathbb R)$ be a projective Anosov representation such that $\xi^1_\rho(\partial \Gamma)$ is a Lipschitz submanifold of $\mathbb P(\mathbb R^d)$.
     Assume moreover that $\dim \xi_\rho^1(\partial \Gamma) = d - 2, d \geq 3$, and $\rho(\Gamma)$ is Zariski-dense in $\SO(1,d-1)$. Then
     \[
-        \dim \xi_\rho^1(\partial \Gamma) = h_\rho(F).
+        \dim \xi_\rho^1(\partial \Gamma) = h_{\rho(\Gamma)}(F).
     \]
 \end{lemma}
 \begin{proof}
@@ -1386,7 +1668,7 @@ We are now ready to provide a proof for \cref{thm:main_anti_de_sitter}:
     We claim that for $W' = p(W \cap v^\perp)$,
     \[
     W' \text{ is a hyperplane of } v^\perp/\mathbb Rv \text{ and } \omega \text{ induces a form of signature } (1, d-3) \text{ on } v^\perp/\mathbb Rv.
-    \].
+    \]
     The signature of the induced form follows from \cref{lem:induced_form}.
     To calculate the dimension of $W'$, note that $\dim p(W \cap v^\perp) = \dim(W \cap v^\perp)$ since $\ker p \cap W = \mathbb R v \cap W = 0$, by the fact that $v$ is not contained in $W$.
     On the other hand $\dim (W \cap v^\perp) = \dim(\ker W \ni x \mapsto (v,x)) = \dim W - 1 = d-3$, while $\dim (v^\perp/\mathbb R v) = \dim v^\perp - 1 = (d-1)- 1 = d-2$.
@@ -1496,8 +1778,35 @@ For the sake of completeness, we outline the calculation of the differential:
 \end{align*}
 where $\phi \in \hom(l, V/l), \tilde \phi \in \hom(l, V)$ such that $\tilde \phi + \hom(l, l) = \phi$.
 
+Another subtle point is that conjugation by $g$ helps us pass from $\mathcal G_k(T_x \mathbb P(\mathbb V))$ to $\mathcal G_k(T_{gx} \mathbb P(V))$:
+\begin{lemma}
+    Let $g \in \mathbb SL(V)$.
+    Then for every $x \in \mathbb P(V), P \in \mathcal G_k(T_x \mathbb P(V))$, we have:
+    \[
+    \pi^{-1}(g P g^{-1}) = g \pi^{-1}(P) g^{-1}, 
+    \]
+    where $\pi$ denotes the projection $\hom(gx, \mathbb R^d) \to T_{gx} \mathbb P(\mathbb R^d)$ on the left hand side of the equality, and the projection $\hom(x, \mathbb R^d) \to T_{x} \mathbb P(\mathbb R^d)$ on the right hand side.
+\end{lemma}
+\begin{proof}
+    We denote with $C_g: \hom(x, \mathbb V) \to \hom(gx, \mathbb V)$ the isomorphism by conjugation $C_g(T) = g T g^{-1}$.
+    Since the following diagram commutes\\
+    \begin{center}
+        \begin{tikzcd}
+            \hom(x, V) \arrow[r, "C_g"] \arrow[d, "\pi"] & \hom(gx, V) \arrow[d, "\pi"] \\
+            \hom(x, V/x) \arrow[r, "\tilde C_g"] & \hom(gx, V/gx)
+        \end{tikzcd}\\    
+    \end{center}
+    $C_g$ induces an isomorphism $\tilde C_g$ between
+    $ T_x (\mathbb P(V))$ and $T_{gx} (\mathbb P(V))$.
+    We now have
+    \begin{align*}
+        \pi^{-1}(gPg^{-1}) = \pi^{-1}\left(\tilde C_g(P)\right) = (\tilde C_g^{-1} \pi)^{-1}(P) = (\pi C_g^{-1})^{-1}(P) = C_g \left( \pi^{-1}(P) \right),
+    \end{align*}
+    which is a rephrasing of the desired equality.
+\end{proof}
+
 We are now ready to express the needed identification:
-\begin{proposition}
+\begin{proposition}\label{prop:grassmanian_tangent_flags}
 We have the following $\SL(V)$ equivariant identification:
 \begin{align*}
     \mathcal P &\to \mathcal F_{1, k+1}(V)\\
@@ -1515,11 +1824,12 @@ where $\pi : \hom(l, V) \to \hom(l, V/l)$ is the canonical projection.
 
     To see that the two directions above are inverse to each other, we begin by examining the right-to-left-to-right composition:
     \[
-    (l, Q) \mapsto (l, \pi(\hom(l, Q))) \mapsto (l, \pi^{-1}\pi(\hom(l, Q))) = (l, \hom(l, Q)l) = (l, Q).
+    (l, Q) \mapsto (l, \pi(\hom(l, Q))) \mapsto (l, \pi^{-1}\pi(\hom(l, Q))l) = (l, \hom(l, Q)l) = (l, Q),
     \]
-    and for the left-to-right-to-left composition
+    where we did the calculation $\pi^{-1}\pi(\hom(l, Q)l) =  \hom(l,Q) + \ker \pi = \hom(l,Q)$ in the second to last inequality. 
+    For the left-to-right-to-left composition we have
     \[
-        (l, P) \mapsto (l, \pi^{-1}(P)l) \mapsto (l, \hom(l, \pi^{-1}(P)l)),
+        (l, P) \mapsto (l, \pi^{-1}(P)l) \mapsto (l, \hom(l, \pi^{-1}(P)l/l)),
     \]
     so it suffices to show that $\hom(l, \pi^{-1}(P)l/l) = P$.
     Indeed, for $\pi^{-1}(P) = \mathbb R T_1 \oplus \cdots \oplus \mathbb R T_k$, we have that
