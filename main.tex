@@ -123,6 +123,7 @@ Later in the thesis, we will be using certain terms to refer to lattices, which 
 
 In the case where $\Gamma$ is a uniform lattice, the next proposition shows that the critical exponent of $\Gamma$ is in fact the same as for any other uniform lattice, and it does that by giving a rather geometric interpretation for $\delta_\Gamma$.
 Namely, it is the exponential growth of the volume of a ball in the space $X = G/\Gamma$.
+Aside from offering geometric insight, this fact gives us also a way to calculate $\delta_\Gamma$, as done in \cref{sec:complex_geometry}.
 \begin{lemma}\label{lem:critical_exponent_entropy}
     Let $X$ be a complete Riemannian manifold with isometry group $G= \Isom(X)$ and 
     $\Gamma$ be a uniform lattice of $G$.
@@ -238,6 +239,11 @@ The set of restricted roots is denoted by $\Delta$ and the closure of any compon
 \mathfrak a^+ \subseteq \mathfrak a \backslash \bigcup_{\alpha \in \Delta} \ker \alpha
 \]
 is called a Weyl chamber.
+The Weyl group $W \subseteq K$ is defined as the quotient $N_{\mathfrak a}/Z_{\mathfrak a}$, where $N_{\mathfrak a}$ and $Z_{\mathfrak a}$ are the normalizer and the centraliser of of $\mathfrak a$ in $K$, i.e.
+\begin{align*}
+    Z_{\mathfrak a} &= \left\{ k \in K: Ad_k(a) = a \forall a \in \mathfrak a \right\}\\
+    N_{\mathfrak a} &= \left\{ k \in K: Ad_k(\mathfrak a) \subseteq \mathfrak a \right\}.
+\end{align*}
 
 
 The following theorem is a fundemental result in the theory of semi-simple Lie groups:
@@ -314,7 +320,7 @@ are well defined and form a decomposition
 \[
     g^{-1} \cdot U_p(g) \oplus U_{d-p}(g^{-1})
 \]
-that is orthogonal with respect to the standard inner product on $\mathbb R^d$.\todo{Prove that attracting flag is well-defined when there exists a singular value gap, and explain that in the bassin, g attracts flags uniformly to the attracting flag} 
+that is orthogonal with respect to the standard inner product on $\mathbb R^d$.
 
 In particular, when $g \in \SL(d, \mathbb R)$ has a gap between the $\theta$-th and $(\theta+1)$-th singular values for all $\theta \in \Theta \subseteq \llbracket 1, d-1 \rrbracket$, we define for any $\alpha > 0$ the basin of attraction of $g$ as
 \[
@@ -462,20 +468,33 @@ We define the critical exponent of $\phi$ over $\Gamma$ to be
 \]    
 \end{definition}
 
+The following example is in a sense the link between Quint--Patterson--Sullivan theory and classical Patterson--Sullivan theory.
 \begin{example}
     \label{ex:critical_exponent}
-    \todo{Is this true for Cartan subalgebras of rank-1 Lie groups?}
-    Let $\Gamma$ be a uniform lattice of $\SO(1, d)$.
-    Then any functional $\phi \in \mathfrak a^*$ is of the form
+    For every uniform lattice $\Gamma \leq \SO(1,d)$, the critical exponent of $\Gamma$ coincides with the critical exponent of some functional $\phi_0 \in \mathfrak a^+$:
     \[
-        \phi(\mu(\gamma)) = d_\phi(\gamma \cdot o, o) 
+    h_\Gamma (\phi_0) = \delta_\Gamma.
     \]
-    for some distance $d_\phi$ on $\mathbb H^d$.
-    In particular, fixing some $\phi \in \mathfrak a^*$ such that $d_\phi = d$, we have that
+    
+    This follows from the fact that any functional $\phi \in \mathfrak (a^+)^*$ over the Weyl-chamber $\mathfrak a^+$ of $\SU(d,1)$ is of the form
     \[
-    h_\Gamma(\phi) = \delta_\Gamma.
-    \] 
+        \phi(\mu(\gamma)) = c_\phi d(\gamma \cdot o, o) \text{ for some constant } c_\phi \in \mathbb R,
+    \]
+    where $d$ is the distance on $\mathbb H^d$ that is invariant by some fixed maximal compact subgroup $K$ fixing $o \in \mathbb H^d$.
+
+    Indeed, let $g \in \SO(1, d)$ and $y_0 \in \mathfrak a^+$.
+    Then there exists some $r_g \in \mathbb R$ such that $\mu(g) = r_g \cdot y_0$, meaning that
+    $d(g \cdot o, o) = d(e^{\mu(g)} \cdot o, o) = r_g d(e^{y_0} \cdot o, o)$.
+    This gives the following expression for the Cartan projection of $\SO(1,d)$:
+    \[
+    \mu(g) = \frac{d(g \cdot o, o)}{d(e^{y_0} \cdot o, o)} y_0.
+    \]
+    Hence for any $\phi \in \mathfrak a^*$ we have that $c_\phi = \frac{\phi(y_0)}{d(e^{y_0} \cdot o, o)}$.
+
+    Thus, we may consider the natural choice of functional $\phi_0 \in (\mathfrak a^+)*$ defined by $\phi_0(y_0) = d(e^{y_0} \cdot o, o)$.
+    It is natural, in the sense that $c_\phi = 1$ and $\phi_0(\mu(g)) = d(g \cdot o, o)$
 \end{example}
+
 
 When $\phi = F$ is the Falconer functional, we obtain the following special case (of projective Anosov representations, i.e.\ $P = {1}$) of a definition from \cite{ledrappier_dimension_2023}:
 \begin{definition}\index{Falconer!dimension}
@@ -583,8 +602,6 @@ and extend this to any density $\mu$ on $M$ by
 \]
 where $\{\psi_i\}$ is a partition of unity subordinate to a cover of $M$ by coordinate charts.
 
-We now apply the theory of densities to the case of a space of partial flags.
-Before we do so, recall that the tangent space to 
 \begin{example}
     Let $p \in \llbracket 2, d-1 \rrbracket, V \in V \in \mathcal G_{p}{\mathbb R^d}$ and $l \in \mathbb P(V)$.
         Using the canonical identification $T_l \mathbb P(V) \simeq \hom (l, V/l)$, we define the density $|\Omega|$ over $\mathcal F_{1, p}(\mathbb R^d)$ by
@@ -595,7 +612,7 @@ Before we do so, recall that the tangent space to
     for any $v \in l - \{ 0\}$, where $\tilde \phi_1, \ldots \tilde \phi_p \in \hom(l, V)$ are such that $\phi_i = \tilde \phi_i + \hom(l, l)$ and $\| \cdot \|$ denotes the norm on $\bigwedge^{p+1} \mathbb R^d$ induced by the standard euclidean inner product.
 \end{example}
 
-\todo{Add some theory on densities and show that the density on $\mathcal F_{1. p+1} (mathbb R^d)$ is $\SL(d, R)$ equivariant}
+\todo{This is not a density per se. It is a density defined a.e. Does this make sense? }
 
 \section{Complex hyperbolic geometry}\label{sec:complex_geometry}
 In this section we gather some material on complex hyperbolic geometry that will be useful in providing a counterexample to a lemma of \cite{pozzetti_anosov_2023} in \cref{sec:two_counterexamples}.
@@ -638,8 +655,38 @@ Then the projective model for the hyperbolic plane $\mathbb H^2_{\mathbb C}$ is 
 Let us for the moment consider the projective model as defined from the Hermitian form $\langle \cdot, \cdot \rangle_2$.
 In that case, the metric on $\mathbb H^2_{\mathbb C}$ is called the Bergman metric\index{Bergman metric} and is given by the relation
 \[
-\cosh(\frac{d(z,w)}{2}) = \frac{\langle z, w \rangle \langle w, z \rangle}{\langle z, z \rangle \langle w, w \rangle}.
-\]\todo{Why is this the Bergman metric?}
+\cosh\left(\frac{d(z,w)}{2}\right) = \frac{\langle z, w \rangle \langle w, z \rangle}{\langle z, z \rangle \langle w, w \rangle},
+\]
+while the volume element is given By
+\[
+\d \vol = -\frac{16}{\left(2\mathrm(Re)z_1 + |z_2|^2\right)} \d x_1 \d y_1 \d x_2 \d y_2 .
+\]
+This allows us to compute the critical exponent of any uniform lattice $\Gamma \leq \SU(2,1)$.
+\begin{lemma}
+    Let $\Gamma \leq \SU(2,1)$ be a uniform lattice.
+    Then the critical exponent of $\Gamma$ with respect to the Bergman metric is
+    \[
+    \delta_\Gamma = 2.
+    \]
+\end{lemma}
+\begin{proof}
+    Using \cref{lem:critical_exponent_entropy}, it is equivalent to show that hte volume entropy of the Bergman metric is $2$:
+    \[
+    \lim_{R \to \infty} \frac{\log \vol B_R([1:0:-1])}{R}  = 2.
+    \]
+    Indeed, using the expression
+    \[
+    B_R([1:0:-1]) = \left\{ 
+        [z_1: z_2: 1] \in \mathbb C^{2,1} : \frac{|z_1 - 1|^2}{-2(2\mathrm{Re}z_1 + |z_2|^2)} \leq \cosh^2(R/2), \mathrm{Re}z_1 + |z_2|^2 < 0
+    \right\},
+    \]
+    and estimating the volume of the ball $B_R([1:0:-1])$, given by
+    \[
+    -16 \int_{B_R([1:0:-1])} \frac{1}{\left(2x_1 + x_2^2 + y_2^2\right)} \d x_1 \d y_1 \d x_2 \d y_2,
+    \]
+    we see that it is of order $\vol B_R([1:0:-1]) \approx \cosh^4(R/2) \approx e^{2R}$.
+    \todo{How can we show that $\vol B_R([1:0:-1]) \approx e^{2R}$?}
+\end{proof}
 The set of isometries\index{$\SU(2,1)$} is given by the rank 1 Lie group
 \[
 \SU(2,1) \equaldef \left\{ g \in \SL(3, \mathbb C) : g^* J_2 g = J_2 \right\},
@@ -870,7 +917,6 @@ We may now proceed with the proof of \cref{lem:boundary_covering}:
 
 The next step will be to cover each of the sets in $\mathcal U_T$ by ellipsoids in the projective space, which are merely the projectivisation of the usual ellipsoids in $\mathbb R^d$.
 Note that while in the case of the latter, the axes are lines (for instance $\mathbb Re_1, \ldots, \mathbb Re_d$), their projective analogue should be planes (for instance $\mathbb R u_1 \oplus \mathbb R u_2, \ldots \mathbb R u_1 \oplus \mathbb R u_d$).
-\todo{Does this clarifying comment on the axes of the ellipsoid help?}
 \begin{definition}\index{ellipsoid}
     Let $V$ be a finite-dimensional $\mathbb R$-vector space.
     We consider a decomposition
@@ -888,11 +934,10 @@ Note that while in the case of the latter, the axes are lines (for instance $\ma
 \end{definition}
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.4\textwidth]{ellipsoid.jpg}
+    \includegraphics[width=0.7\textwidth]{ellipsoid.jpg}
     \caption{Depiction in $\mathbb R^3$ of an ellipsoid of $\mathbb P(\mathbb R^2)$}
     \label{fig:ellipsoid}
 \end{figure}
-\todo{Correct ellipsoid drawing}
 When we want to distinguish between the projective ellipsoid of the above definition and the usual ellipsoid in $\mathbb R^d$, we will refer to the latter as a euclidean ellipsoid.
 When there is no ambiguity, we will simply refer to the projective ellipsoid as an ellipsoid.
 
@@ -1183,20 +1228,34 @@ We denote with $\Pi$ the set of simple positive roots, and for $\Theta \subseteq
     \mathfrak a_\Theta = \bigcap_{\alpha \notin \Theta} \ker \alpha,
 \]
 which in particular admits $\{ \omega_{\alpha_i} : \alpha_i \in \Theta \}$ as a basis.
+
 \begin{definition}\index{Busemann cocycle}
     Let $\Theta \subseteq \Pi$. We define the Busemann cocycle
     \[
-    b : \PSL(d, \mathbb R) \times \mathcal F_\Theta \to \mathfrak a_\Theta
+    b : \PSL(d, \mathbb R) \times \mathcal F_\Pi \to \mathfrak a
     \]
-    as the unique element $b(g, k P_\Theta) \in \mathfrak a_\Theta$ such that
+    as the unique element $b(g, k P) \in \mathfrak a$ such that
     \[
-    g k \in K e^{b(g, k P_\Theta)} N.
+    g k \in K e^{b(g, k P)} N,
     \]
-    \todo{Correct the definition of the Busemann cocycle\\
-    (see \cite{quint2002mesures} Lemme 6.1)\\
-    Then add proof for \cref{lem:busemann_weight}}
-    where $N = \{ n \in \SL(d, \mathbb R) : n_{ij} = 0 \text{ for } i > j, n_{ii} = 1 \text{ for all } i \}$ is the unipotent group of upper subgroup of upper triangular matrices with $1$s on the diagonal, and $P_\Theta$ is the parabolic subgroup of $\PSL(d, \mathbb R)$ corresponding to $\Theta$, i.e.\ $\mathcal F_\Theta = \PSL(d, \mathbb R)/P_\Theta$.
+    where $N = \{ n \in \SL(d, \mathbb R) : n_{ij} = 0 \text{ for } i > j, n_{ii} = 1 \text{ for all } i \}$ is the unipotent group of upper subgroup of upper triangular matrices with $1$s on the diagonal, and $P$ is the minimal parabolic subgroup of $\PSL(d, \mathbb R)$ given by the set of upper triangular matrices.
 \end{definition}
+However we will not be directly working with the Busemann cocycle itself, but rather with a cocycle define on $\PSL(d, \mathbb R) \times \mathcal F_\Theta \to \mathfrak a_\Theta$.
+\begin{lemma}[\cite{quint2002mesures}, Lemme 6.1]
+    Let $p_\Theta: \mathfrak a \to \mathfrak a_\Theta$ be the unique projection that is invariant under $W_\Theta$.
+    Then the map $p_\Theta \circ b_\Pi$ factors through a unique map $b_\Theta: \PSL(d, \mathbb R) \times \mathcal F_\Theta \to \mathfrak a_\Theta$.
+    Moreover, this map is a cocycle:
+    \[
+    b_\Theta(gh, x) = b_\Theta(g, hx) + b_\Theta(h,x).
+    \]
+\end{lemma}
+\todo{Why is there a unique such projection $p_\Theta$?} 
+
+Denoting with $W_\Theta = \cap_{a \in \mathfrak a_\Theta} \Stab_W(a)$ the subgroup of the Weyl group that fixes all elements of the Levi-Anosov subspace,  
+\todo{Correct the definition of the Busemann cocycle\\
+(Add proof for \cref{lem:busemann_weight}}
+
+
 \begin{lemma}\label{lem:busemann_weight}
 For $y \in \mathcal F_\Theta(\mathbb R^d)$ we have    
 \[
@@ -1207,7 +1266,12 @@ For $y \in \mathcal F_\Theta(\mathbb R^d)$ we have
 for any basis $v_1, \ldots, v_i$ of $x^i \in \mathcal G_i(\mathbb R^d)$, where $\| \cdot \|$ denotes the norm on $\bigwedge^i \mathbb R^d$ induced by the euclidean inner product on $\mathbb R^d$, 
 i.e.\ $ \langle v_1 \wedge \cdots \wedge v_k, w_1 \wedge \cdots \wedge w_k \rangle := \det(\langle v_i, w_j \rangle)$.
 \end{lemma}
-
+% \begin{proof}
+%     First we note that it suffices to prove the analogous result for $\PSL(d, \mathbb R) \times \mathcal F_\Theta \to \mathfrak a_\Theta$.
+%     Indeed, then for any $y \in \mathcal F_\Theta(\mathbb R^d)$, we can consider any of its lifts $\tilde y \in \mathcal F_\Pi(\mathbb R^d)$.
+%     Let $g \in \SL(d, \mathbb R), k \in K, y = kP_\Theta \in \mathcla F_\Theta(\mathbb R^d)$.
+%     By the definition of the Busemann cocycle
+% \end{proof}
 
 \begin{definition}
     We define
@@ -1374,8 +1438,7 @@ The following is \cite[Proposition 6.4]{pozzetti_anosov_2023}:
     \zeta_\rho: \xi_\rho^1(\partial \Gamma) \to \mathcal F_{1, d_\rho + 1}(\mathbb R^d)
     \]
     of the projection $\mathrm{pr}_1: \mathcal F_{1, d_\rho + 1}(\mathbb R^d) \to \mathbb P(\mathbb R^d)$.
-\end{proposition}\todo{Why do we construct a measure over $\mathcal F_{1,d_\rho + 1}(\mathbb R^d)$ and not the limit set? We had talked about it but I forgot.}
-\todo{Straighten out this. Does it make sense for $\Omega_{l, V}$ to be an a.e.\ defined density?}
+\end{proposition}
 \begin{proof}
     By Rademacher's theorem, $\xi^1_\rho(\partial \Gamma)$ has a well-defined Lebesgue measure class, and Lebesgue-almost every $\xi^1_\rho(x) \in \xi^1_\rho(\partial \Gamma)$ admits a well-defined tangent space $T_{\xi^1_\rho(x)} \xi^1_\rho(\partial \Gamma)$.
     Considering such a $\xi^1_\rho(x)$ we let
@@ -1976,7 +2039,7 @@ We are now ready to fill in the gaps, and provide a proof of \cref{prop:irreduci
     From \cref{lem:critical_exponent_entropy}, we know that the critical exponent of $\Gamma$ is equal to the volume entropy of the metric $d$, which can be explicitly computed:
     \[
     \delta_\Gamma = \lim_{R\to \infty} \frac{\log \mathrm{Vol} \left(B_{R}\left([1:0:-1]\right)\right)}{R} = 2.
-    \]\todo{How do we calculate the volume entropy for this metric?}
+    \]
     \end{enumerate}
 \end{proof}
 
@@ -1987,7 +2050,7 @@ In particular, we have found that this is indeed true if we add the assumption t
 This provides a modified version of the main theorem:
 \begin{theorem}\label{thm:main_anti_de_sitter}
     Let $\rho: \Gamma \to \SL(d, \mathbb R)$ be a projective Anosov representation such that $\xi^1_\rho(\partial \Gamma)$ is a Lipschitz submanifold of $\mathbb P(\mathbb R^d)$.
-    Assume moreover that $\dim \xi_\rho^1(\partial \Gamma) = d-3, d > 4$ and $\rho(\Gamma)$ is Zariski-dense in $\SO(2,d-2)$. \todo{Is it not the case $d=4$ that is of importance in physics?}
+    Assume moreover that $\dim \xi_\rho^1(\partial \Gamma) = d-3, d > 4$ and $\rho(\Gamma)$ is Zariski-dense in $\SO(2,d-2)$.
     Then
     \[
         \dim \xi_\rho^1(\partial \Gamma) = h_{\rho(\Gamma)}(F).
@@ -2053,14 +2116,31 @@ This is however nothing new, because it follows from the classical Patterson--Su
 
 To reduce the proof of \cref{thm:main_anti_de_sitter} to the situation of \cref{lem:transverse_subspace}, we will use the following lemma:
 \begin{lemma}\label{lem:induced_form}
-    \todo{Type up the proof of the quadratic form reduction that I have already handwritten.}
-    Let $\omega$ be a non-degenerate symmetric bilinear form on $\mathbb R^d$ and $v$ a zero-vector for $\omega$.
+    Let $\omega$ be a non-degenerate symmetric bilinear form on $\mathbb R^d$ and $v$ a null vector for $\omega$.
     Then $\omega$ induces the form $\tilde{\omega}$ on $\perp v / \mathbb R v$ given by
     \[
     \tilde \omega(x + \mathbb Rv, y + \mathbb Rv) = \omega(x,y),
     \]
     and which has signature $\mathrm{sgn}( \tilde \omega) = \mathrm{sgn}(\omega) - (1,1)$.
 \end{lemma}
+\begin{proof}
+    Let $e_1 = u$.
+    We claim that there exists some isotropic vector $e_2 \in \mathbb R^d$ such that $\omega(e_1, e_2) = 1$.
+    To find one, consider some $f \in \mathbb R^d$ such that $\omega(e_1, f) = 1$, which is exists since the form is non-degenerate.
+    Then we can take $e_2 = f - \omega(e_1, f)e_1$. 
+
+    Over $\spa\{e_1, e_2\}$, $\omega$ is a $(1,1)$ form given by
+    \[
+    \omega_{|\spa\{e_1, e_2\}} = \begin{pmatrix}
+        0 & 1 \\
+        1 & 0
+    \end{pmatrix}
+    \]
+    in the basis $\{e_1, e_2\}$. 
+    In particular it is non-denegerate, so it will be non-degenerate on $\spa\{e_1, e_2\}^\perp$ as well, and $\mathrm{sgn}(\omega) = \mathrm{sgn}(\tilde \omega) - (1,1)$.
+    
+    Denoting with $q: \mathbb R^d \to \mathbb R^d/\mathbb R e_1$ the canonical projection, we have that $\tilde \omega = q^* \omega$, so $\mathrm{sgn}(\tilde \omega) = \mathrm{sgn}(\omega_{|\spa\{e_1, e_2\}}) = \mathrm{sgn}(\omega) - (1,1)$.
+\end{proof}
 
 We are now ready to provide a proof for \cref{thm:main_anti_de_sitter}:
 \begin{proof}[Proof of \cref{thm:main_anti_de_sitter}]
@@ -2109,8 +2189,8 @@ We are now ready to provide a proof for \cref{thm:main_anti_de_sitter}:
     respectively.
     Thus Witt's theorem gives us the desired result.
 \end{proof}
-\todo[inline]{Try to generalize the above in other choises of $\SO(p,q)$}
-\todo[inline]{Is $\Ad_{\SU(2,1)}$ Zariski-dense in $\SO(\mathfrak{su(2,1)}, K)$? If yes, then a generalisation of \cref{thm:main_anti_de_sitter} to $\SO(4,4)$ would account for the validity of the result in the case of \cref{prop:irreducibility_countexample}}
+\todo[inline]{Try to generalize the above in other choices of $\SO(p,q)$}
+\todo[inline]{Comment that $\Ad_{\SU(2,1)}$ is not Zariski-dense in $\SO(\mathfrak{su(2,1)}, K)$, so a generalisation of \cref{thm:main_anti_de_sitter} to $\SO(4,4)$ would not account for the validity of the result in the case of \cref{prop:irreducibility_countexample}}
 
 \chapter{Conclusion}
 Anosov representations have been a subject of interest ever since their introduction in \cite{labourie_anosov_2006}, and are now considered as a natural genralisation of convex-cocompact representations into Lie groups of rank higher than 1.
