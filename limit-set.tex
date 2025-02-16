@@ -131,7 +131,12 @@ In this section, we recall the definition of the critical exponent of a discrete
 \begin{remark}
     It is not hard to show that the critical exponent is independent of the choice of~$x$.    
 \end{remark}
-
+In the case of $\Gamma$ being a discrete subgroup of $\SL(d,\mathbb R)$, we will be interested in the limit set of $\Gamma$ in the projective space $\mathbb P(\mathbb R^d)$.
+The following definition is in fact a convenient characterisation that appears in \cite{benoist1997proprietes}:
+\begin{definition}\label{def:limit_set}
+    Let $\Gamma$ be a discrete subgroup of $\SL(d, \mathbb R)$ that contains a proximal element and acts irreducibly on $\mathbb R^d$.
+    Then the action of $\Gamma$ on $\mathbb P(\mathbb R^d)$ admits a smallest closed invariant set $\Lambda_\Gamma$, which is called the limit set of $\Gamma$.
+\end{definition}
 
 Later in the thesis, we will be using certain terms to refer to lattices, which we recall below:
 \begin{definition}
@@ -323,7 +328,7 @@ which is precisely the defining inequality for an ellipsoid.
 
 Recall that for a general element in $g \in \SL(d, \mathbb R)$, we may not make any assumption on the singular values $\sigma_i(g)$ except from the fact that they are in non-increasing order.
 In particular, certain singular values may coincide, which in the context of the above discussion means that the choice of the axes $u_i(g)$ is arbitrary.
-In fact, when for instance $\sigma_2(g) = \sigma_3(g)$, any rotation of the orthonormal basis on the $\mathbb R u_i(g) \oplus \mathbb R u_{i+1}(g)$ plane will give the equally valid orthonormal choice of axis $u_1(g), \cos(\theta) u_1(g) + \sin(\theta) u_2(g), -\sin(\theta) u_1(g) + \cos(\theta) u_2(g), u_3(g), \cdots, u_d(g)$.
+In fact, when for instance $\sigma_2(g) = \sigma_3(g)$, any rotation of the orthonormal basis on the $\mathbb R u_2(g) \oplus \mathbb R u_{3}(g)$ plane will give the equally valid orthonormal choice of axis $u_1(g), \cos(\theta) u_2(g) + \sin(\theta) u_3(g), -\sin(\theta) u_2(g) + \cos(\theta) u_3(g), u_4(g), \cdots, u_d(g)$.
 This has to do with the fact that the choice of elements $k_g, l_g$ in the Cartan decomposition of $g$ is not unique (see \cref{fig:arbitrary_axis}).
 \begin{figure}[h]
     \centering
@@ -556,7 +561,7 @@ Lastly, we recall the definition of the Hausdorff dimension:
     \]
 \end{definition}
 
-\section{Hausdorff measures and densities}\label{sec:measures_and_densities}
+\section{Measures and densities}\label{sec:measures_and_densities}
 Let $M$ be a submanifold of a Riemannian manifold $N$.
 Depending on the context, there are different ways to define a ``natural'' measure on $M$ in a way that reflects the geometry of $N$, the most common of which are volume forms, densities and the Hausdorff measure.
 
@@ -781,7 +786,7 @@ in which a tedious calculation yields
 
 The Cartan subalgebra and Weyl chamber are given by
 \[
-    \mathfrak a^+ = \mathbb R \cdot \begin{pmatrix}
+    \mathfrak a = \mathbb R \cdot \begin{pmatrix}
         1 & 0 & 0\\
         0 & 0 & 0\\
         0 & 0 & -1
@@ -795,7 +800,7 @@ The Cartan subalgebra and Weyl chamber are given by
 
 It will be useful later to have an explicit expression of the Cartan projection
 \begin{lemma}\label{lem:cartan_projection_su_2_1}
-    The Cartan projection $\mu: \su(2,1) \to \mathfrak a^+$ is given by
+    The Cartan projection $\mu: \SU(2,1) \to \mathfrak a^+$ is given by
     \[
     \mu\left(g\right) = \frac{d(g [1:0:-1], [1:0:-1])}{2} \begin{pmatrix}
         1 & 0 & 0\\
